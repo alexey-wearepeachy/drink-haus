@@ -1,0 +1,68 @@
+{% assign recipes =  product.metafields.recipes.recipe_articles | split: "|" %}
+{% assign memberships = product.metafields.membership_page.products | split: "|"%}
+
+<section data-section-id="{{ section.id }}" data-section-type="membership" class="-pt-110 bpm-120">
+  
+  {% render 'text-hero' with
+    as_title: true,
+    title: product.metafields.membership_page.title,
+    copy: product.metafields.membership_page.copy
+    no_border: true,
+  %}
+  
+  {% render 'membership-bottle-selection' with 
+    header: product.metafields.membership_pdp.section_header,
+    copy: product.metafields.membership_pdp.copy,
+  %}
+  
+   {% render 'membership-grid' with 
+    title: 'How it works',
+    blocks: product.metafields.membership_grid.title,
+    blocks_image: product.metafields.membership_grid.image, 
+    blocks_title: product.metafields.membership_grid.title,
+    blocks_content: product.metafields.membership_grid.copy
+   %}
+  
+  {% render 'billboard--content-below', 
+    image_url: product.metafields.membership_billboard.image,
+    mobile_image_url: product.metafields.membership_billboard.mobile_image,
+    title: product.metafields.membership_billboard.title,
+    copy: false,
+    blocks: product.metafields.membership_perk.title,
+    blocks_title: product.metafields.membership_perk.title.
+    blocks_content: product.metafields.membership_perk.copy
+   %}
+
+</section>
+
+{% unless product == empty %}
+  <script>
+    window.membershipSelection = [
+     {% for membership in memberships %}
+         {
+          "title": {{ all_products[membership].title|json }},
+          "handle": {{ all_products[membership].handle|json }},
+          "size": {{membership|replace: "-bottle-membership"|json}},
+          "description": {{all_products[membership].description|json}},
+          "image": {{all_products[membership].metafields.membership_section.featured_image|json}},
+          "price": {{ all_products[membership].price|json }},
+          "variants": [
+            {%- for variant in all_products[membership].variants -%}
+                {
+                    "id": {{variant.id|json}},
+                    "handle": {{ variant.title|handleize|json}},
+                    "title": {{variant.title|json}},
+                    "available": {{variant.available|json}},
+                    "quantity": {{variant.inventory_quantity|json}},
+                    "price": {{variant.price|json}}
+                }
+                {%- if forloop.last == false -%},{%- endif -%}
+            {%- endfor -%}
+          ]
+         }{%- if forloop.last == false -%},{%- endif -%}
+      {% endfor %}  
+    ]
+    
+    window.membershipExclusions = {% if product.metafields.membership_flavors.flavor_exclusion_list != blank %}{{ product.metafields.membership_flavors.flavor_exclusion_list | split: "|" | json }}{% else %}[]{% endif %}
+  </script>
+{% endunless %}

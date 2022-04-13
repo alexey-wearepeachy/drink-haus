@@ -1,0 +1,15 @@
+{% assign product_type = product.type | handle %}
+
+{% assign quantities = "1,2,6" | split: ',' %}
+
+<div class="-shrink-0 variant-selectors -d-flex -row -justify-center bpl-justify-start -align-start bpm-mr-10 {% if classes %}{{ classes }}{% endif %}" data-variant-select>
+  {% if product_type != 'gift-card' %}
+    {% for quantity in quantities %}
+      <button class="variant-selector gta-extended-med" data-variant-choice data-index="{{ forloop.index0 }}" data-quantity="{{ quantity }}">{{ quantity }}</button>    
+    {% endfor %} 
+  {% else %}
+    {% for variant in variants %}
+      <button data-index="{{ forloop.index0 }}" class="variant-selector {% unless variant.available %}is-disabled{% endunless %} {% if product_type == 'gift-card'%}button-text{% else %}gta-extended-med{% endif %}" data-variant-choice data-variant-id="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>{{ variant.title }}</button>
+    {% endfor %}  
+  {% endif %}
+</div>

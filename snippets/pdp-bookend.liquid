@@ -1,0 +1,82 @@
+{% if image == blank %}
+  {% assign displayed_image = product.featured_image %}
+{% else %}
+  {% assign displayed_image = image %}
+{% endif %}
+
+{% if copy == blank %}
+  {% assign displayed_copy = product.metafields.product_card.short_description %}
+{% else %}
+  {% assign displayed_copy = copy %}
+{% endif %}
+
+<section class="bookend product-hero">
+  <div class="container">
+    
+  {% if template.name == 'product' %}
+    <div class="-d-flex -f-col bps-f-row bps-justify-center bpm-align-start b-top-french b-bottom-french -py-45 bpm-py-65">
+  {% else %}
+    <div class="-d-flex -f-col bps-f-row bps-justify-center bpm-align-start b-bottom-french -py-45 bpm-py-65">
+  {% endif %}
+  
+      <div class="-d-none bps-d-block col col-xs-full col-sm-11 col-lg-10 gutter-sm-1 gutter-lg-2 bpm-my-auto rel">
+        <div class="rel">
+          {% if template.name == "product" %}
+            <a href="{{to}}" class="image-link">
+              <div class="image-wrap image--hide-bps-down">
+                <img class="haus-image" src="{{ displayed_image.src }}" alt="{{ displayed_image.alt }}">
+              </div>
+            </a>
+          {% else %}
+            <a href="{{to}}" class="image-link">
+              {%
+                render 'responsive-image', 
+                with image: displayed_image, 
+                image_class: "haus-image", 
+                wrapper_class: "image-wrap image--hide-bps-down", 
+                max_width: 700, 
+                max_height: 500 
+              %}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="copy-col col-xs-full col-sm-11 -tac bps-tal flex -f-col -align-center bps-align-start">
+        {% if title != blank %}
+          <div class="header-wrap bpm-mr-auto">
+            <h2 class="-no-mt -s-heading bpm-m-heading bpl-l-heading -mb-10 bps-mb-5">{{ title }}</h2>
+          </div>
+        {% endif %}
+        {% if include_reviews %}
+          <div class="-d-table -mx-auto -mb-20 bpm-no-ml">
+            {% render 'okendo-product-rating-summary', product: product %}
+          </div>
+        {% endif %}
+
+        {% if template.name == "product" %}
+          <a href="{{to}}" class="image-link">
+            <div class="image-wrap image--hide-bps-up -mb-25">
+              <img class="haus-image" src="{{ displayed_image.src }}" alt="{{ displayed_image.alt }}">
+            </div>
+          </a>
+        {% else %}
+          <a href="{{to}}" class="image-link">
+            {%
+              render 'responsive-image', 
+              with image: displayed_image, 
+              image_class: "haus-image", 
+              wrapper_class: "image-wrap image--hide-bps-up -mb-25", 
+              max_width: 700, 
+              max_height: 500
+            %}
+          </a>
+        {% endif %}
+        <div class="-caption bpm-body -no-mt -mb-20">{{ displayed_copy }}</div>
+
+        {% if to != blank and label != blank %}
+          {% render 'button' with to: to, text: label %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+{{ "swell-referral.css" | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="referral-and-history">
+	<div class="-mt-100 bpm-mt-150">
+		<div class="header-refer">
+			<div>
+				<h1 class="ros-cond -s-heading bpm-m-heading bpl-xl-heading">$10 on the Haus</h1>
+			</div>
+			<p>Know someone we should meet?</p>
+		</div>
+	</div>
+	<div class="wrap-img">
+	<img src="{{'swell-refer-web.jpg' | asset_url}}" class="img-header">
+	</div>
+	<div class="container">
+
+		{% if customer %}
+		<div class="wrap-history">
+			{%include "swell-referral-history" %}
+		</div>
+		{% endif %}
+		
+		<div class="referral-grid">
+			<div class="refer-explain">
+				<h3 class="title-refer">Refer more friends</h3>
+				<p>For every friend you refer, they’ll get $10 off their first <br>purchase and you’ll get $10 to spend on<br>your next Haus order.</p>
+			</div>
+		</div>
+	</div>
+</div>
+{{ "swell-referral.js" | asset_url | script_tag }}

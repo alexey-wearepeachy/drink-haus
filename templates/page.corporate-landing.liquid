@@ -1,0 +1,60 @@
+{% assign enable_mobile_slider = page.metafields.page.enable_mobile_carousel %}
+{% assign products = page.metafields.page.featured_product | split: "|" %}
+{% assign featured_title = page.metafields.page.featured_products_title %}
+{% assign hero = page.metafields.page.hero %}
+{% assign alignment = 'tac' %}
+{% assign byline = page.metafields.page.byline %}
+{% case page.metafields.page.alignment %}
+  {% when 'Left' %}
+     {% assign alignment = 'tal' %}
+  {% when 'Right' %}
+    {% assign alignment = 'tar' %}
+  {% else %}
+     {% assign alignment = 'tac' %}
+{% endcase %}
+
+{% if hero != blank %}
+  <div class="hero hero--small hero--has-bg" style="background-image: url( {{ hero[0].src }});"></div>
+{% endif %}
+  
+<div class="container {% if hero %}-pb-80 -pt-40{% else %}-py-80{% endif %}">
+
+  <div class="-d-table -mx-auto col-xs-full col-md-12">
+    <div class="{{ alignment }} -mt-40 {% if hero %}bpm-mt-40{% else %}bpm-mt-80{% endif %} -mb-40 bpm-mb-60">
+      <h1 class="-m-heading bpm-l-heading -mt-0 bpl-xl-heading ros-cond">{{ page.title }}</h1>
+      {% if byline != blank %}
+        <p class="eyebrow">By: {{ byline }}</p>
+      {% endif %}
+    </div>
+
+    <div class="rte wysiwyg-content" data-js-behavior="pageContent">
+      {% comment %} {{ page.content }} {% endcomment %}
+      {% include 'shortcode' load: page.content %}
+    </div>    
+  </div>
+  
+  {% if products != blank %}
+  <div class="container b-top-french -mt-50 bpm-mt-80">
+    {% if featured_title != blank %}
+    <h2 class="tac -s-heading bpm-l-heading bpm-mt-90">{{ featured_title }}</h2>
+    {% endif %}
+    <div class="gutter-x-sm-1">
+      <div class="grid-3-up row row--jc row--ais -pt-40 bpm-pt-50 {% if enable_mobile_slider %} product-slider {% endif %}" {% if enable_mobile_slider %}data-js-behavior="mobileSlider"{% endif %}>
+        {% for prod in products %}
+          {% assign handle = prod | replace: '["' | replace: '"]'%}
+          
+          <div class="grid-col col col-xs-full col-sm-12 col-md-8 gutter-px-half-xs-1 gutter-px-half-md-1 gutter-px-half-lg-1 {% unless forloop.last %}-mb-60 bpm-mb-80{% endunless %}">
+            {% render 'product-card' 
+              with all_products[handle] as product, 
+              isQuickadd: false, 
+              button_override: false,
+              isShopNow: true,
+              button_type: 'shopnow'
+            %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>

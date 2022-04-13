@@ -1,0 +1,19 @@
+<div class="hero -pb-sm bg-black" >
+  <div class="hero__bg fade-in" {% if image %}style="background-image: url( {{ image }});"{% endif %}>
+  </div>
+  
+  <div class="rel w-100 h-100 -px-md">
+    <div class="hero__logo ">
+      {% render 'haus-logo' %}
+    </div>
+  </div>
+  
+  
+  {% 
+    render 'text-link', 
+    centered: true, 
+    white: true,
+    to: '#next-section', 
+    text: 'Shop Now' 
+  %}
+</div>

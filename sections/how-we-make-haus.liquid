@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="bpm-py-50 b-top-divider">
+    <div class="gutter-x-sm-1 -py-30 ">
+      {% if section.settings.title %}
+        <h2 class="tac -s-heading bpm-m-heading bpm-f-500 bpl-l-heading -no-mt -mb-30">{{ section.settings.title }}</h2>
+      {% endif %}
+      <div class="bpm-d-flex bpm-f-row bpm-justify-between bpm-align-start">
+      {% for block in section.blocks %}
+        <div class="col-xs-full col-md-7">
+          {% render 'content-card' with
+            image: block.settings.image, 
+            copy: block.settings.copy
+          %}
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% schema %}
+  {
+    "name": "How We Make Haus",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "content-card",
+        "name": "Block",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Featured Image"
+          },
+          {
+            "id": "title",
+            "info": "Not dislayed on the website",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "text",
+            "label": "Copy"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "How We Make Haus"
+      }
+    ]
+  }
+{% endschema %}

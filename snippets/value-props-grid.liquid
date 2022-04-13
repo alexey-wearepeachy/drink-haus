@@ -1,0 +1,55 @@
+
+{% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+  {% assign has_background = bg_color %}
+{% else %}
+  {% assign has_background = false %}
+{% endif %}
+
+
+<section {% if has_background %}style="background-color: {{ has_background }};"{% endif %}>
+  <div class="container -pb-40 -pt-35 bpm-pt-50 bpm-pb-60  {% if has_background %}bpm-pb-0 has-background-color{% else %}{% endif %}">
+    {% if copy != blank or title != blank %}
+      <div class=" -mb-60 bpm-mb-80">
+        {% render 'text-block' with
+          title: title,
+          eyebrow: eyebrow,
+          copy: copy, 
+          text_white: has_background,
+        %}
+      </div>
+    {% endif %}
+    
+    
+    <div class="gutter-x-sm-1">
+      <div class="grid-3-up row row--jc row--ais -tac {% if has_background %}text-white{% endif %}">
+        <div class="grid-col col col-xs-full col-sm-8 gutter-px-half-xs-1 gutter-px-half-md-1 gutter-px-half-lg-1 -mb-60 bpm-mb-0">
+          {% render 'responsive-image' with
+            image: col_1_image,
+            max_width: 500,
+            max_height: 500,
+          %}
+          <p class="-s-heading ros">{{ col_1_title }}</p>
+          <p class="-body">{{ col_1_copy }}</p>
+        </div>
+        <div class="grid-col col col-xs-full col-sm-8 gutter-px-half-xs-1 gutter-px-half-md-1 gutter-px-half-lg-1 -mb-60 bpm-mb-0">
+          {% render 'responsive-image' with
+            image: col_2_image,
+            max_width: 500,
+            max_height: 500,
+          %}
+          <p class="-s-heading ros">{{ col_2_title }}</p>
+          <p class="-body">{{ col_2_copy }}</p>
+        </div>
+        <div class="grid-col col col-xs-full col-sm-8 gutter-px-half-xs-1 gutter-px-half-md-1 gutter-px-half-lg-1 -mb-60 bpm-mb-0">
+          {% render 'responsive-image' with
+            image: col_3_image,
+            max_width: 500,
+            max_height: 500,
+          %}
+          <p class="-s-heading ros">{{ col_3_title }}</p>
+          <p class="-body">{{ col_3_copy }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

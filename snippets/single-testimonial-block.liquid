@@ -1,0 +1,22 @@
+{% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+  {% assign has_background = bg_color %}
+{% else %}
+  {% assign has_background = false %}
+{% endif %}
+
+<div class="testimonial-block slider-container {% if has_background %}text-white{% else %}text-black{% endif %}" {% if has_background %}style="background-color: {{ bg_color }};{% endif %}">
+  <section class="slide -tac -pt-55 -pb-55 bpm-pt-55 bpm-pb-60">
+    <div class="gutter-x-xs-2">
+      <div class="-d-flex -f-col bpl-f-row -justify-center ">
+        <blockquote class="col col-xs-full col-lg-14 -no-m">
+          <p class="-no-my ros -s-heading bpm-m-heading">{{ text }}</p>
+          {% if source != blank %}
+            <footer class="button-text -mt-20">
+              — {{ source }}
+            </footer>
+          {% endif %}
+        </blockquote>
+      </div>
+    </div>
+  </section>  
+</div>

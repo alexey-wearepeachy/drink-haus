@@ -1,0 +1,69 @@
+{% assign mobile_image = false %}
+{% assign desktop_image = false %}
+
+{% if section.settings.mobile_image %}
+  {% assign mobile_image = section.settings.mobile_image | img_url: '1024x' %}
+{% endif %}
+
+{% if section.settings.desktop_image %}
+  {% assign desktop_image = section.settings.desktop_image | img_url: '1600x' %}
+{% endif %}
+
+{% render 'fifty-fifty-hero', 
+  title: section.settings.hero-text,
+  subtitle: section.settings.copy,
+  cta_url: section.settings.btn-url,
+  cta_text: section.settings.btn-text,
+  bg_color: section.settings.bg_color,
+  mobile_image: mobile_image,
+  desktop_image: desktop_image
+ %}
+{% schema %}
+  {
+    "name": "50/50 Hero",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "desktop_image",
+        "label": "Dekstop Hero Image",
+        "info": "Required"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile Hero Image"
+      },
+      {
+        "type": "text",
+        "id": "hero-text",
+        "label": "Hero Text"
+      },
+      {
+        "type": "text",
+        "id": "copy",
+        "label": "Copy Text"
+      },
+      {
+        "type": "url",
+        "id": "btn-url",
+        "label": "Hero Button Link"
+      },
+      {
+        "type": "text",
+        "id": "btn-text",
+        "label": "Hero Button Text"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "checkbox",
+        "id": "text_color",
+        "label": "Text Color",
+        "info": "Only enabled if there is a background color"
+      }
+    ]
+  }
+{% endschema %}

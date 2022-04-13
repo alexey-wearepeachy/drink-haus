@@ -1,0 +1,16 @@
+<section class="press-grid container -py-40 bpm-py-55">
+  <h6 class="label -d-block bpm-d-none -mb-20 tac">As Seen In</h6>
+  <div class="b-bottom-french">
+    <div class="-d-block bpm-d-flex bpm-justify-between row--aie -mb-40 bpm-60 mobile-slider press-slider" data-js-behavior="mobileSlider">
+      {% for block in data %}
+        <div class="col col-xs-full col-md-6">
+          {% render 'press-feature' with
+            type: 'grid',
+            text: block.settings.title,
+            image: block.settings.image
+          %}
+        </div>    
+      {% endfor %}
+    </div>
+  </div>
+</section>

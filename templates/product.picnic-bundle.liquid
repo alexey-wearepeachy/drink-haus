@@ -1,0 +1,175 @@
+{% assign preset_bundle = product.metafields.preset_bundle.products | split: "|" %}
+{% assign recipes =  product.metafields.recipes.recipe_articles | split: "|" %}
+{% assign memberships = product.metafields.haus_subscriptions.products | split: "|" %}
+
+{% if product.metafields.bundle.max_count != blank %}
+  {% assign max_count =  product.metafields.bundle.max_count %}
+{% else %}
+  {% assign max_count = 2 %}
+{% endif %}
+
+{% assign product_type = product.type | downcase | handleize %}
+{% for tag in product.tags %} 
+  {%- assign tag_pair = tag | split: " => " -%}
+  {%- case tag_pair.first -%}
+    {%- when 'haus::badge' -%}
+      {%- assign badge = tag_pair.last -%}
+    {%- else -%}
+  {%- endcase -%}
+{% endfor %}
+
+
+{% assign template_name = template.suffix %}
+
+<section class="-pt-100 bpm-pt-160" data-section-id="{{ section.id }}" data-section-type="product">
+  {% render 'bundle-combo-hero' with product as product %}
+  
+  {% render 'model.the-picnic-set.builder' %}
+</section>
+
+{% unless product == empty %}
+  <script type="application/json" data-product-json>
+    {{ product | json }}
+  </script>
+  
+  {% if memberships.size > 0 %}
+  <script data-membership-json>
+    window.memberships = [];
+    
+    {% for prod in memberships %}
+      {% assign clean_handle = prod | replace: '["', '' | replace: '"]', ''%}
+        {% assign membership_json =  all_products[clean_handle] | json %}
+        window.memberships.push({{ membership_json }})
+    {% endfor %}
+  </script>
+  {% endif  %}
+   
+  <script data-variant-inventory>
+    window.variantInventory = [];
+    {% for variant in product.variants %}
+      window.variantInventory.push({
+        id: {{ variant.id }},
+        inventory_quantity: {{ variant.inventory_quantity }}
+      })
+    {% endfor %}
+  </script>
+  
+  <script data-variant-text-json>
+    window.variantText = [];
+    {% for variant in product.variants %}
+    {% assign variant_text = variant.metafields.variant_selector.selection_text %}
+      window.variantText.push({
+        id: {{ variant.id }},
+        text: {% if variant_text != blank %}"{{ variant_text }}"{% else %}null{% endif %}
+      })
+    {% endfor %}
+  </script>
+  
+  <script>
+  window.selectedMembership = [];
+
+  window.hausBundle = {
+    handle: {{ product.handle | json }},
+    title: {{ product.title | json }},
+    price: {{ product.price | json }},
+    max_count: Number({{ max_count | json }}),
+    image: {{ product.featured_image | json }},
+    products: [
+      {% for handle in preset_bundle %}
+        {% assign current_product = all_products[handle] %}
+        {% assign title_override = current_product.metafields.product_override.title %}
+        
+        {
+          "title": {% if title_override != blank %}{{ title_override | json }}{% else %}{{ current_product.title | json }}{% endif %},
+          "id": {{ current_product.id | json }},
+          "handle": {{ handle | json }},
+          "description": {{ current_product.description | json }},
+          cartImage: {{ product.featured_image | json }},
+          "image": {{ current_product.featured_image | json }},
+          "price": {{ current_product.price | json }},
+          "variants": [
+            {%- for variant in current_product.variants -%}
+              {
+                "id": {{variant.id|json}},
+                "handle": {{ variant.title|handleize|json}},
+                "title": {{variant.title|json}},
+                "available": {{variant.available|json}},
+                "quantity": {{variant.inventory_quantity|json}},
+                "price": {{variant.price|json}}
+              }{%- if forloop.last == false -%},{%- endif -%}
+            {%- endfor -%}
+          ]
+        }{%- if forloop.last == false -%},{%- endif -%}
+      {% endfor %}
+    ]
+  }
+</script>
+{% endunless %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": "{{ product.title | escape }}",
+  "url": "{{ shop.url }}{{ product.url }}",
+  {% if product.featured_image %}
+    {% assign image_size = product.featured_image.width | append: 'x' %}
+    "image": [
+      "https:{{ product.featured_image.src | img_url: image_size }}"
+    ],
+  {% endif %}
+  "description": "{{ product.description | strip_html | escape }}",
+  {% if current_variant.sku != blank %}
+    "sku": "{{ current_variant.sku }}",
+  {% endif %}
+  "brand": {
+    "@type": "Thing",
+    "name": "{{ product.vendor | escape }}"
+  },
+  {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "itemReviewed": "{{ product.title | escape }}",
+      "ratingValue": "{{ product.metafields.yotpo.reviews_average }}",
+      "reviewCount": "{{ product.metafields.yotpo.reviews_count }}"
+    },
+  {% endif %}
+  {% if product.variants %}
+    "offers": [
+      {% for variant in product.variants %}
+        {
+          "@type" : "Offer",
+          "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price" : "{{ variant.price | divided_by: 100.00 }}",
+          "priceCurrency" : "{{ shop.currency }}",
+          "url" : "{{ shop.url }}{{ variant.url }}",
+          "itemOffered" :
+          {
+              "@type" : "Product",
+              {% if variant.image %}
+                {% assign variant_image_size = variant.image.width | append: 'x' %}
+                "image": "http:{{ variant.image.src | img_url: variant_image_size }}",
+              {% endif %}
+              {% if variant.title != blank %}
+                "name" : "{{ variant.title | escape }}",
+              {% endif %}
+              {% if variant.sku != blank %}
+                "sku": "{{ variant.sku }}",
+              {% endif %}
+              {% if variant.weight != blank %}
+                "weight": {
+                  "@type": "QuantitativeValue",
+                  {% if variant.weight_unit != blank %}
+                    "unitCode": "{{ variant.weight_unit }}",
+                  {% endif %}
+                  "value": "{{ variant.weight | weight_with_unit: variant.weight_unit }}"
+                },
+              {% endif %}
+              "url": "{{ shop.url }}{{ variant.url }}"
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  {% endif %}
+}
+</script>

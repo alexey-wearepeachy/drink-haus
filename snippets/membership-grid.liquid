@@ -1,0 +1,18 @@
+<section class="membership-grid container">
+  <div class="-pt-40 bpm-pt-50 b-bottom-divider">
+    <div class="-mb-25 bpm-mb-90">
+      <h2 class="tac -s-heading bpm-m-heading bpl-l-heading -no-mt -mb-35">{{ title }}</h2>
+      <div class="grid-3-up -d-flex -f-col bps-f-row -f-wrap -justify-center -align-start">
+        {% for block in blocks limit: 3 %}
+          <div class="col col-xs-full col-sm-10 col-md-6 gutter-x-half-sm-1 -mb-30 tac -f-wrap bpm-no-mb">
+            {% if blocks_image[forloop.index0] != blank %}
+            <img class="-d-block mw-120 -mx-auto " src="{{ blocks_image[forloop.index0 ][0].src }}" alt="{{ blocks_image[forloop.index0 ][0].alt }}">
+            {% endif %}
+            <h6 class="eyebrow -no-mt">{{ blocks_title[forloop.index0 ]}}</h6>
+            <p class="-caption bpm-body -no-my">{{ blocks_content[forloop.index0 ]}}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

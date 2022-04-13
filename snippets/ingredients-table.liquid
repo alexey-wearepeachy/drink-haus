@@ -1,0 +1,64 @@
+{% for table in product.metafields.nutrition.title %}
+<table class="haus-table h-100">
+  <thead>
+    <tr>
+      <th class="-tal -px-20 w-100 label" colspan="2">Amount Per Ounce</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if product.metafields.nutrition.calories[forloop.index0] != blank %}
+      <tr>
+        <td class="-px-20">Calories</td>
+        <td class="-px-20">
+          {{ product.metafields.nutrition.calories[forloop.index0] }}
+        </td>
+      </tr>
+    {% endif %}
+      
+    {% if product.metafields.nutrition.fat[forloop.index0] != blank %}
+      <tr>
+        <td class="-px-20">Fat</td>
+        <td class="-px-20">
+        {{ product.metafields.nutrition.fat[forloop.index0] }}
+        </td>
+      </tr>
+    {% endif %}
+     
+    {% if product.metafields.nutrition.protein[forloop.index0] != blank %}
+      <tr>
+        <td class="-px-20">Protein</td>
+        <td class="-px-20">
+        {{ product.metafields.nutrition.protein[forloop.index0] }}
+        </td>
+      </tr>
+    {% endif %}
+    
+    {% if product.metafields.nutrition.sugars[forloop.index0] != blank %}
+      <tr>
+        <td class="-px-20">Sugars</td>
+        <td class="-px-20">
+        {{ product.metafields.nutrition.sugars[forloop.index0] }}
+        </td>
+      </tr>
+    {% endif %}
+    
+    {% if product.metafields.nutrition.carbohydrates[forloop.index0] != blank %}
+      <tr>
+        <td class="-px-20">Carbohydrates</td>
+        <td class="-px-20">
+        {{ product.metafields.nutrition.carbohydrates[forloop.index0] }}
+        </td>
+      </tr>
+    {% endif %}
+  
+    {% if product.metafields.nutrition.sodium[forloop.index0] != blank %}
+      <tr>
+        <td class="-px-20">Sodium</td>
+        <td class="-px-20">
+        {{ product.metafields.nutrition.sodium[forloop.index0] }}
+        </td>
+      </tr>
+    {% endif %}
+  </tbody>
+</table>
+{% endfor %}

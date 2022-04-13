@@ -1,0 +1,69 @@
+<!-- Okendo main script to boostrap all HTML elements on load -->
+<script>
+  (function () {
+      function asyncLoad() {
+          // Replace the query param ?shop=<xxx> with the api domain of your shop.
+          var urls = ["https:\/\/d3hw6dc1ow8pp2.cloudfront.net\/reviewsWidget.min.js?shop=drinkhaus.myshopify.com"];
+          for (var i = 0; i < urls.length; i++) {
+              var s = document.createElement("script");
+              s.type = "text/javascript";
+              s.async = true;
+              s.src = urls[i];
+              var x = document.getElementsByTagName("script")[0];
+              x.parentNode.insertBefore(s, x);
+          }
+      }
+      if (window.attachEvent) {
+          window.attachEvent("onload", asyncLoad);
+      } else {
+          window.addEventListener("load", asyncLoad, false);
+      }
+  })();
+</script>
+
+<!-- Okendo default stylesheet -->
+<link
+  href="https://d3hw6dc1ow8pp2.cloudfront.net/styles/main.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+
+<style type="text/css">
+  /* Remove if a Write A Review Button should be hidden */
+  .okeReviews .okeReviews-reviewsWidget-header-controls-writeReview {
+      display: inline-block;
+  }
+
+  /* Remove if empty reviews widget should be hidden */
+  .okeReviews .okeReviews-reviewsWidget.is-okeReviews-empty {
+      display: block;
+  }
+  
+  #oke-starSnippet {
+      padding-top: 5px;
+  }
+
+</style>
+
+<!-- Subscriber-specific stylesheet hosted by Okendo. Linked to Okendo Admin/Settings/Widgets - Advanced.
+      Important to note: '1ec34ba6-5bcc-4cb7-8506-0f7f27207988' is the store's unique Okendo subscriberId. For the purpose of the demo it will belong to a test store and should be modified when developing for a merchant.
+      The store's subscriberId can be found in Okendo Reviews Admin/Settings/Integrations/Credentials/User ID -->
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://dov7r31oq5dkj.cloudfront.net/d1321b54-d086-441d-ac7c-7cb3f2f0c016/widget-style-customisations.css"
+/>
+<!-- Subscriber-specific settings. The 'subscriberId' below should also be updated to match the merchant's subscriberId
+      'widgetTemplateId' accepts the following values: 'default' | 'featured-media' | 'minimal' | 'carousel'  -->
+<script
+  type="application/json"
+  id="oke-reviews-settings"
+>
+  {
+      "filtersEnabled": true,
+      "omitMicrodata": true,
+      "subscriberId": "d1321b54-d086-441d-ac7c-7cb3f2f0c016",
+      "widgetTemplateId": "default",
+      "recorderPlus": true
+  }
+</script>

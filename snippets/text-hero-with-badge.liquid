@@ -1,0 +1,15 @@
+<div class="-pt-40 bpm-pt-80 -tac rel {% if image %}-pb-40 bpm-pb-80{% else %}-pb-25{% endif %}">
+  <div class="{% if hide_on_mobile %}-d-none bpm-d-block{% endif %} text-hero-badge">
+    {% render 'responsive-image' with
+      image: image,
+      max_width: 190,
+      max_height: 190
+    %}
+  </div>
+  <div class="-px-15 col-md-14 col-lg-14 col-xl-10 -mx-auto rel">
+    <h1 class="ros-cond -m-heading bpl-xl-heading -no-mt">{{ title }}</h1>
+    {% if copy != blank %}
+    <p class="-body-md bpl-body-xl">{{ copy }}</p>
+    {% endif %}
+  </div>
+</div>

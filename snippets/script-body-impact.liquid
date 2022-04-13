@@ -1,0 +1,3 @@
+<script type="text/javascript">
+  ire('identify', {customerId: {% if customer %}"{{ customer.id }}"{% else %}''{% endif %}, customerEmail: {% if customer %}"{{ customer.email | sha1 }}"{% else %}''{% endif %}});
+</script>

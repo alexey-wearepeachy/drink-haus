@@ -1,0 +1,27 @@
+{% liquid 
+  assign m_hero_image = m_image | img_url: '2000x'
+  assign m_padding_bottom = m_image.aspect_ratio | times: 100
+  
+  assign d_hero_image = d_image | img_url: '2000x'
+  assign d_padding_bottom = d_image.aspect_ratio | times: 100
+%}
+
+<style>
+  {% if m_hero_image %}
+    .hero--aspect-ratio {
+      background-image: url({{ m_hero_image }});
+    }
+    
+    @media (min-width: 1024px) {
+      .hero--aspect-ratio {
+        background-image: url({{ d_hero_image }});
+      }
+    }
+  {% else %}
+    .hero--aspect-ratio {
+      background-image: url({{ d_hero_image }});
+    }
+  {% endif %}
+</style>
+
+<section class="-d-flex -justify-center -align-end rel hero--aspect-ratio"></section>

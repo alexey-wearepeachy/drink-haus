@@ -1,0 +1,49 @@
+
+{% render 'billboard--overlay' with 
+  title: section.settings.title, 
+  copy: section.settings.copy, 
+  image: section.settings.bg_image,
+  sig1: section.settings.sig1,
+  sig2: section.settings.sig2
+%}
+
+
+
+
+{% schema %}
+  {
+    "name": "Founder's Note",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "text",
+        "label": "Copy"
+      },
+      {
+        "id": "sig1",
+        "type": "image_picker",
+        "label": "Signature 1"
+      },
+      {
+        "id": "sig2",
+        "type": "image_picker",
+        "label": "Signature 2"
+      },
+      {
+        "id": "bg_image",
+        "type": "image_picker",
+        "label": "Background Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Founder's Note"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,27 @@
+<div class="cart-block -py-15">
+  <div class="cart-block__media -mr-15">
+    <img class="cart-block__image" rv-src="item.image | product_image_size '300x300' | img_tag: item.title" rv-alt="item.product_title" />
+  </div>
+  <div class="cart-block__body">
+    <div class="-d-flex -f-col -justify-between">
+      <div>
+        <p class="cart-block__title -no-my -caption bpm-body" rv-display_title="item"></p>
+        <p class="cart-block__subtitle text-faded-black -no-my" rv-hide="item.variant_options | includes 'Default Title'"><span rv-variant_option="item"></span></p>
+        <div rv-each-discount="item.discounts">
+          <p class="cart-block__subtitle -no-my text-faded-black" rv-text="discount.title"></p>
+        </div>
+        <p class="cart-block__subtitle text-faded-black -no-my italic" rv-ships_by="item"></p>
+      </div>
+      <span class="cart-block__remove button-text pointer text-faded-black -mb-10" rv-data-cart-remove="index | plus 1">Remove</span>
+    </div>
+    
+    <div class="cart-block__actions">
+      <p class="cart-block__price tar -no-mt -caption" class="cart-block__price cart-item-price -caption bpm-body" rv-html="item.final_price | money Currency.currentCurrency"></p>
+      <div class="quantity-selector">
+        <button aria-label="Decrease product quantity by 1" class="quantity-selector__button quantity-selector__minus t-gray-chat" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1"></button>
+        <div class="quantity-selector__quantity gta-expanded-med ttu" rv-text="item.quantity"></div>
+        <button aria-label="Increase product quantity by 1" class="quantity-selector__button quantity-selector__add t-gray-chat" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1"></button>
+      </div>
+    </div>
+  </div>
+</div>

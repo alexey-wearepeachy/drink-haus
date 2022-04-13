@@ -1,0 +1,47 @@
+{% render 'customer-reviews' with
+  data: section.blocks  
+%}
+
+
+{% schema %}
+  {
+    "name": "Customer Reviews",
+    "settings": [],
+    "max_blocks": 3,
+    "blocks": [
+      {
+        "type": "review",
+        "name": "Review",
+        "settings": [
+          {
+            "id": "rating",
+            "type": "range",
+            "label": "Rating Count",
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "unit": "★",
+            "label": "Start",
+            "default": 1
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Quote"
+          },
+          {
+            "id": "customer",
+            "type": "text",
+            "label": "Customer Name"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Customer Reviews",
+        "category": "Haus Sections"
+      }
+    ]
+  }
+{% endschema %}

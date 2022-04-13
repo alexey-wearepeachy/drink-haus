@@ -1,0 +1,14 @@
+<section class="text-hero">
+  <div class="container">
+    <div class="-d-block bpm-d-flex bpm-justify-between -align-end  {% if as_title %} -no-pt -pb-40{% else %}-py-40 {% endif %} bpm-pt-80 bpm-pb-35 {% unless no_border %}b-bottom-french{% endunless %}">
+      <div class="col col-xs-full col-md-10">
+        <h2 class="{% unless not_heavy %}ros-cond{% endunless %} -m-heading bpm-l-heading bpl-xl-heading -no-mt -mb-15 bpm-no-mb">{{ title }}</h2>
+      </div>
+      {% if copy != blank %}
+      <div class="col col-xs-full col-md-10">
+        <p class="-no-my -caption bpm-body">{{ copy }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

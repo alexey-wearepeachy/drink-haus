@@ -1,0 +1,51 @@
+<section>
+  <h3 class="tac -m-heading bpm-l-heading -no-my">{{ section.settings.section_title }}</h3>
+  <div class="-pt-40 bpm-pt-10 bpm-pt-65 bpm-pb-55">
+    <div class="gutter-x-sm-1">
+      <div class="grid-3-up row row--jc row--ais mobile-slider recipe-slider -f-wrap" {% if section.settings.mobile_carousel %}data-js-behavior="mobileSlider"
+        data-auto-play{% endif %}>
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'recipe' %}
+              <div class="col col-sm-full col-md-8 gutter-px-half-xs-1 gutter-px-half-lg-1 {% unless section.settings.mobile_carousel%}-mb-40{% endunless %}">
+                {% render 'recipe-card' with articles[block.settings.article] as recipe %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+{% schema %}
+  {
+    "name": "Recipe Grid",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Heading"
+      },
+      {
+        "id": "mobile_carousel",
+        "type": "checkbox",
+        "label": "Enable Mobile Carousel"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "recipe",
+        "name": "Recipe",
+        "settings": [
+          {
+            "id": "article",
+            "type": "article",
+            "label": "Recipe Article"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

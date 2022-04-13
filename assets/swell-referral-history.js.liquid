@@ -1,0 +1,37 @@
+class ReferHistory{
+
+	constructor(customer){
+		this.customer=customer;
+	}
+
+	renderHistory(){
+		if(this.customer.referrals.length > 0) {
+			$(".refe-history-grid-table").addClass("showing-div");
+			$(".history-grid").append(
+				$("<table>").append(
+					$("<thead>").append(
+						$("<tr>").append(
+							$("<th>").text("EMAIL"),
+							$("<th>").text("STATUS")
+						)
+					),
+					$("<tbody>")
+				)
+			);
+			
+			this.customer.referrals.forEach(referral=>{
+				$(".refe-history-grid-table table tbody").append(
+					$("<tr>").append(
+						$("<td>").text(referral.email),
+						$("<td>").text(`${referral.completedAt === null? "Invited": "Purchased($10 earned)"}`)
+					)
+				)
+			});
+			
+		}
+		else
+		{
+			$(".refe-history-grid-table").addClass("hidden-div");
+		}
+	}
+}

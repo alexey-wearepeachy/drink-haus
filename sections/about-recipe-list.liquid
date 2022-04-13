@@ -1,0 +1,58 @@
+<section>
+  {% render 'text-hero' with
+    title: section.settings.title,
+    copy: section.settings.copy,
+    no_border: true,
+    not_heavy: true
+  %}
+  
+  <div class="container ">
+    <div class="-mt-40 -pb-40">
+       <div class="-d-flex row">
+        {% for block in section.blocks %}  
+          {% if block.type == 'ingredient' %}
+            {% assign article = block.settings.article %}
+          <div class="col-xs-full col-sm-6 gutter-sm-1">
+            {% render 'ingredient-block' with 
+              title: articles[article].title,
+              copy: articles[article].content
+            %}
+          {% endif %}
+          </div>
+        {% endfor %}
+       </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Ingredients",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "text",
+        "label": "Copy"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "ingredient",
+        "name": "Ingredient",
+        "settings": [
+          {
+            "id": "article",
+            "type": "article",
+            "label": "Ingredient Article"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

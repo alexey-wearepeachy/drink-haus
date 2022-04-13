@@ -1,0 +1,149 @@
+
+<div class="container -py-80" data-js-behavior="accordion">
+  <div class="">
+    <div class="bps-d-table bps-mx-auto col-sm-12 tac">
+      <h1 class="tac -m-heading bpm-l-heading bpl-xl-heading -mt-60 bpm-mt-80 -mb-40 bpm-mb-60 ros-cond">{{ section.settings.title }}</h1>
+      {% if section.settings.copy %}
+      <div class="rte wysiwyg-content">
+        <div class="-mb-35 bpm-mb-55">
+          {{ section.settings.copy }}
+        </div>
+      </div>
+      {% endif %}
+    </div> 
+  </div>
+  
+  <div class="-d-flex -f-col bps-f-row bps-justify-between bps-align-start b-top-divider -pt-20 bps-pt-55">
+    <div class="col-xs-full col-sm-4  faq-aside">
+      <div class="-d-block bps-d-none -mb-25">
+        <div class="custom-select">
+          <select class="select select-control" data-mobile-select>
+          {% for block in section.blocks %}
+            {% assign current_section = block.settings.title | handleize  %}
+              {% if block.type == 'block-section' %}
+                <option value="{{ current_section }}">{{ block.settings.title }}</option>
+              {% endif  %}
+           {% endfor %}
+          </select>
+        </div>
+      </div>
+      
+      <div class="-d-none bps-d-flex bps-f-col bps-justify-start">
+        {% for block in section.blocks %}
+          {% assign current_section = block.settings.title | handleize  %}
+            {% if block.type == 'block-section' %}
+              <div class="-mb-20">
+                <a class="text-link text-link--underline-hover" href="#{{ current_section }}" value="{{ current_section }}" data-faq-id="{{ current_section }}">{{ block.settings.title }}</a>
+              </div>
+            {% endif  %}
+         {% endfor %}
+      </div>
+    </div>
+    
+    <div class="col-xs-full col-sm-15">
+      {% for block in section.blocks %}
+        {% if block.type == 'block-section' %}
+          {% assign current_section = block.settings.title | handleize  %}
+          <section id="{{ block.settings.title | handleize }}"  class="oh -mb-40 bpm-mb-80{% if forloop.last == true %}b-bottom-soul{% endif %}" >
+          
+            <h6 class="-s-heading -d-flex -justify-between -align-center -no-pt -pb-20 b-bottom-soul -no-my" >{{ block.settings.title }}</h6>
+            
+            <div class="oh">
+              {% for block in section.blocks %}
+                {% assign category = block.settings.block-section | handleize %}
+                  
+                 {% if block.type == 'faq-block' and category == current_section %}
+                  <article class="faq-article" data-panel="{{ current_section }}">
+                    <header class="faq-header -d-flex -justify-between -align-center pointer -py-20 b-bottom-divider" data-panel-trigger>
+                      {{ block.settings.title }}
+                      <button class="quantity-selector__button quantity-selector__add accordion-button--small">
+                        <span class="sr-only">View Answer</span>
+                      </button>
+                    </header>
+                    <main class="oh -pt-20 -pb-25 bpm-pr-50" data-panel-body>
+                      <div class="rte wysiwyg-content">
+                      {% if block.settings.answer-html != blank %}
+                        {{ block.settings.answer-html }}
+                      {% else %}
+                        {{ block.settings.answer }}
+                      {% endif %}
+                      </div>
+                    </main>
+                  </article> 
+                  
+                 {% endif %}
+              {% endfor %}
+            </div>
+            
+          </section>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+
+{% schema %}
+  {
+    "name": "FAQ Blocks",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "richtext",
+        "label": "Copy"
+      }
+    ],
+    "blocks": [
+      {
+        "type":"block-section",
+        "name":"FAQ Section",
+        "settings":[
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          }
+        ]
+      },
+      {
+        "type": "faq-block",
+        "name":"FAQ Block",
+        "settings":[
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Question"
+          },
+          {
+            "id": "answer",
+            "type": "text",
+            "label": "Answer"
+          },
+          {
+            "id": "answer-html",
+            "type": "html",
+            "label": "Answer (HTML enabled)"
+          },
+          {
+            "id": "block-section",
+            "type": "text",
+            "label": "FAQ Section Title",
+            "info": "Must match FAQ Section title"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "FAQ Blocks"
+      }
+    ]
+  }
+{% endschema %}

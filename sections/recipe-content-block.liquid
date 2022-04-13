@@ -1,0 +1,39 @@
+<section>
+  {% render 'content-block--full-bleed' with 
+    image: section.settings.image, 
+    title: section.settings.title,
+    copy: section.settings.copy,
+    no_border: true
+    bg_color: section.settings.bg_color,
+    alignment: 'right'
+    image_last: 'right'
+  %}
+</section>
+
+{% schema %}
+  {
+    "name": "Image + Text Block",
+    "settings": [
+      {
+        "id": "bg_color",
+        "type": "color",
+        "label": "Background color. If selected, text color will be white."
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Featured Image"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "richtext",
+        "label": "Copy"
+      }
+    ]
+  }
+{% endschema %}

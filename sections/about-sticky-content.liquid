@@ -1,0 +1,55 @@
+<section>
+  <div class="container">
+    <div class="bpm-d-flex b-top-divider -py-40 bpm-py-60 bpm-justify-between ">
+      <div class="col col-xs-full col-md-10">
+        <div class="sticky top-15vh -no-pt -pb-25 bpm-pb-25 bpm-pt-40">
+          <h2 class="-s-heading bpm-m-heading bpl-l-heading bpxl-xl-heading -no-mt">{{ section.settings.title }}</h2>
+          <p>{{ section.settings.copy }}</p>
+        </div>
+        
+      </div>
+      <div class="col col-xs-full col-md-12">
+        {% for block in section.blocks %}   
+        {% if block.type == 'image-block' %}
+        
+          <div class="{% unless forloop.last %}-mb-50 bpm-mb-70{% endunless %}">
+            <img src="{{ block.settings.image | img_url: '1024x768' }}" alt="">    
+          </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "How we gather",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "text",
+        "label": "Copy"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image-block",
+        "name": "Image",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

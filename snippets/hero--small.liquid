@@ -1,0 +1,17 @@
+
+{% if image != blank %}
+<style>
+  .hero--small {
+    background-image: url('{{ image | img_url: '2400x' }}');
+  }
+
+  @media (max-width: 767px) {
+
+    .hero--has-mobile {
+      background-image: url('{{ mobile_image | img_url: '768x' }}');
+    }
+  }
+</style>
+
+<section class="hero hero--small hero--has-bg {% if mobile_image != blank %}hero--has-mobile{% endif %}"></section>
+{% endif %}

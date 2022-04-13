@@ -1,0 +1,54 @@
+{% 
+  render 'hero--home' with
+  text: section.settings.hero-text,
+  to: section.settings.btn-url,
+  label: section.settings.btn-text
+  image: section.settings.image,
+  bg_color: section.settings.bg_color,
+  text_color: section.settings.text_color
+%}
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Hero Image"
+      },
+      {
+        "type": "text",
+        "id": "hero-text",
+        "label": "Hero Text"
+      },
+      {
+        "type": "url",
+        "id": "btn-url",
+        "label": "Hero Button Link"
+      },
+      {
+        "type": "text",
+        "id": "btn-text",
+        "label": "Hero Button Text"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "checkbox",
+        "id": "text_color",
+        "label": "Text Color",
+        "info": "Only enabled if there is a background color"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero",
+        "category": "Haus Sections"
+      }
+    ]
+  }
+{% endschema %}

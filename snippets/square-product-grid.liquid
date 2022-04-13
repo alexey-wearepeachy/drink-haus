@@ -1,0 +1,51 @@
+{% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+  {% assign has_background = bg_color %}
+{% else %}
+  {% assign has_background = false %}
+{% endif %}
+
+{% if has_background %}
+<div style="background-color: {{ has_background }};">
+{% endif %}
+<div class="container">
+  <div class="-pb-40 -pt-35 bpm-pt-50 {% if has_background %}bpm-pb-0 has-background-color{% else %}bpm-pb-60 {% endif %}{% unless has_background or no_border_bottom %}b-bottom-french{% endunless %}" style="height: 100%; position: relative;">
+    <div class="gutter-x-sm-1">
+      {% if copy != blank or title != blank or cta_url != blank or cta_text != blank %}
+        <div class=" -mb-60 bpm-mb-80">
+          {% render 'text-block' with
+            title: title,
+            eyebrow_icon: eyebrow_icon,
+            eyebrow: eyebrow,
+            copy: copy, 
+            cta_url: cta_url,
+            cta_text: cta_text
+            cta_type: cta_type,
+            is_product_grid: true,
+            hide_cta: hide_cta,
+            text_white: has_background,
+          %}
+        </div>
+      {% endif %}
+    </div>
+      
+    <div class="grid-2-up row row--jc grid-2-up-no-margin">
+      {% for product in collections[collection].products %}
+        <div class="grid-col col col-xs-full col-sm-12 gutter-px-half-xs-1 gutter-px-half-md-1 gutter-px-half-lg-1 -mb-60 bpm-mb-80">
+          {% render 'square-product-card' 
+            with product as product, 
+            bg_enabled: bg_color,
+            isQuickadd: enable_quickadd, 
+            button_override: button_override,
+            isShopNow: false,
+            button_type: action_type,
+            text_white: has_background,
+            notes_enabled: enable_notes
+          %}
+        </div>
+      {% endfor %}
+    </div>   
+  </div>
+</div>
+{% if has_background %}
+</div>
+{% endif %}

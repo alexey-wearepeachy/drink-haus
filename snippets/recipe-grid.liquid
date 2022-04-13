@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="{% unless no_border %}b-bottom-divider{% endunless %}">
+    <h3 class="tac -m-heading bpm-l-heading -no-my">{{ title }}</h3>
+    <div class="-pt-40 -pb-25 bpm-pt-10 bpm-pt-65 bpm-pb-15">
+      <div class="gutter-x-sm-1">
+        <div class="grid-3-up row row--jc row--ais mobile-slider recipe-slider" data-js-behavior="mobileSlider"
+          data-auto-play>
+          {% for article in data limit:3 %}
+          <div class="col col-sm-full col-md-6 gutter-x-half-xs-1">
+            {% render 'recipe-card' with articles[article] as recipe %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

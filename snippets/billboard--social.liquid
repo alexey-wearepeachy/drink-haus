@@ -1,0 +1,37 @@
+<div style="background-image: url({{ image | img_url: '2400x' }}); background-repeat: no-repeat; background-position: center; background-size: cover;">  
+  <div class="container">
+    <div class="row row--js row--ais">
+      <div class="col col-full col-sm-12 col-md-10">
+        <div class="bg-black -mt-30 bpm-mt-60 -mb-20 -py-40 bpm-pb-40 tac text-white">
+          <div class="-px-30 bpm-px-60 bpm-px-20">
+            <h2 class="-s-heading bpm-l-heading -no-mt -mb-5">{{ title }}</h2>
+            <p class="-caption -mb-20 bpm-mb-30 -no-mt">{{ copy }}</p>
+            {% render 'button', to: spotify , text: 'Spotify', white: true, external: true %}        
+          </div>
+        </div>
+        <div class="bg-black -mb-30 bpm-mb-60 -py-30 tac text-white">
+          <p class="-caption -no-mt -mb-10">Follow us, share us, drink Ha(us)</p>
+          <p class="-no-my social-billboard-links">
+            {% if settings.social_instagram_link %}
+              <span>
+                <a class="text-link text-link--underline-hover text-white" href="{{ settings.social_instagram_link }}" target="_blank">Instagram</a>
+              </span>
+            {% endif %}
+            
+            {% if settings.social_twitter_link %}
+              <span>
+                <a class="text-link text-link--underline-hover text-white" href="{{ settings.social_twitter_link }}" target="_blank">Twitter</a>
+              </span>
+            {% endif %}
+            
+            {% if settings.social_facebook_link %}
+              <span>
+                <a class="text-link text-link--underline-hover text-white" href="{{ settings.social_facebook_link }}" target="_blank">Facebook</a>
+              </span>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

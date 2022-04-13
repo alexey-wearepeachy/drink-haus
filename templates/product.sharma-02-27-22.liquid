@@ -1,0 +1,144 @@
+{% assign product_type = product.type | downcase | handleize %}
+
+{% section 'product' %}
+
+{% if product_type == 'gift-card' %}
+  {% if product.metafields.haus_to_home.title != blank %}
+    {% 
+      render 'content-block' with
+      image_url: product.metafields.haus_to_home.image[0].src, 
+      title: product.metafields.haus_to_home.title,
+      copy: product.metafields.haus_to_home.content,
+      no_border: true
+      cta_text: product.metafields.haus_to_home.cta_text,
+      cta_url: product.metafields.haus_to_home.cta_link,
+      full_bleed: false,
+      bg_color: false
+    %}
+  {% endif %}
+{% endif %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": "{{ product.title | escape }}",
+  "url": "{{ shop.url }}{{ product.url }}",
+  {% if product.featured_image %}
+    {% assign image_size = product.featured_image.width | append: 'x' %}
+    "image": [
+      "https:{{ product.featured_image.src | img_url: image_size }}"
+    ],
+  {% endif %}
+  "description": "{{ product.description | strip_html | escape }}",
+  {% if current_variant.sku != blank %}
+    "sku": "{{ current_variant.sku }}",
+  {% endif %}
+  "brand": {
+    "@type": "Thing",
+    "name": "{{ product.vendor | escape }}"
+  },
+  
+  {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "itemReviewed": "{{ product.title | escape }}",
+      "ratingValue": "{{ product.metafields.yotpo.reviews_average }}",
+      "reviewCount": "{{ product.metafields.yotpo.reviews_count }}"
+    },
+  {% endif %}
+
+  {% if product.variants %}
+    "offers": [
+      {% for variant in product.variants %}
+        {
+          "@type" : "Offer",
+          "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price" : "{{ variant.price | divided_by: 100.00 }}",
+          "priceCurrency" : "{{ shop.currency }}",
+          "url" : "{{ shop.url }}{{ variant.url }}",
+          "itemOffered" :
+          {
+              "@type" : "Product",
+              {% if variant.image %}
+                {% assign variant_image_size = variant.image.width | append: 'x' %}
+                "image": "http:{{ variant.image.src | img_url: variant_image_size }}",
+              {% endif %}
+              {% if variant.title != blank %}
+                "name" : "{{ variant.title | escape }}",
+              {% endif %}
+              {% if variant.sku != blank %}
+                "sku": "{{ variant.sku }}",
+              {% endif %}
+              {% if variant.weight != blank %}
+                "weight": {
+                  "@type": "QuantitativeValue",
+                  {% if variant.weight_unit != blank %}
+                    "unitCode": "{{ variant.weight_unit }}",
+                  {% endif %}
+                  "value": "{{ variant.weight | weight_with_unit: variant.weight_unit }}"
+                },
+              {% endif %}
+              "url": "{{ shop.url }}{{ variant.url }}"
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  {% endif %}
+}
+</script>
+
+{% comment %}Govalo integration{% endcomment %}
+{% if product.tags contains "Govalo Gift Card (Do Not Delete)" %}
+<style type="text/css">
+  .variant-selector {
+    display: none;
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function(){
+    const variants = document.querySelectorAll(".variant-selector");
+    for(const variant of variants){
+      variant.innerText = variant.innerText.split(".")[0];
+      variant.style.display = "block";
+    };
+  });
+window.addEventListener("load", function(){
+  document.querySelector(".gvlo-popup-modal .gvlo-button").addEventListener("click", async function(e) {
+  e.preventDefault();
+  const giftName = document.getElementById("recipientName").value;
+    const giftEmail = document.getElementById("recipientEmail").value;
+    const deliveryDate = document.getElementById("deliveryDate").value;
+    const giftNote = document.getElementById("recipientMessage").value;
+    const varId = document.querySelector('.variant-selector.is-active').getAttribute("data-variant-id");
+    const data = {
+      items: [
+        {
+          quantity: 1,
+          id: parseInt(varId),
+          properties: {
+            "Recipient Name": giftName,
+            "Recipient Email": giftEmail,
+            "Delivery Date": deliveryDate,
+            "Gift Note": giftNote,
+          },
+        },
+      ],
+    };
+    const response = await fetch("/cart/add.js", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((e) => {
+      document.querySelector(".gvlo-popup-modal-close").click();
+      CartJS.getCart();
+      document.querySelector('[data-mini-cart-trigger]').click();
+    });
+  });
+});
+</script>
+{% endif %}
+
+{% comment %} Sezzle Integration {% endcomment %}
+<script src="https://widget.sezzle.com/v1/javascript/price-widget?uuid=a49232b7-fcc8-4126-b938-11ba2520a47f"></script>

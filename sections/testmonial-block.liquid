@@ -1,0 +1,33 @@
+{% render 'testimonial-block'
+  text: section.settings.title, 
+  source: section.settings.source, 
+  bg_color: section.settings.bg_color
+%}
+
+{% schema %}
+  {
+    "name": "Testimonial Block",
+    "settings": [
+      {
+        "id": "bg_color",
+        "type": "color",
+        "label": "Background Color"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Text"
+      },
+      {
+        "id": "source",
+        "type": "text",
+        "label": "Source"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Testimonial Block"
+      }
+    ]
+  }
+{% endschema %}

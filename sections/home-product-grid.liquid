@@ -1,0 +1,73 @@
+{% include 'spurit_po2_section_snippet', product: null, products: collections[section.settings.collection].products %}
+{% if section.settings.cta_url_override != blank %}
+  {% assign cta_url = section.settings.cta_url_override %}
+{% else %}
+  {% assign cta_url = collections[section.settings.collection].url %}
+{% endif %}
+{% 
+  render 'product-grid' with
+  title: section.settings.title,
+  copy: section.settings.copy,
+  cta_url: cta_url,
+  cta_text: section.settings.cta_text,
+  cta_type: section.settings.cta_type,
+  collection: section.settings.collection,
+  is_product_grid: true,
+  has_mobile_carousel: true,
+  auto_scroll: true,
+  action_type: section.settings.button_type  
+%}
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "select",
+        "id": "button_type",
+        "default":   "default",
+        "options": [
+          { "value": "default", "label": "Default - Variant Select"},
+          { "value": "shopnow", "label": "Shop Now - Redirect to PDP"},
+          { "value": "quickadd", "label": "Quick Add - Add 1st variant"}
+        ],
+        "label": "Button Action"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "text",
+        "label": "Description"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      },
+      {
+        "id": "cta_text",
+        "type": "text",
+        "label": "CTA Text"
+      },
+      { "id": "cta_url_override",
+        "type": "url",
+        "label": "CTA URL override"
+      },
+      {
+        "id": "cta_type",
+        "type": "checkbox",
+        "label": "Enable Text Link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Collection",
+        "category": "Haus Sections"
+      }
+    ]
+  }
+{% endschema %}

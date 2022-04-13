@@ -1,0 +1,42 @@
+{% 
+  render 'billboard--social' with 
+  title: section.settings.title, 
+  image: section.settings.image, 
+  copy: section.settings.copy,
+  spotify: section.settings.spotify
+%}
+
+
+{% schema %}
+  {
+    "name": "Billboard Social",
+    "settings": [
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Featured Image"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "text",
+        "label": "Copy"
+      },
+      {
+        "id": "spotify",
+        "type": "url",
+        "label": "Spotify URL"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Billboard Social",
+        "category": "Haus Sections"
+      }
+    ]
+  }
+{% endschema %}

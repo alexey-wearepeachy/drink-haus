@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WDH5L9N');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google Tag -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-755089338"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-755089338');
+    </script>
+    <!-- End Google Tag -->
+    
+    <!-- Heap Tag -->
+    <script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=t.forceSSL||"https:"===document.location.protocol,a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=(r?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+e+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","removeEventProperty","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+    heap.load("YOUR_APP_ID");
+    var customerEmail = '{{ customer.email }}' || '{{ checkout.email }}';
+    heap.identify(customerEmail);
+    heap.addUserProperties({'Name': '{{ customer.name }}','email': customerEmail,'CustomerID':'{{ customer.id }}','TotalSpent':'{{ customer.total_spent }}'});   
+    </script>
+    <!-- End Heap Tag -->
+      
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+    
+    {{ 'custom-fonts.css' | asset_url | stylesheet_tag }}
+    
+    <!-- ADDRESS VALIDATOR -->
+    <script async src="https://d3ox8tdk614ykk.cloudfront.net/pobox_checker.js"></script>
+    
+        <!-- Swell Loaders -->
+    <script src="https://cdn.swellrewards.com/loader/j5MI_yBd0h-Rr-qCf8CYaQ.js"></script>
+    
+    <script type="text/javascript">
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var t=analytics.methods[e];analytics[t]=analytics.factory(t)}analytics.load=function(e,t){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+e+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=t};analytics.SNIPPET_VERSION="4.1.0";
+      analytics.load("lM73WpRwDFTRlfUwDFzJnI92O11HI6ft");
+      analytics.page();
+      }}();
+    </script>
+  </head>
+  <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDH5L9N"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+    
+    {{ skip_to_content_link }}
+    <style>
+      .announcement-bar {
+        background-color: #000;
+        padding: 15px 0;
+      }
+
+      .announcement-bar__message {
+        color: #EBEAE6;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+        font-size: 14px;
+        line-height: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        
+        padding: 0 5%;
+        width: 90%;
+        max-width: 78.5714285714em;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .announcement-bar__message a {
+        display: inline-block;
+        padding-left: 3px;
+        padding-right: 3px;
+        color: #EBEAE6;
+        text-decoration: underline;
+      }
+      
+      .haus-gift-note-block {
+        margin-top: 25px;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      
+      .haus-gift-note-block h2 {
+        border-bottom: 1px solid rgba(175,175,175,0.34);
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+      }
+      
+      .order-summary__sections {
+        padding-bottom: 50px;
+      }
+      
+      @media (min-width: 1024px) {
+        .haus-gift-note-block {
+          margin-top: 50px;
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    </style>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var giftNote = document.querySelector('.haus-gift-note-block')  || false
+        var totalSection = document.querySelector('.order-summary__section--total-lines')
+        
+        if (!giftNote) return false
+        totalSection.parentNode.insertBefore(giftNote, totalSection.nextSibling);
+        giftNote.style.display = 'block'
+      })
+    </script>
+    
+    {% if checkout.note != blank %}
+    <div class="haus-gift-note-block" style="display: none;">
+      <h2 class="section__title layout-flex__item">Gift Note</h2>
+      <div>
+        {{ checkout.note }}
+      </div>
+    </div>
+    {% endif %}
+    
+    <!-- Haus Checkout -->
+    {% if settings.checkout_message != blank %}
+    <div class="announcement-bar">
+      <p class="announcement-bar__message">{{ settings.checkout_message }}</p>
+    </div>
+    {% endif %}
+    
+    <div class="banner" data-header>
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </div>
+
+    {{ order_summary_toggle }}
+
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main" role="main">
+          <div class="main__header">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+          </div>
+          <div class="main__content">
+            {{ content_for_layout }}
+          </div>
+          <div class="main__footer">
+            {{ content_for_footer }}
+          </div>
+        </div>
+        <div class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div>
+          
+          {% include "swell-post-purchase" %}
+
+          <div class="sidebar__content">
+            {{ content_for_order_summary }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="FLUX_VISION_DATASETS" style="display:none">
+      <div
+        id="checkout-data"
+        data-checkout-id="{{checkout.id}}"
+        data-order-number="{{checkout.order_number}}"
+        data-total-price="{{checkout.total_price}}"
+      ></div>
+      {% for item in checkout.line_items %}
+      <div
+        id="product-item-for-analytics-dataset"
+        data-name="{{item.title}}"
+        data-sku="{{item.sku}}"
+        data-price="{{item.price}}"
+        data-quantity="{{item.quantity}}"
+        data-url="{{item.url}}"
+      ></div>
+      {% endfor %}
+    </div>
+    
+    <script src="https://unpkg.com/@adhawk/flux-vision"></script>
+    {{ tracking_code }}
+  </body>
+</html>
+
+{{ "//code.jquery.com/jquery-3.3.1.min.js" | script_tag }}
+{{ "swell-page-post-purchase.js" | asset_url | script_tag }}

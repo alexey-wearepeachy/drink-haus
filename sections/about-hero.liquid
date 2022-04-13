@@ -1,0 +1,37 @@
+
+<div class="-mt-100 bpm-mt-150">
+  {% 
+    render 'text-hero' with
+    title: section.settings.title,
+    copy: section.settings.copy,
+    no_border: true
+  %}
+</div>
+
+{% render 'responsive-image' with
+    image: section.settings.image,
+    max_width: 2880
+%}
+
+{% schema %}
+  {
+    "name": "Our Story",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Hero Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "copy",
+        "label": "Copy"
+      }
+    ]
+  }
+{% endschema %}

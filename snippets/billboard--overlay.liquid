@@ -1,0 +1,29 @@
+<div style="background-image: url({{ image | img_url: '2400x' }}); background-repeat: no-repeat; background-position: center; background-size: cover;">  
+  <div class="gutter-px-xs-2 gutter-px-md-1">
+    <div class="-d-flex -f-row -justify-center -align-center">
+      <div class="col col-full bg-black tac -my-30 bpm-my-60">
+        <div class="col-md-12 -mx-auto tac text-white -py-25 bpm-py-50">
+          <div class="gutter-px-xs-2 bpm-px-20">
+            <h2 class="-s-heading bpm-l-heading -no-mt -mb-15">{{ title }}</h2>
+            <p class="-caption -mb-20">{{ copy }}</p>
+            
+            <div class="-d-flex -f-col bps-f-row bps-justify-center bps-align-center">
+              <div class="col-xs-full -mb-10 bps-no-mb bps-mr-5">
+                {% if sig1 %}
+                  <img src="{{ sig1 | img_url: '200x' }}" alt="Founder Signature">
+                {% endif %}              
+              </div>
+
+              <div class="col-xs-full bps-ml-5">
+                {% if sig2 %}
+                  <img src="{{ sig2 | img_url: '200x' }}" alt="Founder Signature">
+                {% endif %}
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

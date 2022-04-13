@@ -1,0 +1,32 @@
+<div class="mega-nav bpm-p-sm bg-nurse -pb-60" data-mega-nav>
+  <div class="container-fluid">
+    <div class="row row--aist row--jb gutter-px-sm-1 -justify-between">
+      <div class="col col-xs-full col-md-17">
+        <div class="container-fluid">
+          <div class="row row--ais row--jb">
+            {% for link in menu.links limit: 3 %}
+              {%- assign prod = link.object -%}
+              <div class="col col--xs-12 col--sm-12 col--md-4 {% unless forloop.last %}gutter-sm-1{% endunless %}">
+               {% render 'product-card--simple' with prod as product %}
+               </div>
+            {% endfor %}    
+          </div>
+        </div>
+      </div>
+      
+      <div class="col col-xs-full col-md-6 -d-flex -f-col -justify-end -align-start">
+        <div class="-mb-40">
+          {% if title %}
+          <h3 class="-no-mt">{{ title }}</h3>
+          {% endif %}
+          
+          {% if desc %}
+          <p>{{ desc }}</p>
+          {% endif %}
+        </div>
+        
+        <a href="/collections/shop" class="text-link text-link--underline-hover">Shop All</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+{% assign product_image = product.metafields.product_override.square_image | first %}
+
+{% if bg_enabled != blank and bg_enabled != 'rgba(0,0,0,0)' %}
+  {% assign has_background = bg_enabled %}
+{% else %}
+  {% assign has_background = false %}
+{% endif %}
+
+<div class="square-product-card h-100 {% if has_background %}has-bg{% endif %}" data-js-behavior="productCard" {% if button_type != 'default' %}data-{{ button_type }}{% endif %}>
+  <div>
+    <a class="-d-block" href="{{ product.url }}">
+      {% if product_image != blank %}
+        <img class="-d-block" loading="lazy" src="{{ product_image.src }}" alt="{{ product.featured_image.alt }}">
+      {% else %}
+        {% render 'responsive-image' with
+          image: product.featured_image,
+          max_width: 630,
+          max_height: 450,
+        %}
+      {% endif %}
+    </a>
+  </div>
+  <div class="-tac -px-20 -pt-20 bpm-pt-40 -pb-35 bpm-pb-45 square-product-card__content-wrap">
+    <div class="square-product-card__content">
+      <p class="-s-heading bpm-m-heading -no-mt ros square-product-card__title">{{ product.title }}</p>
+      <div class="wysiwyg-content -body -mt-5 -no-mb">
+        {% if product.metafields.product_override.square_copy_override != blank %}
+          {{ product.metafields.product_override.square_copy_override }}
+        {% else %}
+          {{ product.description }}
+        {% endif %}
+      </div>
+      <a class="btn -mt-25" href="{{ product.url }}" data-card-btn>Add To Cart - {{ product.price | money_without_trailing_zeros }}</a>
+    </div>
+  </div>
+  {% unless product == empty %}
+    <script type="application/json" data-card-json>
+      {{ product | json }}
+    </script>
+  {% endunless %}
+</div>

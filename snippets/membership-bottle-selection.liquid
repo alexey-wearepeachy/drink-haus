@@ -1,0 +1,34 @@
+<section class="membership-selection text-white bg-black bpm-no-pb" data-membership-selection data-js-behavior="membershipSelection">
+  <div class="-row -d-flex -f-col bpm-f-row -align-stretch">
+    <div class="col-xs-full col-lg-half membership-selection__info">
+      <div class="gutter-x-xs-2 h-100 -pt-35 -py-40 bpl-pt-55 bpl-pb-60">
+        <h6 class="-no-mt eyebrow b-bottom-white -pb-15">How many bottles would you like?</h6>
+        <div class="-d-flex -f-col bpl-f-row bps-justify-between bpm-justify-start -mt-30 -mb-50">
+          <div class="-d-flex -justify-start -mb-30 bpl-no-mb bps-mr-40" data-sizes></div>
+          <div class="membership-selection__content rte" data-membership-content></div>
+        </div>
+        
+        <h6 class="-no-mt eyebrow b-bottom-white -pb-15">{% if header != blank %}{{ header }}{% else %}Select a flavor{% endif %}</h6>
+        <p class="-caption bpm-body -pt-5 -pb-10" {% unless copy != blank %}data-select-copy{% endunless %}>
+          {% if copy != blank %}
+            {{ copy }}
+          {% else %}
+            Select up to two flavors to receive in your monthly shipment.
+          {% endif %}
+        </p>
+        
+        <div class="-mb-60" data-flavors></div>
+        
+        {% render 'button' with 
+          full: true, 
+          white: true, 
+          attrs: 'data-add-to-cart',
+          to: '/',
+          text: 'Add To Cart'
+        %}
+      </div>
+    </div>
+    <div class="bg-image rel col-xs-full col-lg-half membership-selection__media" data-membership-image>
+    </div>
+  </div>
+</section>

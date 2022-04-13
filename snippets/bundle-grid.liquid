@@ -1,0 +1,32 @@
+{% assign bundle = product.metafields.bundle.bundle_products | split: "|" %}
+
+<div class="container">
+  <div class="-pb-40 -mb-40 -pt-35 bpm-mb-60 bpm-py-50 b-bottom-divider bundle-grid-wrap {% unless disable_border %}b-top-divider{% endunless %}">
+    <div class="gutter-x-sm-1">
+      {% if product.metafields.bundle.grid_header != blank %}
+        <div class=" -mb-60 bpm-mb-80">
+        {% render 'text-block' with
+          title: product.metafields.bundle.grid_header,
+          copy: product.metafields.bundle.grid_copy,
+          cta_text: product.metafields.bundle.cta_text,
+          cta_url: product.metafields.bundle.cta_url,
+          cta_type: true,
+          hide_cta: product.metafields.bundle.hide_cta
+        %}
+      </div>
+      {% endif %}
+      <div class="grid-3-up row row--jc row--ais mobile-slider {% if has_mobile_carousel %}product-slider {% if action_type == 'default' %}product-slider--mobile-padding{% endif %}{% endif %}" {% if has_mobile_carousel %}data-js-behavior="mobileSlider" {% if auto_scroll %}data-auto-play{% endif %}{% endif %}>
+        {% for b in bundle %}
+          <div class="grid-col col col-xs-full col-sm-12 col-md-8 gutter-px-half-xs-1 gutter-px-half-md-1 gutter-px-half-lg-1 {% unless forloop.last or has_mobile_carousel %}-mb-60 bpm-mb-80{% endunless %}">
+            {% render 'product-card--bundle' 
+              with all_products[b] as product,
+              flavor_notes: true,
+              nutrition_modal: true,
+              id_override: true
+            %}
+          </div>
+        {% endfor %}
+      </div>   
+    </div>
+  </div>
+</div>

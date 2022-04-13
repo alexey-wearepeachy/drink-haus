@@ -1,0 +1,142 @@
+{% include 'spurit_po2_section_snippet', product: all_products[section.settings.product], products: null %}
+{%- assign product = all_products[section.settings.product] -%}
+
+{% render 'featured-product' with product as product, 
+  bg_color: section.settings.bg_color,
+  description: section.settings.description,
+  eyebrow: section.settings.eyebrow,
+  eyebrow_icon: section.settings.eyebrow_icon,
+  show_reviews: section.settings.show_reviews,
+  alignment: section.settings.alignment
+%}
+
+
+{% schema %}
+  {
+    "name": "Featured product",
+    "settings": [
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      },
+      {
+        "type": "text",
+        "id": "eyebrow",
+        "label": "Eyebrow Text"
+      },
+      {
+        "type": "text",
+        "id": "description",
+        "label": "Description Override"
+      },
+      {
+        "id": "eyebrow_icon",
+        "type": "image_picker",
+        "label": "Eyebrow Icon",
+        "info": "Eyebrow text must be present to display the icon"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_reviews",
+        "label": "Show Yotpo Star Count"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color"
+      },
+      {
+         "type": "select",
+         "id": "alignment",
+         "label": "Component Alignment",
+         "options": [
+           {
+             "value": "left",
+             "label": "Left Align"
+           },
+           {
+             "value": "right",
+             "label": "Right Align"
+           }
+         ],
+         "default": "left",
+         "info": "Determines the layout of the featured product"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured product",
+        "category": "Haus Sections"
+      }
+    ]
+  }
+{% endschema %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": "{{ product.title | escape }}",
+  "url": "{{ shop.url }}{{ product.url }}",
+  {% if product.featured_image %}
+    {% assign image_size = product.featured_image.width | append: 'x' %}
+    "image": [
+      "https:{{ product.featured_image.src | img_url: image_size }}"
+    ],
+  {% endif %}
+  "description": "{{ product.description | strip_html | escape }}",
+  {% if current_variant.sku != blank %}
+    "sku": "{{ current_variant.sku }}",
+  {% endif %}
+  "brand": {
+    "@type": "Thing",
+    "name": "{{ product.vendor | escape }}"
+  },
+  {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "itemReviewed": "{{ product.title | escape }}",
+      "ratingValue": "{{ product.metafields.yotpo.reviews_average }}",
+      "reviewCount": "{{ product.metafields.yotpo.reviews_count }}"
+    },
+  {% endif %}
+  {% if product.variants %}
+    "offers": [
+      {% for variant in product.variants %}
+        {
+          "@type" : "Offer",
+          "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price" : "{{ variant.price | divided_by: 100.00 }}",
+          "priceCurrency" : "{{ shop.currency }}",
+          "url" : "{{ shop.url }}{{ variant.url }}",
+          "itemOffered" :
+          {
+              "@type" : "Product",
+              {% if variant.image %}
+                {% assign variant_image_size = variant.image.width | append: 'x' %}
+                "image": "http:{{ variant.image.src | img_url: variant_image_size }}",
+              {% endif %}
+              {% if variant.title != blank %}
+                "name" : "{{ variant.title | escape }}",
+              {% endif %}
+              {% if variant.sku != blank %}
+                "sku": "{{ variant.sku }}",
+              {% endif %}
+              {% if variant.weight != blank %}
+                "weight": {
+                  "@type": "QuantitativeValue",
+                  {% if variant.weight_unit != blank %}
+                    "unitCode": "{{ variant.weight_unit }}",
+                  {% endif %}
+                  "value": "{{ variant.weight | weight_with_unit: variant.weight_unit }}"
+                },
+              {% endif %}
+              "url": "{{ shop.url }}{{ variant.url }}"
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  {% endif %}
+}
+</script>

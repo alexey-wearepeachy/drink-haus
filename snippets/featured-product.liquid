@@ -1,0 +1,147 @@
+{%- assign product = all_products[handle] -%}
+{% assign variant = product.first_available_variant %}
+{% assign product_title = product.title %}
+{% if product.metafields.product_override.title != blank %}
+  {% assign product_title = product.metafields.product_override.title %}
+{% else %}
+  {% assign product_title = product.title %}
+{% endif %}
+
+{% assign shipdate = false %}
+{% assign is_members_only = false %}
+{% assign customer_is_member = false %}
+{% assign customer_is_early = false %}
+{% assign customer_is_first = false %}
+{% assign first_option = product.options | first | downcase %}
+{% if first_option == 'size' %}
+  {% assign label = 'quantity' %}
+{% else %}
+  {% assign label = 'flavor' %}
+{% endif %}
+
+{% if customer.tags contains 'haus-membership' %}
+  {% assign customer_is_member = true %}
+{% endif %}
+
+{% if customer.tags contains 'haus-early' %}
+  {% assign customer_is_early = true %}
+{% endif %}
+
+{% if customer.tags contains 'haus-first' %}
+  {% assign customer_is_first = true %}
+{% endif %}
+
+{% for tag in product.tags %} 
+  {%- assign tag_pair = tag | split: " => " -%}
+
+  {%- case tag_pair.first -%}
+    {%- when 'haus::badge' -%}
+      {% assign member_badge = true %}
+      {%- assign badge_text = tag_pair.last -%}
+    {%- else -%}
+    
+    {%- when 'haus::shipdate' -%}
+      {% assign shipdate = tag_pair.last %}
+    {%- else -%}
+
+    {%- when 'haus::notes' -%}
+      {%- assign notes = tag_pair.last -%}
+    {%- else -%}
+    
+    {%- when 'haus::members' -%}
+      {% assign is_members_only = true %}
+    {% else %}
+  {%- endcase -%}
+{% endfor %}
+
+{% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+  {% assign has_background = bg_color %}
+{% else %}
+  {% assign has_background = false %}
+{% endif %} 
+
+{% if has_background %}
+<div style="background-color: {{ has_background }};">
+{% endif %}
+
+<div class="rel container featured-product gutter-px-x-sm-1 gutter-px-x-md-2 -py-50 bpm-pt-60 bpm-pb-60">
+  {% if section_title %}
+  <div class="col col-md-11 -tac -mx-auto -mb-40 bpm-mb-45 {% if has_background %}text-white{% endif %}">
+    {% if section_eyebrow %}
+    <span class="eyebrow -d-block -mb-10">{{ section_eyebrow }}</span>
+    {% endif %}
+    <h3 class="-s-heading bpm-l-heading -no-mt">{{ section_title }}</h3>
+  </div>
+  {% endif %}
+  
+  <div class="-d-flex -f-col bps-f-row -align-center ">
+    <div class="col {% if alignment == 'right' %}bps-f-order-2 col-sm-10{% else %}gutter-sm-2 col-sm-11{% endif %}">
+      <a class="-d-block rel" href="{{ product.url }}">
+        {% if member_badge %} 
+          {% render 'product-badge', text: badge_text, type: 'member' %}
+        {% endif %}
+        {% 
+          render 'responsive-image', 
+          with image: product.featured_image, 
+          image_class: "haus-image", 
+          wrapper_class: "image-wrap", 
+          max_width: 700, 
+          max_height: 800
+        %}
+      </a>
+    </div>
+    <div class="col col-sm-10 col-md-10 {% if alignment == 'right' %}bps-f-order-1 gutter-sm-2 col-md-offset-2{% endif %}">
+      <div class="product-card__body tac bps-tal gutter-x-xs-2">
+        {% if eyebrow %}
+          <h6 class="-no-mt eyebrow {% if has_background %}text-white{% endif %}">
+            {% if eyebrow_icon %}
+              <img class="icon-image -mr-10" src="{{ eyebrow_icon | img_url: '20x', scale: 2 }}" alt="icon representing {{ eyebrow }}"/>
+            {% endif %}
+            
+            {{ eyebrow }}
+          </h6>
+        {% endif %}
+        
+        <div>
+        <h3 class="-s-heading bpm-m-heading -no-mt -no-mb {% if has_background %}text-white{% endif %}">{{ product_title }}</h3>
+        {% if show_reviews %}
+          <div class="-d-table -mx-auto -mb-20 bpm-no-ml">
+            {% render 'okendo-product-rating-summary', product: product %}
+          </div>
+        {% endif %}
+        </div>
+        
+        {% if notes %}
+          <span class="pill button-text pill--transparent pill--no-padding {% if has_background %}text-white{% endif %}">{{ notes }}</span>
+        {% endif %}
+        
+        <p class="product-card__copy {% if has_background %}text-white{% endif %}">{% if description != blank %}{{ description }}{% else %}{{ product.metafields.product_card.short_description }}{% endif %}</p>
+        
+        {% if button_type == 'shopnow' %}
+          <a href="{{ product.url }}" class="btn -mt-15 -px-15 {% if has_background %}btn--white{% endif %} {% if product.available == false %}is-disabled{% endif %}" {% unless product.available %}disabled{% endunless %}>Shop Now</a>
+        {% else %}
+        <button class="btn -mt-15 -px-15 {% if has_background %}btn--white{% endif %} {% if product.available == false %}is-disabled{% endif %}" {% unless product.available %}disabled{% endunless %} data-js-behavior="addToCart" data-product-variant="{{ variant.id }}" data-product-price="{{ variant.price }}">Add To Cart - {{ variant.price | money_without_trailing_zeros }}</button>
+        {% endif %}
+        
+        {% if is_members_only == true  and customer_is_member == false %}
+          <a href="/products/membership" class="-d-table -mx-auto -mt-25 text-link">Learn About Membership</a>
+        {% endif %}
+        
+        {% if shipdate %}
+          <div class="-mt-15 {% if has_background %}text-white{% else %}text-soft-gray{% endif %} gta-standard-italic"> 
+          Ships by {{ shipdate }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  {% unless product == empty %}
+    <script type="application/json" data-product-json>
+      {{ product | json }}
+    </script>
+  {% endunless %}
+</div>
+{% if has_background %}
+</div>
+{% endif %}

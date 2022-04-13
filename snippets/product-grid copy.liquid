@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="-py-40 bpm-py-60 b-bottom-french">
+    <div class="gutter-x-sm-1">
+      {% if copy != blank or title != blank or cta_url != blank or cta_text != blank %}
+        <div class=" -mb-60 bpm-mb-80">
+          {% render 'text-block' with
+            title: title,
+            copy: copy, 
+            cta_url: cta_url,
+            cta_text: cta_text
+            cta_type: cta_type
+          %}
+        </div>
+      {% endif %}
+      
+      <div class="grid-3-up row row--jc row--ais ">
+        {% for product in collections[collection].products %}
+          <div class="col col-sm-full col-md-6 gutter-x-half-sm-1 -mb-40 bpm-mb-60">
+            {% render 'product-card' with product as product %}
+          </div>
+        {% endfor %}
+      </div>   
+    </div>
+  </div>
+</div>

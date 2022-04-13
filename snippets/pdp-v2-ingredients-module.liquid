@@ -1,0 +1,37 @@
+<section class="pdp-v2-ingredients-module">
+  <div class="container">
+    <div class="b-bottom-divider -py-60 -mb-60 bpm-pb-80">
+      <div class="header-wrap -mb-40">
+        <h2 class="header -no-my -s-heading bpm-m-heading bpl-l-heading tac col-md-18 col-lg-16 ml-auto mr-auto">{{ header }}</h2>
+      </div>
+      <div class="row bpm-nowrap row--jc gutter-px-lg-1 gutter-px-xl-2">
+        <div class="-px-45 bpm-px-0 col-md-10">
+          {% 
+            render 'responsive-image-accentuate', 
+            with image: image[0], 
+            image_class: "haus-image", 
+            wrapper_class: "image-wrap", 
+            max_width: 700, 
+            max_height: 820
+          %}
+        </div>
+        <div class="copy -d-flex fd--col col-md-10 col-md-offset-2 col-xl-offset-3 -pt-30 -pb-0 bpl-pb-65">
+          <h3 class="eyebrow -mb-25 bpm-mb-40 -no-mt">{{ eyebrow }}</h3>
+          {% for ingredient in ingredient_title %}
+            {% render 'ingredient-block' with 
+              title: product.metafields.ingredients_v2.ingredient_title[forloop.index0],
+              copy: product.metafields.ingredients_v2.ingredient_description[forloop.index0]
+            %}
+          {% endfor %}
+          <div class="cta-wrap">
+            {% render 'text-link' with
+              to: '#nutrtion-table',
+              text: cta_label,
+              attrs: 'data-js-behavior="modal" data-modal-id="nutrition-table"'
+            %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

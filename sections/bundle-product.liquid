@@ -1,0 +1,39 @@
+{% assign recipes =  product.metafields.recipes.recipe_articles | split: "|" %}
+{% assign product_type = product.type | downcase | handleize %}
+{% for tag in product.tags %} 
+  {%- assign tag_pair = tag | split: " => " -%}
+  {%- case tag_pair.first -%}
+    {%- when 'haus::badge' -%}
+      {%- assign badge = tag_pair.last -%}
+    {%- else -%}
+  {%- endcase -%}
+{% endfor %}
+
+{% assign template_name = template.suffix %}
+{% assign bundle = product.metafields.bundle.bundle_products | split: "|" %}
+
+<h1>metafields: {{ product.metafields.yotpo.reviews_count }}</h1>
+
+{% render 'yotpo-reviews' %}
+{% for fields in product.metafields %}
+ <p>Field: {{ fields }}</p>
+{% endfor %}
+
+  
+  
+
+  {% render 'bundle-hero' with product as product %}  
+  
+  {% if bundle != blank %}
+    {% render 'bundle-grid', data: bundle %}
+  {% endif %}
+  
+  {% if recipes.size > 0 %}
+    {% 
+      render 'recipe-grid' with 
+      title: product.metafields.recipes.title,
+      data: recipes
+    %}
+  {% endif %}
+  
+  <h1>hello!</h1>

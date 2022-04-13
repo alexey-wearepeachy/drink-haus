@@ -1,0 +1,36 @@
+{% if page.metafields.newsletter.title != blank %}
+  {% assign page_title = page.metafields.newsletter.title %}
+{% else %}
+  {% assign page_title = page.title %} 
+{% endif %}
+
+{% if page.metafields.newsletter.description != blank %}
+  {% assign page_content = page.metafields.newsletter.description %}
+{% else %}
+  {% assign page_content = page.content %}
+{% endif %}
+
+
+
+<div class="container -py-80">
+  <div class="-d-table -mx-auto col-xs-full col-md-12">
+    <h1 class="tac -m-heading bpm-l-heading -mb-40 bpm-mb-60">{{ page_title }}</h1>
+
+    <div class="rte wysiwyg-content">
+      {{ page_content }}
+    </div>    
+    
+    <form class="form inline-form -mt-25 -mt-50" data-js-behavior="newsletter" data-list-id="{{ page.metafields.newsletter.form_id }}">
+      <div class="input-group">
+        <input class="form-control text-black" type="email" id="email" placeholder="Your email address" required>
+        <button class="form-control form-button -pl-5 text-white">
+          <span class="-d-block bpm-d-none">
+            <svg width="21" height="14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.935 13.125l6.19-6.18-6.19-6.19-.7.71 4.98 4.98H.245v1h17.97l-4.98 4.98.7.7z"/></svg>
+            <span class="sr-only">Submit Email to Newsletter</span>
+          </span>
+          <span class="-d-none bpm-d-block">Submit</span>
+        </button> 
+      </div>
+    </form>
+  </div>
+</div>

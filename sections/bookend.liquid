@@ -1,0 +1,61 @@
+{% include 'spurit_po2_section_snippet', product: all_products[section.settings.product], products: null %}
+{% render 'pdp-bookend' with 
+    title: section.settings.title,
+    copy: section.settings.copy,
+    product: all_products[section.settings.product],
+    image: section.settings.image,
+    include_reviews: section.settings.include_reviews,
+    to: section.settings.cta_url,
+    label: section.settings.cta_label
+%}
+
+{% schema %}
+  {
+    "name": "Bookend",
+    "settings": [
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Image",
+        "info": "If no image is selected, the product featured image is used."
+
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "include_reviews",
+        "type": "checkbox",
+        "label": "Display reviews"
+      },
+      {
+        "id": "copy",
+        "type": "text",
+        "label": "Description",
+        "info": "If no description is entered, the product short description is used."
+      },   
+      {
+        "type": "url",
+        "id": "cta_url",
+        "label": "Button Link"
+      },
+      {
+        "id": "cta_label",
+        "type": "text",
+        "label": "Button Label"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Bookend"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,161 @@
+.main-purchase {
+  position: fixed;
+
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  right: 0;
+  backdrop-filter: blur(7px);
+  z-index: 3333;
+}
+.purchase-grid {
+  max-width: 500px;
+  margin: 2rem;
+}
+.hidden-purchase {
+  display: none;
+}
+.purchase-header {
+  margin-top: 4rem;
+  position: relative;
+}
+.showing-main {
+  display: flex;
+}
+.purchase-close {
+  font-size: x-large;
+  color: white;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  cursor: pointer;
+}
+
+.purchase-close:after {
+  content: '×';
+  cursor: pointer;
+}
+
+.purchase-body {
+  background-color: black;
+  color: white;
+  padding: 3rem;
+}
+
+.main-purchase .header-refer {
+  flex-direction: column;
+  margin: 0 0 2rem 0;
+}
+.main-purchase .header-refer div {
+  width: unset;
+  margin-left: unset;
+}
+.main-purchase .referral-and-history img {
+  display: none;
+}
+.wrap-history {
+  display: none;
+}
+
+.main-purchase .referral-grid {
+  padding-right: 0rem;
+  width: 100%;
+}
+.main-purchase .main-refer {
+  margin-top: 0rem;
+}
+.main-purchase .div-icon p {
+  color: white;
+}
+.main-purchase .refer-explain p {
+  display: none;
+}
+.main-purchase h1 {
+  font-size: 34px;
+  line-height: 1.1;
+  margin-bottom: 25px;
+}
+
+.main-purchase h1,
+.main-purchase h2,
+.main-purchase h3,
+.main-purchase h4,
+.main-purchase h5,
+.main-purchase h6 {
+  color: #fff;
+}
+
+.popup-body h4 {
+  line-height: 2.25rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: calc(30px + (20 - 18) * ((100vw - 1440px) / (2560 - 1440)));
+}
+.main-purchase p,
+.main-purchase input {
+  font-size: 14px;
+}
+.main-purchase .refer-explain:after {
+  content: 'For every friend you refer, they’ll get $10 off their first purchase of $50 or more — and you’ll get $10 to spend on your next Haus order.';
+  font-size: 14px;
+  line-height: 1.77;
+}
+.main-purchase .titel-icon {
+  display: none;
+}
+.main-purchase .share-link-grid {
+  display: none;
+}
+
+.main-purchase .referral-grid label {
+  width: 98%;
+  border-bottom: 1px solid 
+}
+.newsletter--form input#Email,
+.newsletter--form input,
+button#Subscribe {
+  line-height: 1.5rem;
+  text-transform: uppercase;
+}
+.newsletter--form .form-button {
+  margin-left: 0;
+}
+.main-purchase form input[type='text'] {
+  background: transparent;
+  text-transform: uppercase;
+  font-style: normal;
+  padding: 18px 0;
+  position: relative;
+  border-radius: 0;
+}
+.main-purchase form input[type="submit"] {
+  border-radius: 0;
+}
+
+.main-purchase .referral-grid span {
+  display: none;
+}
+.main-purchase .title-refer {
+  display: none;
+}
+@media only screen and (max-width: 580px) {
+  .main-purchase .header-refer {
+    margin: 0 0 2rem 0;
+  }
+
+  .main-purchase .purchase-body {
+    padding: 2rem;
+  }
+  
+  .main-purchase h1 {
+    font-size: calc(50px + (20 - 18) * ((100vw - 1440px) / (2560 - 1440)));
+  }
+  
+  .main-purchase p, 
+  .main-purchase input {
+    font-size: calc(18px + (20 - 18) * ((100vw - 1440px) / (2560 - 1440)));  
+  }
+  
+}

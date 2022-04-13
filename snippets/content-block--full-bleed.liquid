@@ -1,0 +1,56 @@
+{% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+  {% assign has_background = bg_color %}
+{% else %}
+  {% assign has_background = false %}
+{% endif %}
+
+{% if template.name == 'product' %}
+  {% assign top_border = true %}
+{% elsif remove_top_border == true %}
+  {% assign top_border = false %}
+{% else %}
+  {% assign top_border = false %}
+{% endif %}
+
+{% if has_background %}
+<div style="background-color: {{ bg_color }};">
+{% endif %}
+<section class="content-block content-block--full-bleed content-block--full-bleed--{{ image_last }}">
+  <div class="-d-flex -f-col bpm-f-row -align-stretch -pt-40 -pb-35 bpm-py-60 {% unless no_border %}b-bottom-french{% endunless%} {% if top_border == true and remove_top_border == false %}b-top-french{% endif %}">
+    <div class="col col-xs-full col-md-12 -neg-mt-40 -neg-mt-35 bpm-neg-mt-60 bpm-neg-mb-60 {% if image_last %}bpm-f-order-2{% endif %}">
+      <div class="-pb-30 bpm-no-pb bpl-no-pb {% if full_bleed %}full-bleed -neg-mt-40 -neg-mt-35 bpm-neg-mt-60 bpl-neg-mb-60 {% endif %}">
+        {% if image_url %}
+          <img class="-d-block" src="{{ image_url }}" alt="{{ title }}">
+        {% else %}
+          {% render 'responsive-image' with
+            image: image,
+            max_width: 1200,
+            max_height: 1024
+          %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="col col-xs-full col-md-12 gutter-px-xs-2 gutter-px-md-1 gutter-px-half-xl-2 {% if image_last %}bpm-f-order-1{% endif %}">
+      <div class="flex -f-col h-100 -justify-between">
+        <h2 class="-s-heading bpm-m-heading bpl-l-heading -no-mt -mb-15 bpm-mb-20 bpl-no-mb {% if has_background %}text-white{% endif %}">{{ title }}</h2>
+         
+        {% if copy != blank or cta_text != blank and cta_url != blank %}
+        <div class="rte -caption bpl-body bps-mw-75 bpm-mw-100 {% if has_background %}text-white{% endif %}">
+          {% if copy != blank %}
+            {{ copy }}
+          {% endif %}
+          
+          {% if cta_text != blank and cta_url != blank %}
+            <div class="-mt-30">
+              {% render 'text-link', to: cta_url, text: cta_text, white: has_background %}
+            </div>
+          {% endif %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% if has_background %}
+</div>
+{% endif %}

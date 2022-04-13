@@ -1,0 +1,240 @@
+<section class="-mt-15">  
+  {% for block in section.blocks %}
+    {%- case block.type -%}
+      {% when 'text-block' %}
+        <div class="container">
+          <div class="-py-40 bpm-py-80 b-top-divider">
+            {% render 'text-block' with
+              title: block.settings.title,
+              copy: block.settings.copy,
+              cta_text: block.settings.cta_text,
+              cta_url: block.settings.cta_url,
+              cta_type: block.settings.cta_type
+            %}
+          </div>
+        </div>
+        
+      {% when 'collection-grid' %}
+        <div class="container">
+          <div class=" b-top-divider">
+            {% 
+              render 'product-grid', 
+              collection: block.settings.collection,
+              title: block.settings.title,
+              eyebrow_icon: block.settings.eyebrow_icon,
+              eyebrow: block.settings.eyebrow,
+              copy: block.settings.copy,
+              cta_text: block.settings.cta_text,
+              cta_url: block.settings.cta_url,
+              cta_type: block.settings.cta_type,
+              action_type: block.settings.button_type,
+              no_border_bottom: true,
+            %}
+          </div>
+        </div>
+        
+      {% when 'testimonial' %}
+        {% render 'testimonial-block' with 
+          text: block.settings.title,
+          source: block.settings.source,
+          bg_color: block.settings.bg_color
+        %}
+        
+      {% when 'content-block' %}
+        {% assign alignment = block.settings.alignment %}
+        {% assign image_last = false %}
+        {% if alignment == 'right' %}
+          {% assign image_last = true %}  
+        {% endif %}
+        {% render 'content-block--full-bleed' with 
+          image: block.settings.image, 
+          title: block.settings.title,
+          copy: block.settings.copy,
+          no_border: true
+          cta_text: block.settings.cta_text,
+          cta_url: block.settings.cta_url,
+          bg_color: block.settings.bg_color,
+          alignment: block.settings.alignment
+          image_last: image_last
+        %}
+
+    {%- endcase -%}
+  {% endfor %}
+</section>
+
+
+{% schema %}
+  {
+    "name": "Page Blocks",
+    "blocks": [
+      {
+        "type": "collection-grid",
+        "name": "Collection Grid",
+        "settings": [
+          {
+            "type": "select",
+            "id": "button_type",
+            "default":   "default",
+            "options": [
+              { "value": "default", "label": "Default - Variant Select"},
+              { "value": "shopnow", "label": "Shop Now - Redirect to PDP"},
+              { "value": "quickadd", "label": "Quick Add - Add 1st variant"}
+            ],
+            "label": "Button Action"
+          },
+          {
+            "id": "eyebrow",
+            "type": "text",
+            "label": "Eyebrow"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection"
+          },
+          {
+            "id": "cta_text",
+            "type": "text",
+            "label": "CTA Text"
+          },
+          { "id": "cta_url_override",
+            "type": "url",
+            "label": "CTA URL override"
+          },
+          {
+            "id": "cta_type",
+            "type": "checkbox",
+            "label": "Enable Text Link"
+          }
+        ]
+      },
+      {
+        "type": "text-block",
+        "name": "Text Block",
+        "settings":[
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "id": "cta_text",
+            "type": "text",
+            "label": "CTA Text"
+          },
+          {
+            "id": "cta_url",
+            "type": "url",
+            "label": "CTA Url"
+          },
+          {
+            "type": "select",
+            "id": "button_type",
+            "label": "Text",
+            "options": [
+              {
+                "value": "text-link",
+                "label": "Text Link"
+              },
+              {
+                "value": "btn",
+                "label": "Button"
+              }
+            ],
+            "default": "text-link",
+            "info": "Will display CTA as text-link or button"
+          }
+        ]
+      },
+      {
+        "name": "Testimonial",
+        "type": "testimonial",
+        "settings": [
+          {
+            "id": "bg_color",
+            "type": "color",
+            "label": "Background Color"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Quote Text"
+          },
+          {
+            "id": "source",
+            "type": "text",
+            "label": "Attribution"
+          }
+        ]
+      },
+      {
+        "type": "content-block",
+        "name":"Image + Text Block",
+        "settings":[
+          {
+            "type": "select",
+            "id": "alignment",
+            "label": "Alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left",
+            "info": "Alters the image + text alignment. Default is 'Left'"
+          },
+          {
+            "id": "bg_color",
+            "type": "color",
+            "label": "Background color. If selected, text color will be white."
+          },
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Featured Image"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "richtext",
+            "label": "Copy"
+          },
+          {
+            "id": "cta_text",
+            "type": "text",
+            "label": "CTA Text"
+          },
+          {
+            "id": "cta_url",
+            "type": "url",
+            "label": "CTA Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

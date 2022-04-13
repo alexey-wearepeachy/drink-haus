@@ -1,0 +1,226 @@
+<!doctype html>
+<html class="no-js supports-no-cookies" lang="{{ shop.locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <meta name="theme-color" content="{{ settings.color_accent }}">
+  
+  {% if template.name == 'product' %}
+    {% assign handle_string = handle | split: '-' %}
+    {% for tag in product.tags %}
+      {% assign downcase_tag = tag | downcase %}
+      {% if downcase_tag contains 'noindex' or handle_string contains 'test' %}
+        {% assign noindex = true %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if noindex  %}
+    {% render "no-index" %}
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {%- endif -%}
+
+  {%- capture seo_title -%}
+    {{ page_title }}
+    {%- if current_tags -%}
+      {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {%- endif -%}
+    {%- if current_page != 1 -%}
+      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {%- endif -%}
+    {%- assign escaped_page_title = page_title | escape -%}
+    {%- unless escaped_page_title contains shop.name -%}
+      &ndash; {{ shop.name }}
+    {%- endunless -%}
+  {%- endcapture -%}
+  <title>{{ seo_title | strip }}</title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  {% include 'social-meta-tags' %}
+  {% include 'style-tags', layout: 'theme' %}
+  {% include 'css-variables' %}
+  
+  {% assign shopAll = collections.shop %}
+  
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', '');
+
+    window.theme = {
+      strings: {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }}
+      },
+      moneyFormat: {{ shop.money_format | json }}
+    };
+  </script>
+
+  {% include 'script-tags', layout: 'theme' %}
+
+  {{ content_for_header }}
+  
+  {% render 'google-verification-script' %}
+  {% render 'yotpo-script' %}
+  
+  {% render 'okendo-script' %}
+  
+    <script data-shop={{ shop.permanent_domain }}>
+    var shop = document.querySelector('[data-shop]');
+    var tags = [];
+    {% if customer %}
+       {% for tag in customer.tags %}
+        {% assign t = tag | downcase | handle %}
+         tags.push('{{ t }}');
+       {% endfor %}
+    {% endif %}
+    window.__CART__ = {{ cart | json }};
+    window.__HAUS = {
+      customer: {
+        email: "{{ customer.email }}",
+        id: "{{ customer.id }}"
+      },
+      tags: tags,
+      domain: shop.getAttribute('data-shop'),
+      giftNoteCopy: "{{ settings.cart_notes_copy }}",
+      upsell: {
+        product: {%- if settings.upsell-product != blank -%}{{ all_products[settings.upsell-product] | json }}{%- else -%}{}{%- endif -%},
+        copy: {%- if settings.upsell-description != blank -%}{{ settings.upsell-description | json }}{%- else -%}false{%- endif -%}
+      },
+      gwp: {
+        product: {%-if settings.gwp-product != blank -%}{{ all_products[settings.gwp-product] | json }}{%- else -%}false{%- endif -%},
+        threshold: {%-if settings.gwp-threshold != blank -%}Number({{settings.gwp-threshold}}){%- else -%}false{%- endif -%},
+        copy: {%- if settings.gwp-description != blank -%}{{ settings.gwp-description | json }}{%- else -%}false{%- endif -%}
+      },
+      shop: [
+        {% for product in shopAll.products %}
+          {
+            product: {{ product | json }},
+            yotpo: {{ product.metafields.yotpo | json }},
+            okendo: {{ product.metafields.okendo | json }},
+            featured_press: {
+              logo: {{ product.metafields.featured_press.news_logo | json }},
+              quote: {{ product.metafields.featured_press.news_quote | json }}
+            }
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ],
+      insert: {
+        product: {%-if settings.insert-product != blank -%}{{ all_products[settings.insert-product] | json }}{%- else -%}false{%- endif -%},
+      }
+    }      
+  </script>
+  
+  
+  {{'//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js' | script_tag }}
+  
+  {% render 'script-segment' %}
+  {% render 'header-scripts' %}
+  
+  {% comment %} Pinterest Claim Tag {% endcomment %}
+  <meta name="p:domain_verify" content="39ba6f00416f18bbc2ed7aafc1b8949e"/>
+  {% comment %} Pinterest Claim Tag {% endcomment %}
+  <script src="https://cdn-widgetsrepository.yotpo.com/v1/loader/j5MI_yBd0h-Rr-qCf8CYaQ" async></script>
+</head>
+
+{% assign template_name = template.name | handle %}
+{% assign template_suffix = template.suffix | handle %}
+
+<body id="{{ page_title | handle }}" class="template-{{ template_name }} template-{{ template.suffix | handle }}">
+  {% render 'script-body-impact' %}
+  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  
+  {% section 'header' %}
+  
+  {% unless template contains 'cart' %}
+    {% render 'mini-cart' %}
+  {% endunless %}
+  
+  <main role="main" id="MainContent" class="main page-content">  
+    <div id="react-theme-component"></div>
+    {{ content_for_layout }}
+  </main>
+
+  
+  <div id="age-gate"></div>
+  {% section 'footer' %}
+  
+  {% render 'newsletter-modal' %}
+  {% render 'bis-modal' %}  
+  
+  {% if template_name contains 'product' and template_suffix != 'bundle' %}
+    {% render 'nutrition-modal' %}
+  {% endif %}
+  
+  {% if template_suffix contains 'bundle' or template == "product" %}
+    {% assign bundle = product.metafields.bundle.bundle_products | split: "|" %}
+    {% if bundle.size > 0 %}
+      {% for b in bundle %}
+        {% render 'nutrition-modal' with all_products[b] as product, id_override: true %}  
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+  
+  {{'https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/0.4.1/cart.min.js' | script_tag}}
+  {{'https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/0.4.1/rivets-cart.min.js' | script_tag}}
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+      window.__CART__ = {{ cart | json }};
+      
+      $(function() {
+          CartJS.init({{ cart | json }}, {
+          "dataAPI": true,
+          "moneyFormat": "{% raw %}${{amount_no_decimals}}{% endraw %}",
+          "moneyWithCurrencyFormat": "{{ shop.money_with_currency_format }}"
+          });
+      });
+    });
+  </script>
+  
+  {% render 'scripts-klavyio' %}
+  {% render 'script-subscription-theme-footer' %}
+
+  {% if customer %}  
+  <script>
+    var heapTags = window.__HAUS.tags.filter(function(tag) {
+      return tag.includes('haus-');
+    });
+    
+    if (window.heap) {
+      heap.identify({{ customer.email | json }});
+      heap.addUserProperties({ membershipTier: heapTags });
+    }
+    
+  </script>
+  {% endif %}
+  <script>
+    (function() {
+        var quarters = 0;
+        var scrollHeight, quarterHeight, scrollDistance, divisible, scrollPercent;
+        document.addEventListener("scroll", function() {
+            scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            quarterHeight = scrollHeight / 4;
+            scrollDistance = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
+            divisible = Math.trunc(scrollDistance / quarterHeight);
+            if (quarters < divisible && divisible !== Infinity) {
+                scrollPercent = divisible * 25;
+                heap.track('Scroll Depth', {
+                    percent: scrollPercent
+                });
+                quarters++;
+            }
+        });
+    }());
+  </script>
+</body>
+</html>

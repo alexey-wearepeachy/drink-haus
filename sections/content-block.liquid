@@ -1,0 +1,71 @@
+
+{% if section.settings.full_bleed %}
+  {% render 'content-block--full-bleed' with 
+    image: section.settings.image, 
+    title: section.settings.title,
+    copy: section.settings.copy,
+    no_border: true
+    cta_text: section.settings.cta_text,
+    cta_url: section.settings.cta_url,
+    bg_color: section.settings.bg_color,
+    alignment: section.settings.alignment
+    image_last: section.settings.alignment == 'right'
+  %}
+{% else %}
+  {% 
+    render 'content-block' with
+    image: section.settings.image, 
+    title: section.settings.title,
+    copy: section.settings.copy,
+    no_border: true
+    cta_text: section.settings.cta_text,
+    cta_url: section.settings.cta_url,
+    full_bleed: section.settings.full_bleed,
+    bg_color: section.settings.bg_color
+  %}
+{% endif %}
+
+
+
+{% schema %}
+  {
+    "name": "Image + Text Block",
+    "settings": [
+      {
+        "id": "bg_color",
+        "type": "color",
+        "label": "Background color. If selected, text color will be white."
+      },
+      {
+        "id": "full_bleed",
+        "type": "checkbox",
+        "label": "Make Image Full Bleed"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Featured Image"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "richtext",
+        "label": "Copy"
+      },
+      {
+        "id": "cta_text",
+        "type": "text",
+        "label": "CTA Text"
+      },
+      {
+        "id": "cta_url",
+        "type": "url",
+        "label": "CTA Link"
+      }
+    ]
+  }
+{% endschema %}

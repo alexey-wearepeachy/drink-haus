@@ -1,0 +1,156 @@
+{% assign product_handles = product.metafields.combo_bundle.dynamic_product | split: "|" %}
+{% assign static_product = product.metafields.combo_bundle.static_product %}
+
+<script>
+  window.__HAUS.comboProducts = {
+    product: {{ product | json }},
+    static: {%- if static_product != blank -%}{{ all_products[static_product] | json }}{%- else -%}false{%- endif -%},
+    options: [
+      {% for handle in product_handles %}
+        {{ all_products[handle] | json }}{% unless forloop.last %},{% endunless%}
+      {% endfor %}
+    ]
+  }
+</script>
+
+
+
+{% assign product_title = product.title %}
+{% if product.metafields.product_override.title != blank %}
+  {% assign product_title = product.metafields.product_override.title %}
+{% endif %}
+{% assign memberships = product.metafields.haus_subscriptions.products | split: "|" %}
+{% assign product_type = product.type | downcase | handleize %}
+{% if product.options.size == 1 %}
+  {% assign selector_type = product.options | first | downcase %}
+{% endif %}
+
+{% if product.metafields.product_override.shipping_link_text != blank %}
+  {% assign shipping_text = product.metafields.product_override.shipping_link_text %}
+{% else product.metafields.product_override.shipping_text != blank %}
+  {% assign shipping_text = product.metafields.product_override.shipping_text %}
+{% else %}
+  {% assign shipping_text = 'Free shipping on orders over $50' %}
+{% endif %}
+
+
+{% assign customer_is_member = false %}
+{% assign customer_is_early = false %}
+{% assign customer_is_first = false %}
+
+{% if customer.tags contains 'haus-membership' %}
+  {% assign customer_is_member = true %}
+{% endif %}
+
+{% if customer.tags contains 'haus-early' %}
+  {% assign customer_is_early = true %}
+{% endif %}
+
+{% if customer.tags contains 'haus-first' %}
+  {% assign customer_is_first = true %}
+{% endif %}
+
+{% for tag in product.tags %} 
+  {%- assign tag_pair = tag | split: " => " -%}
+  
+  {%- case tag_pair.first -%}
+    {%- when 'haus::badge' -%}
+      {% assign has_badge = true %}
+      {%- assign badge_text = tag_pair.last -%}
+    {%- else -%}
+    
+    {%- when 'haus::members' -%}
+      {% assign is_members_only = true %}
+    {% else %}
+    
+    {% when 'haus::backorder' %}
+      {%- assign is_backorder = tag_pair.last -%}
+    {% else %}
+    
+    {%- when 'haus::shipdate' -%}
+      {% assign shipdate = tag_pair.last %}
+    {%- else -%}
+    
+  {%- endcase -%}
+{% endfor %}
+
+{% if product.available == false  %}
+  {% if has_badge == false and badge_text == blank %}
+    {% assign badge_text = 'Back Soon' %}
+  {% endif %}
+{% endif %}
+
+{% assign bundle = product.metafields.bundle.bundle_products | split: "|" %}
+
+<section class="product-hero bundle-hero bpm-mb-50" data-js-behavior="productComboBundle">
+  <div class="container">
+    <div class="bundle-hero__inner -d-flex -f-col bpm-f-row bps-justify-between bpl-justify-center bps-align-center b-bottom-divider">
+      <div class="col col-xs-full col-md-11 gutter-md-1 col-lg-10 gutter-lg-2 -mb-35 bpl-no-mb rel">
+        <div class="rel">
+          {% if has_badge %} 
+            {% render 'product-badge', text: badge_text, type: 'pdp' %}
+          {% endif %}
+          {% 
+            render 'responsive-image', 
+            with image: product.featured_image, 
+            image_class: "haus-image", 
+            wrapper_class: "image-wrap", 
+            max_width: 700, 
+            max_height: 800
+          %}        
+        </div>
+      </div>
+      <div class="col col-xs-full col-md-11 col-lg-11 -tac bpm-tal ">
+        <h1 class="-no-mt -s-heading bpm-m-heading bpl-l-heading bpm-mb-5">{{ product_title }}</h1>
+        
+        <div class="-d-table -mx-auto -mb-20 bpm-no-ml">
+          {% render 'okendo-product-rating-summary', product: product %}
+        </div>
+          
+        {% if product.content != blank %}
+        <div class="-caption bpm-body -no-mt bpm-mb-30">{{ product.content }}</div>
+        {% endif %}
+        
+        {% if product.metafields.product.ABV_line != blank %}
+        <p class="-mt-5 -mb-15 gta-standard-italic">{{ product.metafields.product.ABV_line }}</p>
+        {% endif %}
+        
+        {% if product_handles.size > 1 %}
+        <span class="-d-block button-text bottle-select-label -shrink-0 -mb-5 bpm-mb-15">
+          Select your flavor:
+        </span>
+        <div class="custom-select custom-select--small custom-select--black w-100 bundle-selection">
+
+          <select class="bottle-select" name="dynamic-product-select" id="dynamic-product-select" data-dynamic-select>
+            {% for handle in product_handles %}
+              {% assign current_option = all_products[handle] %}
+              {% assign title_override = current_option.metafields.product_override.title %}
+              {% if current_option.available %}
+
+              <option value="{{ current_option.id | json }}">{% if title_override != blank %}{{ title_override }}{% else %}{{ current_option.title }}{% endif %}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          <svg class="custom-select__caret" fill="none" viewBox="0 0 10 7">
+            <defs></defs>
+            <path fill="#191919" d="M0 1.41L1.41 0l3.54 3.54L8.5 0l1.41 1.41-4.96 4.96L0 1.41z"></path>
+          </svg>
+        </div>
+        {% endif %}
+        
+        <button class="btn w-100  -mt-15 bpm-mt-20" data-add-to-cart>
+          <span>Add to cart</span>
+        </button>  
+        
+        <div class="tac -my-25">
+          <div class="-no-my">{{ shipping_text }}</div>
+          {% if shipdate %}
+            <p class="-mt-5 text-soft-gray gta-standard-italic"> 
+              Ships by {{ shipdate }}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>  
+  </div>
+</section>

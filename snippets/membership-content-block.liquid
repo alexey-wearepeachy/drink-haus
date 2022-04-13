@@ -1,0 +1,35 @@
+{% assign block_title = product.metafields.membership_block.title %}
+
+<section class="content-block bg-black -pt-40 -pb-55 bpm-py-55">
+  <div class="row -justify-between grid-gutter">
+    <div class="col col-xs-full col-sm-10 gutter-sm-2 col-lg-10 gutter-lg-4 text-white -mb-60 bps-no-mb -tac bps-tal">
+        <h2 class="-s-heading bpl-l-heading -no-mt -mb-10 bps-mb-5">{{ title }}</h2>
+        
+        {% if copy != blank %}
+        <div class="rte -caption bpl-body">
+          {{ copy }}
+        </div>
+        {% endif %}
+        
+        <div class="-mt-15 bps-mt-20">
+          {% render 'text-link' with 
+            to: '/products/membership', 
+            text: 'Learn More', 
+            white: true 
+          %}
+        </div>
+    </div>
+    
+    <div class="col col-xs-full col-sm-half col-lg-9 text-white">
+      {% for value in block_title %}
+        <div class="{% unless forloop.last == true %}-mb-40 bps-mb-30{% endunless %}">
+          {% render 'icon-text-block' with
+            title: value,
+            copy: product.metafields.membership_block.copy[forloop.index0], 
+            image: product.metafields.membership_block.icon[forloop.index0]
+          %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

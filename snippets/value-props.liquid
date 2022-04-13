@@ -1,0 +1,21 @@
+<section class="value-props container">
+  <div class="-d-flex -f-col bpl-f-row bpl-align-end -pb-50 -pt-40 bps-pt-60">
+    <div class="col col-xs-full col-lg-7 gutter-lg-1 -f-order-2 bpl-f-order-1">
+      {% for block in data %}
+        <div class="value-prop__content bpm-mw-75 bpl-mw-100 {% unless forloop.last %}-mb-25 bps-mb-45 bpm-mb-25{% endunless %}">
+          <h3 class="-s-heading -no-mt -mb-15">{{ block.settings.title }}</h3>
+          <p class="-caption bpm-body -no-mt -no-mb">{{ block.settings.copy }}</p>
+        </div>
+      {% endfor %}
+    </div>
+    
+    <div class="col col-xs-full col-lg-16 -f-order-1 bpl-f-order-2 -mb-35 bpm-mb-55 bpl-no-mb">      
+      <div class="embed-container embed-container-6x9">
+        <video autoplay loop muted preload poster="{{ 'value-props-poster.jpg' | asset_url }}">
+          <source src="{{ 'value-props.mp4' | asset_url }}"
+              type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>

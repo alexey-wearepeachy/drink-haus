@@ -1,0 +1,22 @@
+{% if product.metafields.product_override.title != blank %}
+  {% assign product_title = product.metafields.product_override.title %}
+{% else  %}
+  {% assign product_title = product.title %}
+{% endif %}
+
+<div class="product-card">
+  <a href="{{ product.url }}" class="-d-block product-card__media">
+    {% 
+      render 'responsive-image', 
+      with image: product.featured_image, 
+      image_class: "haus-image", 
+      wrapper_class: "image-wrap", 
+      max_width: 700, 
+      max_height: 800
+    %}
+  </a>
+  
+  <div class="product-card__body tac">
+    <a href="{{ product.url }}" class="text-link text-link--underline-hover">{{ product_title }}</a>
+  </div>
+</div>

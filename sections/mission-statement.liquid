@@ -1,0 +1,40 @@
+{% render 'mission-statement' with 
+  title: section.settings.title, 
+  copy: section.settings.copy, 
+  left_image: section.settings.left_image,
+  right_image: section.settings.right_image,
+%}
+
+
+{% schema %}
+  {
+    "name": "Better Drink",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "richtext",
+        "label": "Copy"
+      },
+      {
+        "id": "left_image",
+        "type": "image_picker",
+        "label": "Left Image"
+      },
+      {
+        "id": "right_image",
+        "type": "image_picker",
+        "label": "Right Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Better Drink"
+      }
+    ]
+  }
+{% endschema %}

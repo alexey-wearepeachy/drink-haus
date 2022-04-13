@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="-py-40 bpm-py-60  b-top-divider">
+    <div class="bpm-d-flex bpm-justify-between bpm-align-start">
+      <div class="col-xs-full col-md-7">
+        <h2 class="-s-heading bpm-m-heading bpl-l-heading bpm-mb-25 -no-mt">{{ title}} </h2>
+        <p class="-caption bps-body">{{ copy }}</p>
+      </div>
+      
+      <div class="col-xs-full col-md-13 bpm-d-flex bpm-justify-between bpm-align-start">
+        <div class="col-xs-full col-md-11">
+          {% render 'recipe-card' with articles[recipe1] as recipe, label: "Helena's drink of choice" %}
+        </div>
+        <div class="col-xs-full col-md-11">
+          {% render 'recipe-card' with articles[recipe2] as recipe, label: "Woody's drink of choice" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

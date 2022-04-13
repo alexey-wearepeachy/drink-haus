@@ -1,0 +1,63 @@
+{% assign mega_nav = linklists['mega-nav'] %}
+{% if template == 'customers/account' or template == 'customers/addresses' %}
+  {% assign has_sticky = false %}
+{% else %}
+  {% assign has_sticky = true %}
+{% endif %}
+
+<div class="site-nav-wrap" data-nav-wrap data-js-behavior="nav">
+  <div class="site-nav gutter-px-xs-1 rel">
+    <div class="site-nav__inner bpm-px-sm">
+      <nav role="navigation" class="primary-nav site-nav__section -d-flex h-100">
+        <a class="-d-inline-flex bpm-d-none -align-center primary-nav__link text-link text-link--underline-hover text-black" href="#" data-mobile-menu-open data-color-change>Menu</a>
+        {% for link in linklists['main-menu'].links %}
+          {% assign link_title = link.title | downcase %}
+          <span class="-d-none bpm-d-inline-flex site-nav__link-wrap h-100" {% if link_title contains "shop" and link_title != 'gift shop' %}data-mega-trigger="1"{% endif %}>
+            <a href="{{ link.url }}" class="primary-nav__link text-link text-link--underline-hover text-black {% unless forloop.last == true %}bps-pr-20 bpm-pr-60{% endunless %}" data-color-change>
+              {{ link_title }}
+            </a>
+            
+            {% if link_title contains "shop" %}
+              {% render 'mega-nav' 
+                with mega_nav as menu, 
+                desc: "Made with real fruits and botanicals, no fake stuff or excess sugar. It's a better way to drink."
+              %}
+            {% endif %}
+          </span>
+        {% endfor %}
+      </nav>
+      
+      <div class="site-nav__logo">
+        <a href="/" class="text-black" data-color-change>
+          {% render 'haus-logo' %}
+        </a>
+      </div>
+        
+      <nav role="account-navigation" class="site-nav__section tar">
+        <a href="#newsletter-modal" class="-d-none bpm-d-inline-block primary-nav__link text-link text-link--underline-hover text-black -pl-sm" data-js-behavior="modal" data-modal-id="newsletter-modal" data-color-change>Newsletter</a>
+        
+        {% if shop.customer_accounts_enabled %}
+          <a href="/account" class="-d-none bpm-d-inline-block primary-nav__link text-link text-link--underline-hover text-black bps-pl-20 bpm-pl-60" data-color-change>{{ 'layout.customer.account' | t }}</a>
+        {% endif %}
+        <noscript>
+        
+          <style>
+            button[data-mini-cart-trigger] {
+              display: none;
+            }
+          </style>
+        
+          <a href="/checkout" class="primary-nav__link text-link text-link--underline-hover text-black bps-pl-20 bpm-pl-60">
+            Go To Checkout
+          </a>
+        </noscript>
+        
+        <button role="button" aria-label="Open Minicart" aria-pressed="false" class="primary-nav__link text-link text-link--underline-hover text-black bps-pl-20 bpm-pl-60"
+          data-mini-cart-trigger data-color-change>
+          <div id="nav-cart-bag"></div>
+        </button>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="menu-bg" data-menu-bg></div>

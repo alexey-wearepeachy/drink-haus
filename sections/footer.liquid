@@ -1,0 +1,99 @@
+{% assign footer_links = 'full-footer-menu' %}
+{% assign corp_links = 'corporate-menu' %}
+
+<footer class="site-footer bg-black -pt-40 -pb-35 bpm-pt-45 bpm-pb-40">
+  <div class="container text-white">
+    <div class="row row--ais row--jb -justify-between">
+      <div class="col col-xs-full col-md-8 text-white -f-order-2 bpm-f-order-1">
+        {% render 'footer-newsletter' %}
+      </div>
+      
+    <div class="col col-xs-full col-md-12 text-white bpm-no-mt -f-order-1 bpm-f-order-2">
+        <div class="footer__group -mt-10">
+          {% for link in linklists[footer_links].links %}
+            <div class="footer__col -mb-50">
+              {% if link.links != blank %}    
+                {% assign link_title = link.title | handle %}
+                <h6 class="label text-white -no-mt {% if link_title contains 'follow' %}-mb-25{% else %}-mb-15 bpm-mb-25{% endif %}">{{ link.title }}</h6>
+                <ul class="footer-list list-reset {% if link_title contains 'follow' %}-d-flex -d-f-row bps-f-col bps-justify-start -align-center bps-align-start{% endif %}">
+                  {% for child_link in link.links %}  
+                  {% assign icon_name = child_link.title | downcase | handle %}
+                  
+                  <li class="footer__list-item -mb-5 bpm-mb-15 {% if link_title contains 'follow' %} -mr-20 bpm-no-mr{% endif %}">
+                    <a class="ttu tdn footer__link " href="{{ child_link.url }}" {% if child_link.type == 'http_link'  %}target="_blank"{% endif %}>
+                      {% if child_link.type == 'http_link'  %}
+                        {% if child_link.url contains 'mailto' %}
+                          {{ child_link.title }}
+                        {% else %}
+                          <div class="-d-none bps-d-flex -align-center">
+                            {% render 'external-arrow' %}
+                            <span class="-ml-10">{{ child_link.title }}</span>
+                          </div>
+                          
+                          <div class="-d-block bps-d-none">
+                            {% if icon_name == 'facebook'%}
+                               {% render 'icon-facebook' %}
+                            {% elsif icon_name == 'instagram' %}
+                              {% render 'icon-instagram' %}    
+                            {% elsif icon_name == 'spotify' %}
+                              {% render 'icon-spotify' %}   
+                            {% elsif icon_name == 'twitter' %}
+                              {% render 'icon-twitter' %}  
+                            {% endif %}
+                          </div>
+                        {% endif  %}
+                      {% else %}
+                        {% unless link_title contains 'follow' %}
+                          {{ child_link.title }}
+                        {% endunless %}
+                      {% endif %}
+                    </a> 
+                  </li>
+                  {% endfor %}
+                </ul> 
+              {% endif %} 
+            </div>
+          {% endfor %}        
+        </div>
+      </div>
+    </div>
+
+    <div class="rel row -pt-md -mt-md -mt-35 bpm-mt-100 bpl-mt-125">
+      <div class="col col-xs-full -d-flex -f-col bps-f-row -f-wrap">
+        <span class="-d-none bpm-d-inline-block text-white bps-mr-20 bpl-mr-60 -mb-15">&copy; Haus {{ 'now' | date: '%Y' }}</span>
+        {% for link in linklists[corp_links].links %}
+          <a class="tdn text-faded-white bps-mr-20 bpl-mr-60 -d-inline-block {% unless forloop.last %}-mb-15{% endunless %}" href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+        <span class="-d-block bps-d-none text-white -mt-15 -d-inline-block">&copy; Haus {{ 'now' | date: '%Y' }}</span>
+      </div>
+      
+      <a href="#MainContent" class="text-white scroll-top-top" aria-label="Scroll to top of the page">
+        {% render 'icon-arrow-up' %}
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_linklist",
+        "label": "First menu",
+        "default": "footer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Show payment icons",
+        "default": false
+      }
+    ]
+  }
+
+{% endschema %}

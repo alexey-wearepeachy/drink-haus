@@ -1,0 +1,31 @@
+<div class="floating-image-block rel oh -mt-100 bpm-mt-150">
+  <div class="-d-none bpm-d-block floating-image-block__l-image">
+    {% render 'responsive-image' with
+      image: left_image,
+      max_width: 420,
+      max_height: 420
+    %}
+  </div>
+  
+  <div class="container">
+    <div class="-pb-40 bpm-pb-120 b-bottom-divider ">
+      <div class="bpm-d-flex bpm-justify-center">
+        <div class="col-xs-full col-md-11 col-lg-10 tac">
+          <h2 class="-s-heading bpm-m-heading bpl-l-heading bpm-mb-40">{{ title }}</h2>
+          {% if copy != blank %}
+          <div class="rte -caption bpl-body">
+            {{ copy }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="-d-none bpm-d-block floating-image-block__r-image">
+    {% render 'responsive-image' with
+      image: right_image,
+      max_width: 420,
+      max_height: 420
+    %}
+  </div>
+</div>

@@ -1,0 +1,35 @@
+{% render 'content-block' with 
+  title: section.settings.title, 
+  copy: section.settings.copy, 
+  image: section.settings.image,
+  image_last: true
+%}
+
+
+{% schema %}
+  {
+    "name": "New Alcohol Brand",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "richtext",
+        "label": "Copy"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Featured Image"
+      }
+    ],
+    "presets": [
+      {
+        "name": "New Alcohol Brand"
+      }
+    ]
+  }
+{% endschema %}

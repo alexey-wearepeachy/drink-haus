@@ -1,0 +1,40 @@
+{% render 'billboard--content-below' with 
+  title: section.settings.title,
+  copy: section.settings.copy,
+  image: section.settings.image
+  mobile_image: section.settings.mobile_image
+%}
+
+{% schema %}
+  {
+    "name": "Billboard",
+    "settings": [
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Featured Image"
+      },
+      {
+        "id": "mobile_image",
+        "type": "image_picker",
+        "label": "Mobile Featured Image"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "text",
+        "label": "Copy"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Billboard",
+        "category": "Haus Sections"
+      }
+    ]
+  }
+{% endschema %}

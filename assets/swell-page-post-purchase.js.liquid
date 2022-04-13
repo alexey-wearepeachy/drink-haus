@@ -1,0 +1,34 @@
+const referral = new Referral(
+    swellDefention.referralForms,
+    swellDefention.referralShareLinks
+);
+
+if (window.location.href.indexOf("thank_you") > -1) {
+    (function ($) {
+        $(document).ready(() => {
+            var hasRun = false;
+            $(document).one("swell:setup", () => {
+                if (hasRun) return false;
+                referral.showReferralForm();
+                $(".main-purchase").addClass("showing-main");
+                $(".swell-referral-container .swell-referral-details").css(
+                    "background-image",
+                    "none"
+                );
+                $(".main-purchase").removeClass("hidden-purchase");
+
+                $(".purchase-close").click(() => {
+                    $(".main-purchase").remove();
+                });
+
+                referral.revealForm(
+                    swellAPI.getCustomerDetails(),
+                    swellDefention.referralForms.newUserForm.formType,
+                    swellDefention.referralForms.existUserForm.formType
+                );
+                spapi.initialize();
+                hasRun = true;
+            });
+        });
+    })(jQuery);
+}

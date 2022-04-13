@@ -1,0 +1,24 @@
+const referral = new Referral(swellDefention.referralForms, swellDefention.referralShareLinks);
+$(window).on('load', ()=>{
+	(()=>{
+		$(document).ready(()=>{
+			$(document).on("swell:initialized",()=>{
+				console.log("swell:initialized refer");
+				referral.showReferralForm();
+			});
+			$(document).on("swell:setup",()=> {
+				
+				console.log("swell:setup");
+				
+				referral.revealForm(
+					swellAPI.getCustomerDetails(),
+					swellDefention.referralForms.newUserForm.formType,
+					swellDefention.referralForms.existUserForm.formType
+					);
+					
+				 new ReferHistory(swellAPI.getCustomerDetails()).renderHistory();
+
+			});
+		});
+	}).call(this);
+})

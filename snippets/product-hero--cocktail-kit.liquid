@@ -1,0 +1,230 @@
+{% assign product_title = product.title %}
+{% if product.metafields.product_override.title != blank %}
+  {% assign product_title = product.metafields.product_override.title %}
+{% endif %}
+{% assign memberships = product.metafields.haus_subscriptions.products | split: "|" %}
+{% assign product_type = product.type | downcase | handleize %}
+{% if product.options.size == 1 %}
+  {% assign selector_type = product.options | first | downcase %}
+{% endif %}
+
+{% if product.metafields.product_override.shipping_link_text != blank %}
+  {% assign shipping_text = product.metafields.product_override.shipping_link_text %}
+{% else product.metafields.product_override.shipping_text != blank %}
+  {% assign shipping_text = product.metafields.product_override.shipping_text %}
+{% else %}
+  {% assign shipping_text = 'Free shipping on orders over $50' %}
+{% endif %}
+
+
+{% assign customer_is_member = false %}
+{% assign customer_is_early = false %}
+{% assign customer_is_first = false %}
+{% assign notes = false %}
+
+{% if customer.tags contains 'haus-membership' %}
+  {% assign customer_is_member = true %}
+{% endif %}
+
+{% if customer.tags contains 'haus-early' %}
+  {% assign customer_is_early = true %}
+{% endif %}
+
+{% if customer.tags contains 'haus-first' %}
+  {% assign customer_is_first = true %}
+{% endif %}
+
+{% for tag in product.tags %} 
+  {%- assign tag_pair = tag | split: " => " -%}
+  {%- case tag_pair.first -%}
+    {%- when 'haus::badge' -%}
+      {% assign has_badge = true %}
+      {%- assign badge_text = tag_pair.last -%}
+    {%- else -%}
+    
+    {%- when 'haus::members' -%}
+      {% assign is_members_only = true %}
+    {% else %}
+    
+    {% when 'haus::backorder' %}
+      {%- assign is_backorder = tag_pair.last -%}
+    {% else %}
+    
+    {%- when 'haus::shipdate' -%}
+      {% assign shipdate = tag_pair.last %}
+    {%- else -%}
+    
+    {%- when 'haus::notes' -%}
+      {%- assign notes = tag_pair.last -%}
+    {%- else -%}
+    
+  {%- endcase -%}
+{% endfor %}
+
+{% if product.available == false  %}
+  {% assign has_badge = true %}
+  {% if has_badge and badge_text == blank %}
+    {% assign badge_text = 'Back Soon' %}
+  {% endif %}
+{% endif %}
+
+{% if product.metafields.hero_carousel.image != blank %}
+  {% assign acf_slides = product.metafields.hero_carousel.image %}
+{% endif %}
+
+<section class="product-hero {% if template.suffix == 'cocktail-kit' %}light-gradient-bg{% endif %}" data-js-behavior="presetBundle">
+  <div class="container -pb-40 bpm-pb-100">
+    <div class="-d-flex -f-col bpm-f-row bps-justify-between bpl-justify-center {% unless acf_slides != blank %}bps-align-center{% endunless %}">
+      <div class="col col-xs-full col-md-11 gutter-md-1 col-lg-10 gutter-lg-2 -mb-35 bpl-no-mb rel">
+        <div class="rel {% if acf_slides != blank %}product-hero-slider" data-js-behavior="productHeroSlider{% endif %}">
+        {% if acf_slides != blank %}
+          <div class="slide">
+        {% endif %}
+
+          {% if has_badge %} 
+            {% render 'product-badge', text: badge_text, type: 'pdp' %}
+          {% endif %}
+          {% 
+            render 'responsive-image', 
+            with image: product.featured_image, 
+            image_class: "haus-image", 
+            wrapper_class: "image-wrap", 
+            max_width: 700, 
+            max_height: 800
+          %}
+          {% if acf_slides != blank %} 
+            <!-- close initial slide div -->
+            </div>
+            {% for slide in acf_slides %}
+              <div class="slide">
+                {% 
+                  render 'responsive-image-accentuate', 
+                  with image: slide[0], 
+                  image_class: "haus-image", 
+                  wrapper_class: "image-wrap", 
+                  max_width: 700, 
+                  max_height: 800                  
+                %}
+              </div>
+            {% endfor %}
+          {% endif %}       
+        </div>
+      </div>
+      <div class="col-xs-full col-md-11 col-lg-11 -tac bpm-tal">
+        <h1 class="-no-mt -s-heading bpm-m-heading bpl-l-heading bpm-mb-5">{{ product_title }}</h1>
+        {% if notes and product.metafields.product_override.flavor_notes %}
+        <span class="-d-block eyebrow -mt-15 bpm-mt-5">{{ notes }}</span>
+        {% endif %}
+        
+        <div class="-d-table -mx-auto -mb-20 bpm-no-ml">
+          {% render 'okendo-product-rating-summary', product: product %}
+        </div>
+          
+        <div class="-caption -no-mt ">{{ product.description }}</div>
+        
+        <p class="-mt-30 -mb-30 gta-standard-italic">{{ product.metafields.product.ABV_line }} </p>
+        
+        {% unless product_type == 'gift-card' %}
+          {% if product.metafields.product.ingredients_link_text != blank %}
+            {% assign nutrition_label = product.metafields.product.ingredients_link_text %}
+          {% else %}
+            {% assign nutrition_label = 'Nutritional Facts' %}
+          {% endif %}
+        {% endunless %}
+        
+        {% if is_members_only == true  and customer_is_member == false %}
+          <div class="b-top-divider b-bottom-divider -my-40 -py-30">
+            <p class="-no-my -tac gta-standard-italic">This flavor is available for purchase by Haus Members. If you have a membership, please log in to your account. </p>
+          </div>
+        {% endif %}
+        
+        <div class="-d-block bps-d-none -mt-30 -mb-34">
+          <div class="tac -no-mt bpm-no-mb">{{ shipping_text }}</div>
+          {% if shipdate %}
+          <div class="text-soft-gray gta-standard-italic"> 
+            Ships by {{ shipdate }}
+          </div>
+          {% endif %}
+        </div>
+        
+        <div class="-d-none" data-bis-btn>
+          <button class="btn w-100" data-js-behavior="modal" data-modal-id="bis-modal">Notify Me When Available</button>  
+        </div>
+        
+        {% if is_members_only == true  and customer_is_member == false %}
+          <div class="button-group bps-d-flex bps-justify-between" data-button-group>
+            <a href="/account/login?return_url={{ product.url }}" class="btn w-100">Member Log In</a>  
+            <a href="/products/membership" class="w-100 btn btn--hollow">Learn About Membership</a>
+          </div>
+        {% else %}
+        <div class="{% if memberships != blank %}button-group bps-d-flex bps-justify-between {% else %} w-100{% endif %} b-top-divider -pt-30 -mt-25 bpm-mt-80" data-button-group>
+          <button class="btn w-100" data-add-to-cart><span class="is-loading">Add to cart - {{ product.price | money_without_trailing_zeros }}</span></button>  
+          {% if memberships != blank %}
+          <button class="w-100 btn btn--hollow" data-js-behavior="memberships">Add to Membership</button>
+          {% endif %}
+        </div>
+        
+          {% if product_type == 'gift-card' %}        
+            <div class="-d-none btn w-100 gwbutton -mt-10">Send as a Gift</div>  
+          {% endif %}
+        {% endif %}
+        
+        <div class="-d-none bps-d-block tac -my-25">
+          <div class="-no-my">{{ shipping_text }}</div>
+          {% if shipdate %}
+          <p class="-mt-5 text-soft-gray gta-standard-italic"> 
+            Ships by {{ shipdate }}
+          </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>  
+  </div>
+</section>
+
+{% unless product_type == 'gift-card' %}
+  {% render 'pdp-sticky-purchase' with 
+    product: product, 
+    is_members_only: is_members_only,
+    customer_is_member: customer_is_member,
+    title: product_title 
+  %}
+{% endunless %}
+
+<div class="-d-none">
+  {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+    {% unless product.has_only_default_variant %}
+      {% for option in product.options_with_values %}
+        <div class="js">
+
+          {% if forloop.index0 > 0 %}
+
+            {% for value in option.values %}
+              <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+              <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+            {% endfor %}
+
+          {% else %}
+
+            <label for="Option{{ option.position }}">
+              {{ option.name }}
+            </label>
+
+            <select
+              id="Option{{ option.position }}"
+              name="options[{{ option.name | escape }}]">
+              {% for value in option.values %}
+                <option
+                  value="{{ value | escape }}"
+                  {% if option.selected_value == value %}selected="selected"{% endif %}>
+                    {{ value }}
+                </option>
+              {% endfor %}
+            </select>
+
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endunless %}
+  {% endform %}
+</div>

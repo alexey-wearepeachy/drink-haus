@@ -1,0 +1,29 @@
+{% include 'spurit_po2_section_snippet', product: null, products: collections[section.settings.collection].products %}
+<section class="-mt-15">
+  {% 
+    render 'product-grid', 
+    collection: section.settings.collection,
+    title: section.settings.section_title,
+    action_type: 'shopnow',
+    has_background: true
+  %}
+</section>
+
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Heading"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Featured Collection"
+      }
+    ]
+  }
+{% endschema %}

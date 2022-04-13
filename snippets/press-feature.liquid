@@ -1,0 +1,18 @@
+<div class="press-feature">
+  <blockquote class="blockquote tac -no-my -no-mx">
+    <span {% if type == 'grid' %}class="-d-none bps-d-block"{% endif %}>
+    {{ text }}
+    </span>
+    
+    <footer class="bpm-pt-40">
+      {% 
+        render 'responsive-image', 
+        with image: image, 
+        image_class: "haus-image", 
+        wrapper_class: "image-wrap", 
+        max_height: 100,
+        max_width: 300
+      %}
+    </footer>
+  </blockquote>
+</div>

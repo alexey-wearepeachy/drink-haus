@@ -1,0 +1,339 @@
+{% assign has_hero = false %}
+{% for block in section.blocks %}  
+  {% case block.type %}
+    {% when 'page-hero' %}
+      {% assign has_hero = true %}
+      {% render 'hero--aspect-ratio' 
+        d_image: block.settings.d_image,
+        m_image: block.settings.m_image
+      %}
+  {% endcase %}
+{% endfor %}
+
+
+<div class="{% unless has_hero %}-pt-90{% endunless %}">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'text-block-with-badge' %}
+        {% render 'text-hero-with-badge' with
+          title: block.settings.title,
+          copy: block.settings.copy,
+          d_image: block.settings.d_image,
+          image: block.settings.image,
+          hide_on_mobile: block.settings.badge_on_mobile
+        %}
+      {% when 'collection-set' %}
+        {% 
+          render 'product-grid', 
+          bg_color: block.settings.bg_color,
+          collection: block.settings.collection,
+          title: block.settings.title,
+          eyebrow_icon: block.settings.eyebrow_icon,
+          eyebrow: block.settings.eyebrow,
+          copy: block.settings.copy,
+          cta_text: block.settings.cta_text,
+          cta_url: block.settings.cta_url,
+          cta_type: block.settings.cta_type,
+          action_type: block.settings.button_type,
+          has_mobile_carousel: block.settings.mobile_carousel,
+          enable_notes: block.settings.enable_notes,
+          
+        %}
+        
+      {% when 'text-block' %}  
+        <div class="container">
+          <div class="gutter-x-sm-1 -py-30 bpm-py-60 ">
+            {% render 'text-block' with
+              title: block.settings.title,
+              bold: true,
+              copy: block.settings.copy,
+              cta_text: block.settings.cta_text,
+              cta_url: block.settings.cta_url,
+              cta_type: block.settings.cta_type,
+              hide_cta: true
+            %}
+          </div>
+        </div>
+      {% when 'value-props' %}
+        {% render 'value-props-grid' 
+          bg_color: block.settings.bg_color,
+          title: block.settings.title,
+          eyebrow: block.settings.eyebrow,
+          copy: block.settings.copy,
+          col_1_title: block.settings.value-prop-1-title,
+          col_1_copy: block.settings.value-prop-1-copy,
+          col_1_image: block.settings.value-prop-1-image,        
+          col_2_title: block.settings.value-prop-2-title,
+          col_2_copy: block.settings.value-prop-2-copy,
+          col_2_image: block.settings.value-prop-2-image,
+          col_3_title: block.settings.value-prop-3-title,
+          col_3_copy: block.settings.value-prop-3-copy,
+          col_3_image: block.settings.value-prop-3-image,
+        %}
+    {% endcase %}
+  {% endfor %}
+</div>
+
+<script>
+  window.whiteNav = {{ section.settings.white_nav | json }}
+</script>
+
+{% schema %}
+  {
+    "name": "Stock Up Template",
+    "settings": [
+      {
+        "id": "white_nav",
+        "type": "checkbox",
+        "label": "White Nav Text",
+        "info": "This should only be used in conjunction with dark images"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "page-hero",
+        "name": "Page Hero",
+        "settings":[
+          {
+            "id": "d_image",
+            "type": "image_picker",
+            "label": "Desktop Hero Image"
+          },
+          {
+            "id": "m_image",
+            "type": "image_picker",
+            "label": "Mobile Hero Image"
+          }
+        ]
+      },
+      {
+        "type": "text-block-with-badge",
+        "name": "Text Block With Badge",
+        "settings":[
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Badge Image",
+            "info": "Small badge image aligned on the top right of the page title"
+          },
+          {
+            "id": "badge_on_mobile",
+            "type": "checkbox",
+            "label": "Hide on mobile",
+            "info": "If checked, the badge will not display on mobile."
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "text",
+            "label": "Copy"
+          }
+        ]
+      },
+      {
+        "type":"collection-set",
+        "name":"Collection Select",
+        "settings":[
+          {
+             "type": "color",
+             "id": "bg_color",
+             "label": "Background Color (optional). If selected, text will be white"
+          },
+          {
+             "type": "select",
+             "id": "button_type",
+             "options": [
+                { "value": "default", "label": "Default - Variant Select"},
+                { "value": "shopnow", "label": "Shop Now - Redirect to PDP"},
+                { "value": "quickadd", "label": "Quick Add - Add 1st variant"}
+             ],
+             "label": "Button Action"
+          },
+          {
+            "id": "enable_quickadd",
+            "type": "checkbox",
+            "label": "Enable Quick Add",
+            "info": "Allow a user to immediately add product to cart from the button"
+          },
+          {
+            "id": "enable_notes",
+            "type": "checkbox",
+            "label": "Enable Flavor Notes",
+            "info": "Display flavor notes per product card."
+          },
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection Set"
+          },
+          {
+            "id": "eyebrow_icon",
+            "type": "image_picker",
+            "label": "Eyebrow Icon",
+            "info": "Eyebrow text must be present to display the icon"
+          },
+          {
+            "id": "eyebrow",
+            "type": "text",
+            "label": "Eyebrow"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "id": "cta_text",
+            "type": "text",
+            "label": "CTA Text"
+          },
+          {
+            "id": "cta_url",
+            "type": "url",
+            "label": "CTA Link"
+          },
+          { 
+            "id": "cta_type",
+            "type": "checkbox",
+            "label": "Enable Text Link"
+          },
+          {
+            "id": "mobile_carousel",
+            "type": "checkbox",
+            "label": "Enable Mobile Carousel",
+            "info": "For best outcomes please select the 'Shop Now' button action."
+          },
+          {
+            "id": "hide_cta",
+            "type": "checkbox",
+            "label": "Hide Default Mobile CTA",
+            "info": "Chose to hide the default mobile CTA which directs to shop all flavors"
+          }
+        ]
+      },
+      {
+        "type": "text-block",
+        "name": "Text Block",
+        "settings":[
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "id": "cta_text",
+            "type": "text",
+            "label": "CTA Text"
+          },
+          {
+            "id": "cta_url",
+            "type": "url",
+            "label": "CTA Url"
+          },
+          {
+            "type": "select",
+            "id": "button_type",
+            "label": "Text",
+            "options": [
+              {
+                "value": "text-link",
+                "label": "Text Link"
+              },
+              {
+                "value": "btn",
+                "label": "Button"
+              }
+            ],
+            "default": "text-link",
+            "info": "Will display CTA as text-link or button"
+          }
+        ]
+      },
+      {
+        "type":"value-props",
+        "name":"Value Props",
+        "settings":[
+          {
+             "type": "color",
+             "id": "bg_color",
+             "label": "Background Color (optional). If selected, text will be white"
+          },
+          {
+            "id": "eyebrow",
+            "type": "text",
+            "label": "Eyebrow"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "id": "value-prop-1-title",
+            "type": "text",
+            "label": "Value Prop 1 Title"
+          },
+          {
+            "id": "value-prop-1-copy",
+            "type": "text",
+            "label": "Value Prop 1 Copy"
+          },
+          {
+            "id": "value-prop-1-image",
+            "type": "image_picker",
+            "label": "Value Prop 1 Image"
+          },
+          {
+            "id": "value-prop-2-title",
+            "type": "text",
+            "label": "Value Prop 2 Title"
+          },
+          {
+            "id": "value-prop-2-copy",
+            "type": "text",
+            "label": "Value Prop 2 Copy"
+          },
+          {
+            "id": "value-prop-2-image",
+            "type": "image_picker",
+            "label": "Value Prop 2 Image"
+          },
+          {
+            "id": "value-prop-3-title",
+            "type": "text",
+            "label": "Value Prop 3 Title"
+          },
+          {
+            "id": "value-prop-3-copy",
+            "type": "text",
+            "label": "Value Prop 3 Copy"
+          },
+          {
+            "id": "value-prop-3-image",
+            "type": "image_picker",
+            "label": "Value Prop 3 Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,22 @@
+<div class="hero hero--home -pt-100 bpm-pt-130" {% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}style="background-color: {{ bg_color }}; {% if text_color %}color: #fff;{% endif %}" data-bg-color {% if text_color %}data-text-color{% endif %}{% endif %} data-hero data-js-behavior="homeHero">
+  <div class="container"> 
+    <div class="row row--js row--aie b-bottom-french -pb-60">
+      <div class="col col-xs-full col-sm-10 gutter-sm-2">
+        {% 
+          render 'responsive-image', 
+          with image: image, 
+          image_class: "haus-image", 
+          wrapper_class: "image-wrap", 
+          max_width: 700, 
+          max_height: 800
+        %}
+      </div>
+      <div class="col col-xs-full col-sm-10">
+        <div class="hero__content">
+          <h1 class="-mb-40 ros-cond hero__title">{{ text }}</h1>
+          {% render 'button', to: to, text: label, attrs: 'data-hero-btn' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

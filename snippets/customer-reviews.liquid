@@ -1,0 +1,28 @@
+<section class="customer-reviews">
+  <div class="bg-black text-white">
+    <div class="container">
+      <div class="-d-block bpm-d-flex bpm-justify-between row--aic -py-40 bpm-py-50 mobile-slider" data-js-behavior="mobileSlider">
+        {% for block in data %}
+          <div class="col col-xs-full col-md-6">
+            <span class="-d-block tac -mb-15 star-ratings">
+              {% for i in (1..block.settings.rating) %}
+                {% render 'icon-star' %}
+              {% endfor %}
+            </span>
+            <blockquote class="blockquote tac -no-my -no-mx -caption bps-body">
+              “{{ block.settings.title }}”
+              <footer class="-pt-15">
+                <span class="label">{{ block.settings.customer}}</span>
+              </footer>
+            </blockquote>
+            <span class="-d-flex -align-center -f-row -justify-center tac ttc text-stack -mt-5">
+              {% render 'icon-verified-check' %}
+              
+              <span class="-ml-5 -d-inline">verified buyer</span>
+            </span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>  

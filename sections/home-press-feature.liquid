@@ -1,0 +1,36 @@
+{% 
+  render 'press-grid' with
+  data: section.blocks
+%}
+
+
+{% schema %}
+  {
+    "name": "Featured Press",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "quote",
+        "name": "Quote",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Quote"
+          },
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Logo"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Press",
+        "category": "Haus Sections"
+      }
+    ]
+  }
+{% endschema %}

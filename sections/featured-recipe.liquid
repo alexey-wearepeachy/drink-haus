@@ -1,0 +1,40 @@
+{% render 'founders-recipe' with
+  title: section.settings.title, 
+  copy: section.settings.copy, 
+  recipe1: section.settings.recipe1,
+  recipe2: section.settings.recipe2
+%}
+
+
+{% schema %}
+  {
+    "name": "Featured Recipes",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "text",
+        "label": "Copy"
+      },
+      {
+        "id": "recipe1",
+        "type": "article",
+        "label": "Helena's Featured Recipe"
+      },
+      {
+        "id": "recipe2",
+        "type": "article",
+        "label": "Woody's Featured Recipe"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Recipes"
+      }
+    ]
+  }
+{% endschema %}

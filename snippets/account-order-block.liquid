@@ -1,0 +1,38 @@
+<div class="order-block -mb-30 bpm-mb-60 b-cloud">
+  <div class="order-block__body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col col-xs-full -mb-15 bpm-mb-5">
+          <h3 class="label -no-mb">Contents</h3>
+          {% for item in block.line_items %}
+            <p class="-no-mt">{{ item.quantity }}x {{ item.title }}</p>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-xs-full col-sm-12 col-md-6 -mb-15 bpm-mb-5 bpl-no-mb">
+          <p class="label -no-mb">Order No.</p>
+          <p class="-no-my">{{ block.order_number }}</p>
+        </div>
+        
+        <div class="col col-xs-full col-sm-12 col-md-6 -mb-15 bpm-mb-5 bpl-no-mb">
+          <p class="label -no-mb">Date</p>
+          <p class="-no-my">{{ block.created_at | date: format: 'month_day_year' }}</p>
+        </div>
+        
+        <div class="col col-xs-full col-sm-12 col-md-6 -mb-15 bpm-mb-5 bpl-no-mb">
+          <p class="label -no-mb">Status</p>
+          <p class="-no-my">{{ block.fulfillment_status_label }}</p>
+        </div>
+        
+        <div class="col col-xs-full col-sm-12 col-md-6">
+          <p class="label -no-mb">Total</p>
+          <p class="-no-my">{{ block.total_price | money }}</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <a class="btn btn--hollow order-block__btn tdn gta-extended-med ttu" href="{{ block.customer_url }}">Order Details</a>
+</div>

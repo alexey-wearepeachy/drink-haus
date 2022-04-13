@@ -1,0 +1,28 @@
+<div class="recipe-card -px-30 bpm-no-px">
+  {% if label %}
+  <h6 class="tac -mb-30 bpm-mb-35 eyebrow--thin -no-mt">{{ label }}</h6>
+  {% endif %}
+  <div class="-d-block recipe-card__media -mb-15 bpm-mb-35">    
+    {% 
+      render 'responsive-image', 
+      with image: recipe.image, 
+      image_class: "haus-image", 
+      wrapper_class: "image-wrap", 
+      max_width: 700, 
+      max_height: 800
+    %}
+  </div>
+  
+  <div class="recipe-card__body tac">
+    <h3 class="recipe-card__title -no-mt -s-heading -mb-15">{{ recipe.title }}</h3>
+    
+    <div class="recipe-card__copy gta-expanded small lts-01 ttu">
+    
+      {{ recipe.content }}
+      
+      {% if recipe.excerpt %}
+      <span class="tti gta-standard-italic -d-block -mt-10 recipe-card__excerpt">{{ recipe.excerpt }}</span>
+      {% endif %}
+    </div>
+  </div>
+</div>

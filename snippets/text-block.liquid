@@ -1,0 +1,50 @@
+<section class="text-block {% if text_white %}text-white{% endif %}">
+  <div class="-d-table -mx-auto col col-md-16 col-lg-14 tac">
+    {% if eyebrow %}
+    <h6 class="eyebrow -no-mt {% if eyebrow_icon %}-d-flex -justify-center -align-center{% endif %}">
+      {% if eyebrow_icon %}
+        <img class="icon-image -mr-10" src="{{ eyebrow_icon | img_url: '20x', scale: 2 }}" alt="icon representing {{ eyebrow }}"/>
+      {% endif %}
+
+      {{ eyebrow }}
+    </h6>
+    {% endif %}
+    
+    {% if title != blank %}
+      <h2 class="-m-heading bpl-l-heading -no-mt {% if bold %}ros-cond{% endif %}">{{ title }}</h2>
+    {% endif %}
+    {% if copy != blank %}
+      <p class="-no-my -caption bpm-body">{{ copy }}</p>
+    {% endif %}
+    
+    {% if cta_text != blank and cta_url != blank %}
+      {% unless hide_cta %}
+        <div class="-mt-20">
+          {% if cta_type == true %}
+            {% render 'text-link' with 
+              to: cta_url,
+              text: cta_text,
+              white: text_white
+            %}
+          {% else %}
+            {% render 'button' with 
+              to: cta_url,
+              text: cta_text,
+              white: text_white
+            %}
+          {% endif %}
+        </div>
+      {% endunless %}
+    {% else %}
+      {% unless hide_cta or template.suffix == 'bundle' %}
+        <div class="-mt-20 bpm-d-none">
+          {% render 'text-link' with 
+            to: '/collections/shop'
+            text: 'Shop All Flavors'
+            white: text_white
+          %}
+        </div>
+      {% endunless %}
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,29 @@
+{%- if section.settings.announcement_bar_enabled -%}
+  
+  <style>
+    .announcement-bar__text p,
+    .announcement-bar__text a {
+      color: {{ section.settings.announcement_bar_text_color }};
+    }
+  </style>
+
+  <div class="announcement-bar {% if section.blocks.size == 1 %}-py-10{% endif %}" style="background-color: {{ section.settings.announcement_bar_bg_color }}" data-js-announcement>
+      {% unless section.blocks.size == 1 %}
+      <div class="swiper-wrapper">
+      {% endunless %}
+      
+        {% for block in section.blocks %}
+      
+        <div class="announcement-bar__text swiper-slide swiper-no-swiping">
+          {{ block.settings.announcement_item_text }}
+        </div>
+      {% endfor %}
+      
+      {% unless section.blocks.size == 1 %}
+      </div>
+      {% endunless %}
+      <button class="announcement-bar__close" data-js-announcement-close>
+        {% render 'icon-close' %}
+      </button>
+  </div>
+{%- endif -%}

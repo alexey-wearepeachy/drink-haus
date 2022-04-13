@@ -1,0 +1,45 @@
+
+{% render 'value-props' with
+  data: section.blocks,
+  image: section.settings.image
+%}
+
+
+
+
+{% schema %}
+  {
+    "name": "Value Props",
+    "settings": [
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "value-prop",
+        "name": "Text Block",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "text",
+            "label": "Copy"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Value Props",
+        "category": "Haus Sections"
+      }
+    ]
+  }
+{% endschema %}

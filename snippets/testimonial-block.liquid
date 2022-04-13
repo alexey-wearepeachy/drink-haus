@@ -1,0 +1,65 @@
+{% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+  {% assign has_background = bg_color %}
+{% else %}
+  {% assign has_background = false %}
+{% endif %}
+
+{% if template == 'index' %}
+  <div class="testimonial-block slider-container {% if has_background %}text-white{% else %}text-black{% endif %}" {% if has_background %}style="background-color: {{ bg_color }};{% endif %}" {% if slides.size > 1 %}data-js-behavior="testimonialSlider"{% endif %}>
+    {% for slide in slides %}
+      <section class="slide -tac -pt-55 -pb-55 bpm-pt-55 bpm-pb-60">
+        <div class="gutter-x-xs-2">
+          <div class="-d-flex -f-col bpl-f-row -justify-center ">
+            <blockquote class="col col-xs-full col-lg-14 -no-m">
+              <p class="-no-my ros -s-heading bpm-m-heading">{{ slide.settings.title }}</p>
+              {% if slide.settings.source != blank %}
+                <footer class="button-text -mt-20">
+                  — {{ slide.settings.source }}
+                </footer>
+              {% endif %}
+            </blockquote>
+          </div>
+        </div>
+      </section>  
+    {% endfor %}
+  </div>
+{% elsif template.name == 'page' %}
+  <div class="testimonial-block slider-container {% if has_background %}text-white{% else %}text-black{% endif %}" {% if has_background %}style="background-color: {{ bg_color }};{% endif %}" {% if text.size > 1 %}data-js-behavior="testimonialSlider"{% endif %}>
+    {% for slide in text %}
+      <section class="slide -tac -pt-55 -pb-55 bpm-pt-55 bpm-pb-60">
+        <div class="gutter-x-xs-2">
+          <div class="-d-flex -f-col bpl-f-row -justify-center ">
+            <blockquote class="col col-xs-full col-lg-14 -no-m">
+              <p class="-no-my ros -s-heading bpm-m-heading">{{ page.metafields.testimonial.text[forloop.index0] }}</p>
+              {% if source != blank %}
+                <footer class="button-text -mt-20">
+                  — {{ page.metafields.testimonial.source[forloop.index0] }}
+                </footer>
+              {% endif %}
+            </blockquote>
+          </div>
+        </div>
+      </section>  
+    {% endfor %}
+  </div>
+
+{% else %}
+  <div class="testimonial-block slider-container {% if has_background %}text-white{% else %}text-black{% endif %}" {% if has_background %}style="background-color: {{ bg_color }};{% endif %}" {% if text.size > 1 %}data-js-behavior="testimonialSlider"{% endif %}>
+    {% for slide in text %}
+      <section class="slide -tac -pt-55 -pb-55 bpm-pt-55 bpm-pb-60">
+        <div class="gutter-x-xs-2">
+          <div class="-d-flex -f-col bpl-f-row -justify-center ">
+            <blockquote class="col col-xs-full col-lg-14 -no-m">
+              <p class="-no-my ros -s-heading bpm-m-heading">{{ text[forloop.index0] }}</p>
+              {% if source != blank %}
+                <footer class="button-text -mt-20">
+                  — {{ source[forloop.index0] }}
+                </footer>
+              {% endif %}
+            </blockquote>
+          </div>
+        </div>
+      </section>  
+    {% endfor %}
+  </div>
+{% endif %}

@@ -1,0 +1,431 @@
+{% render 'hero--aspect-ratio' 
+  d_image: section.settings.d_image,
+  m_image: section.settings.m_image
+%}
+
+{% render 'text-hero-with-badge' with
+  title: section.settings.title,
+  copy: section.settings.copy,
+  d_image: section.settings.d_image,
+  image: section.settings.image
+%}
+
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'collection-set' %}
+      {% if block.settings.square_cards %}
+        {% 
+          render 'square-product-grid', 
+          bg_color: block.settings.bg_color,
+          collection: block.settings.collection,
+          title: block.settings.title,
+          eyebrow_icon: block.settings.eyebrow_icon,
+          eyebrow: block.settings.eyebrow,
+          copy: block.settings.copy,
+          cta_text: block.settings.cta_text,
+          cta_url: block.settings.cta_url,
+          cta_type: block.settings.cta_type,
+          action_type: block.settings.button_type,
+          has_mobile_carousel: block.settings.mobile_carousel,
+          enable_notes: block.settings.enable_notes
+        %}
+      {% else %}
+        {% 
+          render 'product-grid', 
+          bg_color: block.settings.bg_color,
+          collection: block.settings.collection,
+          title: block.settings.title,
+          eyebrow_icon: block.settings.eyebrow_icon,
+          eyebrow: block.settings.eyebrow,
+          copy: block.settings.copy,
+          cta_text: block.settings.cta_text,
+          cta_url: block.settings.cta_url,
+          cta_type: block.settings.cta_type,
+          action_type: block.settings.button_type,
+          has_mobile_carousel: block.settings.mobile_carousel,
+          enable_notes: block.settings.enable_notes,
+          hide_cta: block.settings.hide_cta
+        %}
+      {% endif %}
+      
+    {% when 'featured-product' %}
+      {% assign product = block.settings.product %}
+      {% render 'featured-product' with product as handle, 
+        bg_color: block.settings.bg_color,
+        eyebrow: block.settings.eyebrow,
+        eyebrow_icon: block.settings.eyebrow_icon,
+        show_reviews: block.settings.show_reviews,
+        alignment: block.settings.alignment
+        description: block.settings.description,
+        section_title: block.settings.title,
+        section_eyebrow: block.settings.section_eyebrow,
+        button_type: block.settings.button_type
+      %}
+
+    {% when 'content-block' %}
+      {% assign alignment = block.settings.alignment %}
+      {% assign image_last = false %}
+      {% if alignment == 'right' %}
+        {% assign image_last = true %}  
+      {% endif %}
+      
+      {% if block.settings.full_bleed %}
+        {% render 'content-block--full-bleed' with 
+          image: block.settings.image, 
+          title: block.settings.title,
+          copy: block.settings.copy,
+          no_border: true
+          cta_text: block.settings.cta_text,
+          cta_url: block.settings.cta_url,
+          cta_type: 'button',
+          bg_color: block.settings.bg_color,
+          alignment: block.settings.alignment
+          image_last: image_last
+        %}
+      {% else %}
+        {% 
+          render 'content-block' with
+          image: block.settings.image, 
+          title: block.settings.title,
+          copy: block.settings.copy,
+          no_border: true
+          cta_text: block.settings.cta_text,
+          cta_url: block.settings.cta_url,
+          cta_type: 'button',
+          full_bleed: block.settings.full_bleed,
+          bg_color: block.settings.bg_color,
+          alignment: block.settings.alignment,
+          image_last: image_last
+        %}
+      {% endif %}
+    {% endcase %}
+    
+{% endfor %}
+
+
+<script>
+  window.whiteNav = {{ section.settings.white_nav | json }}
+</script>
+
+{% schema %}
+  {
+    "name": "SEO Landing 10",
+    "settings": [
+      {
+        "id": "white_nav",
+        "type": "checkbox",
+        "label": "White Nav Text",
+        "info": "This should only be used in conjunction with dark images"
+      },
+      {
+        "id": "d_image",
+        "type": "image_picker",
+        "label": "Desktop Hero Image"
+      },
+      {
+        "id": "m_image",
+        "type": "image_picker",
+        "label": "Mobile Hero Image"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Badge Image",
+        "info": "Small badge image aligned on the top right of the page title"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "copy",
+        "type": "text",
+        "label": "Copy"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Hero",
+        "type": "hero",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Hero Image"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "text",
+            "type": "text",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "name": "Featured Product",
+        "type": "featured-product",
+        "settings": [
+          {
+            "type": "select",
+            "id": "button_type",
+            "default":   "shopnow",
+            "options": [
+              { "value": "shopnow", "label": "Shop Now - Redirect to PDP" },
+              { "value": "quickadd", "label": "Quick Add - Add 1st variant" }
+            ],
+            "label": "Button Action"
+          },
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Section Title"
+          },
+          {
+            "type": "text",
+            "id": "section_eyebrow",
+            "label": "Section Eyebrow Text"
+          },
+          {
+            "type": "text",
+            "id": "eyebrow",
+            "label": "Product Eyebrow Text"
+          },
+          {
+            "id": "eyebrow_icon",
+            "type": "image_picker",
+            "label": "Eyebrow Icon",
+            "info": "Eyebrow text must be present to display the icon"
+          },
+          {
+            "type": "text",
+            "id": "description",
+            "label": "Description Override"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_reviews",
+            "label": "Show Yotpo Star Count"
+          },
+          {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background Color"
+          },
+          {
+             "type": "select",
+             "id": "alignment",
+             "label": "Component Alignment",
+             "options": [
+               {
+                 "value": "left",
+                 "label": "Left Align"
+               },
+               {
+                 "value": "right",
+                 "label": "Right Align"
+               }
+             ],
+             "default": "left",
+             "info": "Determines the layout of the featured product"
+          }
+        ]
+      },
+      {
+        "type":"collection-set",
+        "name":"Collection Select",
+        "settings":[
+          {
+            "id": "square_cards",
+            "type": "checkbox",
+            "label": "Enable Square Product Cards"
+          },
+          {
+             "type": "color",
+             "id": "bg_color",
+             "label": "Background Color (optional). If selected, text will be white"
+          },
+          {
+             "type": "select",
+             "id": "button_type",
+             "options": [
+                { "value": "default", "label": "Default - Variant Select"},
+                { "value": "shopnow", "label": "Shop Now - Redirect to PDP"},
+                { "value": "quickadd", "label": "Quick Add - Add 1st variant"}
+             ],
+             "label": "Button Action"
+          },
+          {
+            "id": "enable_quickadd",
+            "type": "checkbox",
+            "label": "Enable Quick Add",
+            "info": "Allow a user to immediately add product to cart from the button"
+          },
+          {
+            "id": "enable_notes",
+            "type": "checkbox",
+            "label": "Enable Flavor Notes",
+            "info": "Display flavor notes per product card."
+          },
+          {
+            "id": "collection",
+            "type": "collection",
+            "label": "Collection Set"
+          },
+          {
+            "id": "eyebrow_icon",
+            "type": "image_picker",
+            "label": "Eyebrow Icon",
+            "info": "Eyebrow text must be present to display the icon"
+          },
+          {
+            "id": "eyebrow",
+            "type": "text",
+            "label": "Eyebrow"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "id": "cta_text",
+            "type": "text",
+            "label": "CTA Text"
+          },
+          {
+            "id": "cta_url",
+            "type": "url",
+            "label": "CTA Link"
+          },
+          {
+            "id": "cta_type",
+            "type": "checkbox",
+            "label": "Enable Text Link"
+          },
+          {
+            "id": "mobile_carousel",
+            "type": "checkbox",
+            "label": "Enable Mobile Carousel",
+            "info": "For best outcomes please select the 'Shop Now' button action."
+          }
+        ]
+      },
+      {
+        "type": "text-block",
+        "name": "Text Block",
+        "settings":[
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "text",
+            "label": "Description"
+          },
+          {
+            "id": "cta_text",
+            "type": "text",
+            "label": "CTA Text"
+          },
+          {
+            "id": "cta_url",
+            "type": "url",
+            "label": "CTA Url"
+          },
+          {
+            "type": "select",
+            "id": "button_type",
+            "label": "Text",
+            "options": [
+              {
+                "value": "text-link",
+                "label": "Text Link"
+              },
+              {
+                "value": "btn",
+                "label": "Button"
+              }
+            ],
+            "default": "text-link",
+            "info": "Will display CTA as text-link or button"
+          }
+        ]
+      },
+      {
+        "type": "content-block",
+        "name":"Image + Text Block",
+        "settings":[
+          {
+            "type": "select",
+            "id": "alignment",
+            "label": "Alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              },
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left",
+            "info": "Alters the image + text alignment. Default is 'Left'"
+          },
+          {
+            "id": "bg_color",
+            "type": "color",
+            "label": "Background color. If selected, text color will be white."
+          },
+          {
+            "id": "full_bleed",
+            "type": "checkbox",
+            "label": "Make Image Full Bleed"
+          },
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Featured Image"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "richtext",
+            "label": "Copy"
+          },
+          {
+            "id": "cta_text",
+            "type": "text",
+            "label": "CTA Text"
+          },
+          {
+            "id": "cta_url",
+            "type": "url",
+            "label": "CTA Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

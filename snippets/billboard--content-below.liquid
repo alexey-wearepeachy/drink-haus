@@ -1,0 +1,46 @@
+
+<div class="container">
+  <div class="row row--jc row--aie -pt-40 -pb-35 bpm-pt-60 bpm-pb-55">
+    <div class="col col-full">
+      {% if image_url %}
+        <img class="-d-none bps-d-block" src="{{ image_url[0].src }}" alt="{{ image_url[0].alt }}">
+        
+        <img class="-d-block bps-d-none" src="{{ image_url[0].cloudinary_src | append: 'w_1064,h_848,c_fill' }}" alt="{{ mobile_image_url[0].alt }}">
+      {% else %}     
+          {% render 'responsive-image' with
+            wrapper_class: "-d-block bps-d-none",
+            image: mobile_image,
+            max_width: 1064,
+            max_height: 848
+          %}
+          
+          {% render 'responsive-image' with
+            wrapper_class: "-d-none bps-d-block",
+            image: image,
+            max_width: 2640,
+            max_height: 1200
+          %}
+      {% endif %}
+    </div>
+  </div>
+  
+  <div class="row -d-flex bps-justify-between {% unless no_bottom_padding %}-pb-25 bpm-pb-50  b-bottom-french{% endunless %}">
+    <div class="col col-full col-sm-8 gutter-sm-2 gutter-md-4">
+      <h2 class="-no-mt -s-heading bpm-m-heading bpl-l-heading -mb-50 bpm-no-mb">{{ title }}</h2>
+    </div>
+    <div class="col col-full col-sm-12 col-md-10">
+      {% if copy %}
+        <p class="-caption bpm-body -no-mt">{{ copy }}</p>
+      {% endif %}
+      
+      {% if blocks %}
+        {% for block in blocks %}
+        <div class="{% unless forloop.last %}-mb-30 bpm-mb-45{% endunless%}">
+          <h6 class="eyebrow -no-mt">{{ blocks_title[forloop.index0] }}</h6>
+          <p class="-no-my -caption bpm-body">{{ blocks_content[forloop.index0] }}</p>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>

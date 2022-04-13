@@ -1,0 +1,14 @@
+<div class="quantity-selector quantity-selector--pdp" data-quantity-select>
+  <button class="quantity-selector__button quantity-selector__minus" data-quantity-decrement>
+    <span class="sr-only">Decrease quantity by 1</span>
+  </button>
+  <span class="quantity-selector__value gta-extended-med {% if show_label %}text-soul{% endif %}" >
+    {% if show_label %}
+    <span class="label">Quantity: </span>
+    {% endif %}
+    <span data-quantity-value>1</span>
+  </span>
+  <button class="quantity-selector__button quantity-selector__add" data-quantity-increment>
+    <span class="sr-only">Increase quantity by 1</span>
+  </button>
+</div>

@@ -1,0 +1,147 @@
+<div class="container">
+  <div class="form--small -mx-auto -px-xs">
+    {% form 'create_customer', class: 'form' %}
+      <header>
+        {% if form.errors %}
+          <h3>Oops</h3>
+          <p>{{ form.errors | default_errors }}</p>
+        {% else %}
+          <h3>Let’s make it official</h3>
+          <p>Create your account :)</p>
+        {% endif %}
+      </header>
+      
+      <div class="row fd--row -f-wrap">
+        <div class="col col-xs-12 col-sm-12 -pr-10">
+          <div class="input-group">
+            <label for="FirstName" class="label-hidden">
+              {{ 'customer.register.first_name' | t }}
+            </label>
+            <input type="text"
+              class="form-control"
+              name="customer[first_name]"
+              id="FirstName"
+              placeholder="{{ 'customer.register.first_name' | t }}"
+              autofocus
+              {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
+          </div>
+        </div>
+        <div class="col col-xs-12 col-sm-12 -pl-10 tar">
+          <div class="input-group">
+            <label for="LastName" class="label-hidden">
+              {{ 'customer.register.last_name' | t }}
+            </label>
+            <input type="text"
+              name="customer[last_name]"
+              id="LastName"
+              class="form-control"
+              placeholder="{{ 'customer.register.last_name' | t }}"
+              {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
+          </div>
+        </div>
+        <div class="col col-xs-24">
+          <div class="input-group">
+            <label for="Email" class="label-hidden">
+              {{ 'customer.register.email' | t }}
+            </label>
+            <input type="email"
+              name="customer[email]"
+              id="Email"
+              class="form-control {% if form.errors contains 'email' %}input-error{% endif %}"
+              placeholder="{{ 'customer.register.email' | t }}"
+              value="{% if form.email %}{{ form.email }}{% endif %}"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off">
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-xs-24 col-sm-8 bps-pr-10">
+          <div class="input-group">
+            <div class="select-control">
+              <label for="dob-day" class="label-hidden">Day</label>
+              <select name="day" id="dob-day" class="form-control">
+                <option value="">Birthday</option>
+                {% for i in (1..31) %}
+                  <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col col-xs-24 col-sm-8 bps-pr-10 bps-pl-10">
+          <div class="input-group">
+            <div class="select-control">
+              <label for="dob-month" class="label-hidden">Month</label>
+              <select name="day" id="dob-month" class="form-control">
+                <option value="">Month</option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col col-xs-24 col-sm-8 bps-pl-10">
+          <div class="input-group">
+            <div class="select-control">
+              <label for="dob-year" class="label-hidden">Year</label>
+              <select name="day" id="dob-year" class="form-control">
+                <option value="">Year</option>
+                {% for i in (1920..2030) %}
+                  {% assign cy = 'now' | date: '%Y' | minus: 18 %}
+                  {% if i > cy  %}
+                    {% break %}
+                  {% endif %}
+                  <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col col-xs-24">
+          <div class="input-group">
+            <label for="CreatePassword" class="label-hidden">
+              {{ 'customer.register.password' | t }}
+            </label>
+            <input type="password"
+              name="customer[password]"
+              id="CreatePassword"
+              class="form-control {% if form.errors contains 'password' %}input-error{% endif %}"
+              placeholder="{{ 'customer.register.password' | t }}">
+          </div>
+          <p class="small">Minimum 8 characters</p>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col col-xs-24">
+          <div class="input-group no-focus">
+            <label class="custom-checkbox">
+              <input type="checkbox" name="customer[accepts_marketing]" class="visually-hidden">
+              <span class="custom-checkbox__visual"></span>
+              <small class="text-black">Get filled in on new flavors, pop-ups, collabs & more</small>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <input class="btn btn--full" type="submit" value="{{ 'customer.register.submit' | t }}" class="button">
+    {% endform %}
+    <p class="small tac">By creating an account, you accept the <a class="text-black tdu" href="/pages/terms">Terms of Service</a> and <a class="text-black tdu" href="/pages/privacy">Privacy Policy</a></p>
+    <p class="small tac">Already have an account? <a class="text-black tdu" href="/account/login">Login</a></p>
+  </div>
+</div>

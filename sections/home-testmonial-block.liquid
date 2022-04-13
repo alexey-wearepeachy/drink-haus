@@ -1,0 +1,41 @@
+{% render 'testimonial-block'
+  slides: section.blocks
+  bg_color: section.settings.bg_color
+%}
+
+{% schema %}
+  {
+    "name": "Testimonial Block ",
+    "settings": [
+      {
+        "id": "bg_color",
+        "type": "color",
+        "label": "Background Color"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "testimonial",
+        "name": "Testimonial",
+        "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Text"
+          },
+          {
+            "id": "source",
+            "type": "text",
+            "label": "Source"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Testimonial Block",
+        "category": "Haus Sections"
+      }
+    ]
+  }
+{% endschema %}

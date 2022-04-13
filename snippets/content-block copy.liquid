@@ -1,0 +1,25 @@
+<section class="content-block container">
+  <div class="row row--js row--aist -align-stretch b-bottom-french -py-40 bpm-py-60">
+    <div class="col col-full col-12 col-sm-10 gutter-sm-2">
+      <div class="-pb-30 bpm-no-pb">
+        {% render 'responsive-image' with
+          image: image,
+          max_width: 1200,
+          max_height: 1024
+        %}
+      </div>
+    </div>
+    <div class="col col-full col-12 col-sm-10">
+      <div class="flex -f-col h-100 -justify-between">
+        <h2 class="-s-heading bpl-l-heading -no-mt -mb-20">{{ title }}</h2>
+        
+        {% if copy != blank %}
+        <div class="rte -caption bpl-body">
+          {{ copy }}
+        </div>
+        {% endif %}
+      </div>
+      
+    </div>
+  </div>
+</section>

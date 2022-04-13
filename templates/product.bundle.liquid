@@ -1,0 +1,196 @@
+{% assign recipes =  product.metafields.recipes.recipe_articles | split: "|" %}
+{% assign memberships = product.metafields.haus_subscriptions.products | split: "|" %}
+
+{% assign product_type = product.type | downcase | handleize %}
+{% for tag in product.tags %} 
+  {%- assign tag_pair = tag | split: " => " -%}
+  {%- case tag_pair.first -%}
+    {%- when 'haus::badge' -%}
+      {%- assign badge = tag_pair.last -%}
+    {%- else -%}
+  {%- endcase -%}
+{% endfor %}
+
+{% assign template_name = template.suffix %}
+{% assign bundle = product.metafields.bundle.bundle_products | split: "|" %}
+
+<section class="-pt-100 bpm-pt-160" data-section-id="{{ section.id }}" data-section-type="product">
+  {% render 'bundle-hero' with product as product, memberships: memberships %}  
+  
+  {% if product.metafields.testimonial.quote != blank %}
+    <div class="-mt-40 -mb-40">
+      {% render 'single-testimonial-block', 
+        text: product.metafields.testimonial.quote, 
+        source: product.metafields.testimonial.attribution, 
+        bg_color: product.metafields.testimonial.bg_color 
+      %}
+    </div>
+  {% elsif product.metafields.testimonial_slider.quote != blank %}
+    {%
+      render 'testimonial-block' with
+        bg_color: product.metafields.testimonial_config.bg_color,
+        text: product.metafields.testimonial_slider.quote,
+        source: product.metafields.testimonial_slider.attribution
+    %}
+  {% endif %}
+  
+  {% render 'model.sampler-kit-pdp.builder' %}
+  
+  {% comment %} {% if bundle != blank %}
+    {% render 'bundle-grid', data: bundle %}
+  {% endif %} {% endcomment %}
+  
+  {% if recipes.size > 0 %}
+    {% 
+      render 'recipe-grid' with 
+      title: product.metafields.recipes.title,
+      data: recipes
+    %}
+  {% endif %}
+  
+  {% if product.metafields.content_block.block_title != blank %}
+    {% assign alignment_dir = product.metafields.content_block.alignment | downcase %}
+    {% assign right_align = false %}
+    {% if alignment_dir == 'right' %} 
+      {% assign right_align = true %}
+    {% endif %}
+    <div class="-mb-40">
+      {% 
+        render 'content-block--full-bleed',
+        no_border: true,
+        remove_top_border: true,
+        title: product.metafields.content_block.block_title, 
+        image_url: product.metafields.content_block.block_image,
+        copy: product.metafields.content_block.block_copy,
+        bg_color: product.metafields.content_block.block_background_color,
+        image_last: right_align,
+        cta_text: product.metafields.content_block.block_cta_text,
+        cta_url: product.metafields.content_block.block_cta_link
+      %}
+    </div>
+  {% endif %}
+
+  {% render 'okendo-product-review', product: product %}
+  
+  {% if product.metafields.haus_to_home.title != blank %}
+    {% 
+      render 'content-block' with
+      image_url: product.metafields.haus_to_home.image[0].src, 
+      title: product.metafields.haus_to_home.title,
+      copy: product.metafields.haus_to_home.content,
+      no_border: true
+      cta_text: product.metafields.haus_to_home.cta_text,
+      cta_url: product.metafields.haus_to_home.cta_link,
+      full_bleed: false,
+      bg_color: false
+    %}
+  {% endif %}
+  
+</section>
+
+{% unless product == empty %}
+  <script type="application/json" data-product-json>
+    {{ product | json }}
+  </script>
+  
+  {% if memberships.size > 0 %}
+  <script data-membership-json>
+    window.memberships = [];
+    
+    {% for prod in memberships %}
+      {% assign clean_handle = prod | replace: '["', '' | replace: '"]', ''%}
+        {% assign membership_json =  all_products[clean_handle] | json %}
+        window.memberships.push({{ membership_json }})
+    {% endfor %}
+  </script>
+  {% endif  %}
+   
+  <script data-variant-inventory>
+    window.variantInventory = [];
+    {% for variant in product.variants %}
+      window.variantInventory.push({
+        id: {{ variant.id }},
+        inventory_quantity: {{ variant.inventory_quantity }}
+      })
+    {% endfor %}
+  </script>
+  
+  <script data-variant-text-json>
+    window.variantText = [];
+    {% for variant in product.variants %}
+    {% assign variant_text = variant.metafields.variant_selector.selection_text %}
+      window.variantText.push({
+        id: {{ variant.id }},
+        text: {% if variant_text != blank %}"{{ variant_text }}"{% else %}null{% endif %}
+      })
+    {% endfor %}
+  </script>
+{% endunless %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": "{{ product.title | escape }}",
+  "url": "{{ shop.url }}{{ product.url }}",
+  {% if product.featured_image %}
+    {% assign image_size = product.featured_image.width | append: 'x' %}
+    "image": [
+      "https:{{ product.featured_image.src | img_url: image_size }}"
+    ],
+  {% endif %}
+  "description": "{{ product.description | strip_html | escape }}",
+  {% if current_variant.sku != blank %}
+    "sku": "{{ current_variant.sku }}",
+  {% endif %}
+  "brand": {
+    "@type": "Thing",
+    "name": "{{ product.vendor | escape }}"
+  },
+  {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "itemReviewed": "{{ product.title | escape }}",
+      "ratingValue": "{{ product.metafields.yotpo.reviews_average }}",
+      "reviewCount": "{{ product.metafields.yotpo.reviews_count }}"
+    },
+  {% endif %}
+  {% if product.variants %}
+    "offers": [
+      {% for variant in product.variants %}
+        {
+          "@type" : "Offer",
+          "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price" : "{{ variant.price | divided_by: 100.00 }}",
+          "priceCurrency" : "{{ shop.currency }}",
+          "url" : "{{ shop.url }}{{ variant.url }}",
+          "itemOffered" :
+          {
+              "@type" : "Product",
+              {% if variant.image %}
+                {% assign variant_image_size = variant.image.width | append: 'x' %}
+                "image": "http:{{ variant.image.src | img_url: variant_image_size }}",
+              {% endif %}
+              {% if variant.title != blank %}
+                "name" : "{{ variant.title | escape }}",
+              {% endif %}
+              {% if variant.sku != blank %}
+                "sku": "{{ variant.sku }}",
+              {% endif %}
+              {% if variant.weight != blank %}
+                "weight": {
+                  "@type": "QuantitativeValue",
+                  {% if variant.weight_unit != blank %}
+                    "unitCode": "{{ variant.weight_unit }}",
+                  {% endif %}
+                  "value": "{{ variant.weight | weight_with_unit: variant.weight_unit }}"
+                },
+              {% endif %}
+              "url": "{{ shop.url }}{{ variant.url }}"
+          }
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+  {% endif %}
+}
+</script>

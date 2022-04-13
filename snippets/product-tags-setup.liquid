@@ -1,0 +1,23 @@
+{% for tag in product.tags %} 
+  {{ tag }}
+  {%- assign tag_pair = tag | split: " => " -%}
+  
+  {%- case tag_pair.first -%}
+    {%- when 'haus::badge' -%}
+      {% assign member_badge = true %}
+      {%- assign badge_text = tag_pair.last -%}
+    {%- else -%}
+    
+    {%- when 'haus::shipdate' -%}
+      {% assign shipdate = tag_pair.last %}
+    {%- else -%}
+    
+    {%- when 'haus::members' -%}
+      {% assign is_members_only = true %}
+    {% else %}
+    
+    {%- when 'haus::notes' -%}
+      {%- assign notes = tag_pair.last -%}
+    {%- else -%}
+  {%- endcase -%}
+{% endfor %}

@@ -1,0 +1,134 @@
+{% if product.metafields.nutrition_modal.nutrition_body != blank %}
+  {% assign nutrition_body = product.metafields.nutrition_modal.nutrition_body %}
+{% else %}
+  {% assign nutrition_body = false %}
+{% endif %}
+
+{% if product.metafields.nutrition_modal.ingredients_body != blank %}
+  {% assign ingredients_body = product.metafields.nutrition_modal.ingredients_body %}
+{% else %}
+  {% assign ingredients_body = false %}
+{% endif %}
+
+
+<div class="modal -py-30 bpl-py-60" id="nutrition-{{ product.handle }}" {% if id_override %}data-nutrition-{{ product.handle }}{% else %}data-nutrition-table{% endif %}>
+  <button class="modal-close" data-modal-close>
+    <span class="sr-only">close</span>
+  </button>
+  <div class="modal-body -pt-50 bpm-pt-60">
+    <section>
+      {% render 'text-hero' with
+        title: "Nutritional Facts",
+        copy: nutrition_body,
+        no_border: true
+      %}
+      
+      <div class="container">  
+        {% for table in product.metafields.nutrition.title %}
+          <div class="-mb-40 bpm-mb-60">
+            <table class="haus-table h-100">
+              <thead>
+                <tr>
+                  <th class="-tal -px-20 w-100 label" colspan="2">{{ product.metafields.nutrition.title[forloop.index0] }}: Amount Per Ounce</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if product.metafields.nutrition.calories[forloop.index0] != blank %}
+                  <tr>
+                    <td class="-px-20">Calories</td>
+                    <td class="-px-20">
+                      {{ product.metafields.nutrition.calories[forloop.index0] }}
+                    </td>
+                  </tr>
+                {% endif %}
+                  
+                {% if product.metafields.nutrition.fat[forloop.index0] != blank %}
+                  <tr>
+                    <td class="-px-20">Fat</td>
+                    <td class="-px-20">
+                    {{ product.metafields.nutrition.fat[forloop.index0] }}
+                    </td>
+                  </tr>
+                {% endif %}
+                 
+                {% if product.metafields.nutrition.protein[forloop.index0] != blank %}
+                  <tr>
+                    <td class="-px-20">Protein</td>
+                    <td class="-px-20">
+                    {{ product.metafields.nutrition.protein[forloop.index0] }}
+                    </td>
+                  </tr>
+                {% endif %}
+                
+                {% if product.metafields.nutrition.sugars[forloop.index0] != blank %}
+                  <tr>
+                    <td class="-px-20">Sugars</td>
+                    <td class="-px-20">
+                    {{ product.metafields.nutrition.sugars[forloop.index0] }}
+                    </td>
+                  </tr>
+                {% endif %}
+                
+                {% if product.metafields.nutrition.carbohydrates[forloop.index0] != blank %}
+                  <tr>
+                    <td class="-px-20">Carbohydrates</td>
+                    <td class="-px-20">
+                    {{ product.metafields.nutrition.carbohydrates[forloop.index0] }}
+                    </td>
+                  </tr>
+                {% endif %}
+              
+                {% if product.metafields.nutrition.sodium[forloop.index0] != blank %}
+                  <tr>
+                    <td class="-px-20">Sodium</td>
+                    <td class="-px-20">
+                    {{ product.metafields.nutrition.sodium[forloop.index0] }}
+                    </td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+    
+    <div class="container">
+      <div class="b-bottom-french"></div>
+    </div>
+    
+    
+    <section>
+      {% render 'text-hero' with
+        title: "Ingredients",
+        copy: ingredients_body,
+        no_border: true
+      %}
+      
+      <div class="container">
+      {% for article_posts in product.metafields.Ingredients.ingredients %}
+        <div class="-mt-40">
+        
+          {% if product.metafields.Ingredients.title[forloop.index0] %}
+          <h6 class="label -no-mt -mb-30">{{ product.metafields.Ingredients.title[forloop.index0] }}</h6>
+          {% endif %}
+          
+          {% assign ingredient_articles = article_posts | split: "|" %}
+          <div class="-d-flex row">
+              {% for ingredient in ingredient_articles %}
+              <div class="col-xs-full col-sm-6 gutter-sm-1">
+                {% assign article = ingredient | remove: '["' | remove: '"]' %}
+                 {% render 'ingredient-block' with 
+                  title: articles[article].title,
+                  copy: articles[article].content
+                 %}
+              </div>
+              {% endfor %}
+            </div>
+          
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</div>

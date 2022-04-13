@@ -1,0 +1,1958 @@
+{
+  "current": {
+    "color_accent": "#c4cdd5",
+    "color_body_text": "#161d25",
+    "color_main_bg": "#fff",
+    "font_heading": "helvetica_n4",
+    "font_body": "helvetica_n4",
+    "share_image": "",
+    "social_sharing_blog": true,
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "social_twitter_link": "https:\/\/twitter.com\/drinkhaus?lang=en",
+    "social_facebook_link": "https:\/\/www.facebook.com\/haus\/",
+    "social_pinterest_link": "",
+    "social_instagram_link": "https:\/\/www.instagram.com\/drinkhaus\/",
+    "social_snapchat_link": "",
+    "social_tumblr_link": "",
+    "social_youtube_link": "",
+    "social_vimeo_link": "",
+    "upsell-product": "",
+    "upsell-description": "Features 20+ delicious apéritif cocktail recipes from our team, favorite chefs, and restaurants.",
+    "cart_notes_enable": false,
+    "cart_notes_copy": "",
+    "gwp-product": "",
+    "gwp-description": "",
+    "gwp-threshold": 0,
+    "insert-product": "seasonal-magazine",
+    "favicon": "shopify:\/\/shop_images\/apple-icon-76x76.png",
+    "checkout_message": "Due to shipping laws, we are unable to ship to the following states at this time: AL, AK, DE, HI, MS, MT, RI, SC, UT, VT, WI, and WV.",
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify:\/\/shop_images\/hauslogo.png",
+    "checkout_logo_position": "center",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#197bbd",
+    "checkout_button_color": "#197bbd",
+    "checkout_error_color": "#e32c2b",
+    "bloom_cart_dob_show": false,
+    "bloom_cart_dob_label": "Please enter your date of birth to checkout",
+    "bloom_cart_dob_minimum_age": "0",
+    "sections": {
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "footer_linklist": "footer",
+          "show_payment_icons": false
+        }
+      },
+      "home-hero": {
+        "type": "home-hero",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/Haus-d-01-Home-Hero-GY_01-2x.jpg",
+          "hero-text": "",
+          "btn-url": "",
+          "btn-text": "",
+          "bg_color": "",
+          "text_color": false
+        }
+      },
+      "header": {
+        "type": "header",
+        "blocks": {
+          "cb982f14-7884-4e11-8101-ba178e0bbfc1": {
+            "type": "announcement_item",
+            "disabled": true,
+            "settings": {
+              "announcement_item_text": "<p><a href=\"https:\/\/drink.haus\/pages\/faq#shipping\" title=\"Shipping Deadlines\">Ordering deadlines<\/a> for 12\/24 delivery have passed. <strong>Send Haus to their inbox with a <\/strong><a href=\"https:\/\/drink.haus\/products\/haus-gift-card\" title=\"Haus Gift Card\"><strong>gift card<\/strong><\/a><strong>.<\/strong><\/p>"
+            }
+          },
+          "65665bd1-ac07-4ad9-b384-324221134262": {
+            "type": "announcement_item",
+            "disabled": true,
+            "settings": {
+              "announcement_item_text": "<p>Order by 11:59pm PT on Nov 14th for ground delivery by Thanksgiving<\/p>"
+            }
+          },
+          "61906c2c-6d8f-438e-8a2f-d33fce349ee0": {
+            "type": "announcement_item",
+            "settings": {
+              "announcement_item_text": "<p>Try our best flavors in our starter kits. <a href=\"\/collections\/shop\" title=\"Shop apéritifs\"><strong>Shop now.<\/strong><\/a><\/p>"
+            }
+          }
+        },
+        "block_order": [
+          "cb982f14-7884-4e11-8101-ba178e0bbfc1",
+          "65665bd1-ac07-4ad9-b384-324221134262",
+          "61906c2c-6d8f-438e-8a2f-d33fce349ee0"
+        ],
+        "settings": {
+          "announcement_bar_enabled": true,
+          "announcement_bar_bg_color": "#191919",
+          "announcement_bar_text_color": "#ffffff"
+        }
+      },
+      "1590328185797": {
+        "type": "home-hero",
+        "disabled": true,
+        "settings": {
+          "image": "shopify:\/\/shop_images\/01-Haus-HP-Hero.png",
+          "hero-text": "Feel good about what’s in your glass",
+          "btn-url": "shopify:\/\/collections\/shop",
+          "btn-text": "Shop Now",
+          "bg_color": "rgba(0,0,0,0)",
+          "text_color": true
+        }
+      },
+      "1590332219889": {
+        "type": "home-product-grid",
+        "settings": {
+          "button_type": "shopnow",
+          "title": "Made with natural ingredients, nothing fake",
+          "copy": "",
+          "collection": "homepage-collection",
+          "cta_text": "Shop All Flavors",
+          "cta_url_override": "shopify:\/\/collections\/shop",
+          "cta_type": true
+        }
+      },
+      "1590432529937": {
+        "type": "home-value-prop",
+        "blocks": {
+          "1590432540495": {
+            "type": "value-prop",
+            "settings": {
+              "title": "Easy to drink",
+              "copy": "The perfect anytime drink, sip Haus on its own or with simple mixers you probably already have like soda or tonic."
+            }
+          },
+          "1590432548437": {
+            "type": "value-prop",
+            "settings": {
+              "title": "Natural ingredients. Nothing fake.",
+              "copy": "Artificial ingredients and refined sugars are a big culprit in hangovers. Feel good about what’s in your glass that night — and the next day."
+            }
+          },
+          "1590432556335": {
+            "type": "value-prop",
+            "settings": {
+              "title": "Delivered to your door",
+              "copy": "We blend, bottle, and ship our products straight from Sonoma, CA to your doorstep."
+            }
+          }
+        },
+        "block_order": [
+          "1590432540495",
+          "1590432548437",
+          "1590432556335"
+        ],
+        "settings": {
+          "image": "shopify:\/\/shop_images\/03-Haus-HP-ValueProps.jpg"
+        }
+      },
+      "1590433343835": {
+        "type": "home-customer-reviews",
+        "blocks": {
+          "1590433348970": {
+            "type": "review",
+            "settings": {
+              "rating": 5,
+              "title": "Haus has found the solution I didn’t really know I was looking for!",
+              "customer": "— Susan"
+            }
+          },
+          "1590433364899": {
+            "type": "review",
+            "settings": {
+              "rating": 5,
+              "title": "I love the flavor of this apéritif — it’s light and lively, and it’s refreshing with seltzer or tonic.",
+              "customer": "— Fiona"
+            }
+          },
+          "1590433406346": {
+            "type": "review",
+            "settings": {
+              "rating": 5,
+              "title": "It’s delicious, and unique. I love everything from the packaging, to the flavors.",
+              "customer": "— Esteban"
+            }
+          }
+        },
+        "block_order": [
+          "1590433348970",
+          "1590433364899",
+          "1590433406346"
+        ],
+        "settings": {}
+      },
+      "1590434557560": {
+        "type": "home-haus-to-home",
+        "settings": {
+          "bg_color": "rgba(0,0,0,0)",
+          "full_bleed": false,
+          "image": "shopify:\/\/shop_images\/y3ags7a.png",
+          "title": "Handmade in Sonoma County with farm-to-bottle ingredients.",
+          "copy": "<p>Haus was launched on a farm in Sonoma County in 2019, and we still hold our products to the highest values and standards. We source all of our ingredients from farms we trust, as well as top purveyors who supply Michelin-Starred restaurants. <\/p><p><\/p><p>We leave out the fake flavors and preservatives that you find in our competition. We care deeply about our craft, and it’s a difference you can taste.<\/p>",
+          "cta_text": "LEARN MORE",
+          "cta_url": "shopify:\/\/pages\/our-story"
+        }
+      },
+      "1590531921765": {
+        "type": "home-billboard--social",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/05-Haus-HP-SetTheMood.jpg",
+          "title": "Set the mood",
+          "copy": "Curated playlists from our founders, friends, and favorite brands.",
+          "spotify": "https:\/\/open.spotify.com\/user\/e3aijvxqvzulxyy2khb1ridxw?si=pARdb3pGTw-DoNUq_oPMKw"
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "blocks": {
+          "e8ce871b-7592-4562-a36a-4b0a7f39cec5": {
+            "type": "bookend",
+            "disabled": true,
+            "settings": {
+              "product": "haus-sampler-kit-old",
+              "image": "shopify:\/\/shop_images\/Sampler_Kit.jpg",
+              "title": "The Sampler Kit",
+              "include_reviews": false,
+              "copy": "This customizable kit lets you sip your way through four apéritif flavors of your choosing. Delicious whichever way you mix and match, each 200ml bottle is perfectly sized for 2-3 drinks.",
+              "cta_url": "shopify:\/\/products\/haus-sampler-kit-old",
+              "cta_label": "Shop"
+            }
+          },
+          "6e7fece7-626e-49c7-8149-08c5d3cb7048": {
+            "type": "builder-sk-promos",
+            "settings": {}
+          },
+          "1590689515751": {
+            "type": "collection-set",
+            "settings": {
+              "bg_color": "rgba(0,0,0,0)",
+              "button_type": "shopnow",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "shop",
+              "eyebrow": "",
+              "title": "",
+              "copy": "",
+              "cta_text": "",
+              "cta_url": "",
+              "cta_type": false,
+              "mobile_carousel": false,
+              "hide_cta": false
+            }
+          },
+          "27e11404-430b-4db3-bfe8-47a0654ccd3d": {
+            "type": "builder-block-1",
+            "settings": {}
+          },
+          "9392c69e-dcef-4be6-a9a8-0fe33db46f68": {
+            "type": "builder-block-2",
+            "settings": {}
+          },
+          "eb81570f-e561-4f7f-aa2a-d8fc68c3062d": {
+            "type": "collection-set",
+            "settings": {
+              "bg_color": "",
+              "button_type": "shopnow",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "shop-aperitifs-2",
+              "eyebrow": "",
+              "title": "",
+              "copy": "",
+              "cta_text": "",
+              "cta_url": "",
+              "cta_type": false,
+              "mobile_carousel": false,
+              "hide_cta": false
+            }
+          },
+          "b8890d12-1276-467c-a167-5bef48ae7b46": {
+            "type": "content-block",
+            "settings": {
+              "bg_color": "rgba(0,0,0,0)",
+              "full_bleed": false,
+              "image": "shopify:\/\/shop_images\/Haus-PDP-Hero-GiftCard-RedemptionPage.png",
+              "title": "The Haus Gift Card",
+              "copy": "<p>The perfect way to say happy birthday, congrats, or TGIF in a pinch. <\/p>",
+              "cta_text": "Shop Now",
+              "cta_url": "shopify:\/\/products\/haus-gift-card"
+            }
+          }
+        },
+        "block_order": [
+          "e8ce871b-7592-4562-a36a-4b0a7f39cec5",
+          "6e7fece7-626e-49c7-8149-08c5d3cb7048",
+          "1590689515751",
+          "27e11404-430b-4db3-bfe8-47a0654ccd3d",
+          "9392c69e-dcef-4be6-a9a8-0fe33db46f68",
+          "eb81570f-e561-4f7f-aa2a-d8fc68c3062d",
+          "b8890d12-1276-467c-a167-5bef48ae7b46"
+        ],
+        "settings": {
+          "white_nav": false,
+          "title": "Shop",
+          "copy": "Haus is complex in flavor, lower in alcohol, and ideal to sip all evening. We make our apéritifs with only real ingredients, so there's no wrong choice."
+        }
+      },
+      "1592847676754": {
+        "type": "home-press-feature",
+        "blocks": {
+          "4afe1a2b-c9cf-4b00-bbe6-e1d711705276": {
+            "type": "quote",
+            "settings": {
+              "title": "\"What makes Haus so special is its incredible flavors.\"",
+              "image": "shopify:\/\/shop_images\/Haus-Website-Icons-PressLogos_PressLogo-FoodAndWine_PressLogo-FoodAndWine_PressLogo-FoodAndWine.png"
+            }
+          },
+          "1592847755011": {
+            "type": "quote",
+            "settings": {
+              "title": "“For the wine or cocktail lover who’s tried it all and wants something new and refreshing.”",
+              "image": "shopify:\/\/shop_images\/Haus-Website-Icons-PressLogos-New_PressLogo-NYT.png"
+            }
+          },
+          "1592847732152": {
+            "type": "quote",
+            "settings": {
+              "title": "“Cleaner, responsibly sourced, and lower in alcohol.”",
+              "image": "shopify:\/\/shop_images\/Haus-Website-Icons-PressLogos-New_PressLogo-BonAppetit.png"
+            }
+          }
+        },
+        "block_order": [
+          "4afe1a2b-c9cf-4b00-bbe6-e1d711705276",
+          "1592847755011",
+          "1592847732152"
+        ],
+        "settings": {}
+      },
+      "1592847828524": {
+        "type": "home-billboard-content-below",
+        "disabled": true,
+        "settings": {
+          "image": "shopify:\/\/shop_images\/02-Haus-HP-ModernAperitifs-Desktop-Test.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/02-Haus-HP-ModernAperitifs-Mobile_d935b4ec-745c-42c7-942d-76c976ae126d.jpg",
+          "title": "An intro to apéritifs",
+          "copy": "Apéritifs are a category of spirits with complex flavors derived from fruits, herbs, and botanicals. Their lighter alcohol content (less than whiskey, more than wine) makes them perfect to sip all evening."
+        }
+      },
+      "faq": {
+        "type": "faq",
+        "blocks": {
+          "1594772622284": {
+            "type": "block-section",
+            "settings": {
+              "title": "The Basics"
+            }
+          },
+          "1594772649555": {
+            "type": "faq-block",
+            "settings": {
+              "title": "What is Haus, anyway?",
+              "answer": "Haus is a beverage brand creating better products for the modern drinker. The alcohol industry hasn’t changed in 100 years, so we decided to redesign how it works — from the ingredients we use, to the way we sell our products directly to you. <br><br> We’ve started with a line of apéritifs. They’re created with only natural fruits, herbs, and botanicals, and are low-ABV (alcohol by volume) in keeping with apéritif tradition. All of our products are crafted by our team in Sonoma, CA, and we make our processes transparent so you know exactly what you’re drinking.<br><br>  We’re just getting started, so sign up for our newsletter to be the first to know about future products.",
+              "answer-html": "",
+              "block-section": "The Basics"
+            }
+          },
+          "1594772690257": {
+            "type": "faq-block",
+            "settings": {
+              "title": "What exactly is an apéritif?",
+              "answer": "",
+              "answer-html": "Apéritifs are a category of spirits with complex flavors that typically come from fruits, herbs, roots and botanicals. They’ve been a big part of European drinking culture for centuries, and they’re becoming more popular in America now too. <br> <br>They’re low-ABV (less alcohol than whiskey, more than wine), which makes them perfect for enjoying throughout the evening on the rocks or with simple mixers like soda or tonic.",
+              "block-section": "The Basics"
+            }
+          },
+          "1594772733774": {
+            "type": "faq-block",
+            "settings": {
+              "title": "What does an apéritif taste like?",
+              "answer": "",
+              "answer-html": "Aperitifs can taste like all kinds of things. In fact, you’ve probably had an apéritif before and didn’t know it. If you’ve had Campari, an Aperol Spritz, a martini or manhattan, you’ve had an apéritif. <br><br> Most apéritifs have a complex, herbaceous taste because they’re made with fruits and botanicals. Some of them are very bitter, and some are very sweet.<br><br>  We’re a bit biased, but they're really, really good. <br><br> Our products are inspired by European apéritifs, but they’re designed for the American palate. Our first apéritif, Citrus Flower, tastes like — you guessed it — citrus and flowers, while New Fashioned —inspired by amaro and whiskey — is earthy and herbaceous. <br><br> They're not bitter, and have a fraction of the sugar of similar apéritifs. Each of our apéritifs are complex and sophisticated, with flavor notes coming from a variety of real fruits, herbs, and botanicals in the bottle.",
+              "block-section": "The Basics"
+            }
+          },
+          "1595299395415": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Where is Haus made?",
+              "answer": "Haus is made in Sonoma County, California. Our team blends and bottles each bottle of Haus at our warehouse, not too far from our farm in Healdsburg. Then we box it up and ship it to your door.  We oversee every part of the process, from start to finish.",
+              "answer-html": "",
+              "block-section": "The Basics"
+            }
+          },
+          "845bb130-2021-4533-8575-90f8e721e6c9": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Wait, how do you say Haus?",
+              "answer": "",
+              "answer-html": "Don't worry, we get this question a lot. Haus is pronounced \"house.\"",
+              "block-section": "The Basics"
+            }
+          },
+          "1595299473524": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How come I've never seen liquor for sale online before?",
+              "answer": "Long story short, it’s mostly illegal. Alcohol laws haven’t really changed in almost 100 years, a time long before the Internet came around. They have a lot of catching up to do. <br><br> Believe it or not, we’re the first company to do this. Ever. <br><br> Because we’re an apéritif and under 24% alcohol (our apéritifs range from 15-20% ABV), we can legally bypass most of the federal restrictions on spirits and sell directly to your door. We can also open our own retail shops and bars (stay tuned).",
+              "answer-html": "",
+              "block-section": "The Basics"
+            }
+          },
+          "1595299557595": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Why are you choosing to sell online instead of going through traditional distributors like other alcohol brands?",
+              "answer": "Our biggest reason — we want a relationship with our customer. If we went through traditional distribution, we’d no longer know who is telling our story and how we’re being served. We’d never get to meet the person drinking us. That just feels wrong.<br><br>  By selling directly to the drinker, we get to build real relationships with our community and get direct feedback that we can use to build better products. It’s a win for all of us.",
+              "answer-html": "",
+              "block-section": "The Basics"
+            }
+          },
+          "1595299641456": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How can I stay up to date on new products and releases?",
+              "answer": "Sign up for our newsletter at the bottom of this page, or follow us on Instagram or Twitter.",
+              "answer-html": "",
+              "block-section": "The Basics"
+            }
+          },
+          "1594773209599": {
+            "type": "block-section",
+            "settings": {
+              "title": "Shipping"
+            }
+          },
+          "1594773427152": {
+            "type": "faq-block",
+            "settings": {
+              "title": "When will my order ship?",
+              "answer": "",
+              "answer-html": "Due to the busy holiday season, orders placed with standard Ground shipping will ship in 2 to 5 business days. Once your order ships, it should arrive within 5 to 7 business days. <br><br>\n\nIf you want to get your order faster (we get it!), we also offer expedited and overnight options. All express orders will ship in 1 to 2 business days. <br><br>\n\nBusiness days are Monday through Friday, excluding holidays.\n\n<br><br>Note: Third party items, such as glassware or bar carts, will ship separately from your Haus bottles or kits, typically within 5 business days.",
+              "block-section": "Shipping"
+            }
+          },
+          "63232f7b-0f39-4718-8c50-dd6c86be7632": {
+            "type": "faq-block",
+            "disabled": true,
+            "settings": {
+              "title": "When should I order for delivery by Christmas or New Year's Eve?",
+              "answer": "",
+              "answer-html": "It's sure to be a busy shipping season, so we recommend ordering well in advance to ensure your order arrives in time. <br><br><strong>For delivery by December 24th, place your order by the following deadlines:<\/strong>\n<ul>    <li> For standard Ground shipping, order by 11:59pm PT on Sunday, December 12\n<\/li>    <li> For express shipping, order by 11:59pm PT on Thursday, December 16<\/li>\n<\/ul>\n<br>\n<strong>For delivery by December 31st, place your order by the following deadlines:<\/strong>\n<ul>    <li> For standard Ground shipping, order by 11:59pm PT on Sunday, December 19\n<\/li>    <li> For express shipping, order by 11:59pm PT on Monday, December 27<\/li>\n<\/ul>",
+              "block-section": "Shipping"
+            }
+          },
+          "1594773217712": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Where does Haus ship?",
+              "answer": "",
+              "answer-html": "We ship to many of the 50 states in the USA but still waiting on Alabama, Alaska, Arkansas, Delaware, Hawaii, Indiana, Kansas, Mississippi, Montana, Rhode Island, South Carolina, Utah, Vermont, Wisconsin, and West Virginia but we hope to have them on board soon. <br> <br> Right now, we only ship within the contiguous United States. Eventually, we hope to be shipped across the world. If you want Haus in your country, we'd love to hear from you. Message us on Twitter or Instagram.",
+              "block-section": "Shipping"
+            }
+          },
+          "1595300344840": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Do I need to sign for my order?",
+              "answer": "",
+              "answer-html": "Yes. Bummer we know, but it's the law. However, another adult can sign for you -- so if it's going somewhere with a receptionist (like your office) or a doorman (like your apartment building) you're all set. Otherwise, make sure you or someone over 21 is home on the day it's supposed to arrive. As an additional security measure, FedEx may also require the scanning of a valid government-issued ID at time of delivery. <br><br>\n\nIf you fear you may miss your delivery, don't worry -- you may redirect your package to a nearby hold location or start a vacation hold. You can get this set up right from your FedEx tracking page.\"",
+              "block-section": "Shipping"
+            }
+          },
+          "18939fd2-d3d9-4f66-9fbf-e6d7f168097b": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Can I ship to a PO Box?",
+              "answer": "",
+              "answer-html": "Afraid not. Because Haus is alcohol, it can only be shipped to a residential or business address.",
+              "block-section": "Shipping"
+            }
+          },
+          "1594773502879": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Do you offer Saturday delivery?",
+              "answer": "",
+              "answer-html": "FedEx offers Saturday delivery in most areas, just as long as your order is shipped to a residential address. We cannot guarantee Expedited or Overnight shipping will deliver on a Saturday if you're shipping to a business address.",
+              "block-section": "Shipping"
+            }
+          },
+          "1595300138267": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How much does shipping cost?",
+              "answer": "",
+              "answer-html": "We offer free FedEx ground shipping on all orders over $50. Ground shipping is just $7 for any order under $50. <br><br> We also offer FedEx Expedited (2-Day) and FedEx Overnight shipping. These prices are calculated at checkout.",
+              "block-section": "Shipping"
+            }
+          },
+          "fa3a776f-06e2-4902-bf08-432221eead8d": {
+            "type": "block-section",
+            "settings": {
+              "title": "Local Delivery"
+            }
+          },
+          "1595300153939": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Can I get my order through local delivery?",
+              "answer": "",
+              "answer-html": "If you live in Los Angeles, San Francisco or surrounding areas, you sure can. <br><br>\n\nWe currently offer our full size (750ml) bottles for local delivery through our partner Ohi. If your zip code is within the local delivery range, and your local Ohi warehouse has all the items in your cart in stock, you will see options for local delivery at check out. We currently offer rush (2 hour) delivery, same day delivery or next day delivery, depending on your zip code and the current time of day. We hope to roll this out for more cities in the future.",
+              "block-section": "Local Delivery"
+            }
+          },
+          "1595300171394": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How do local same day or next day deliveries work?",
+              "answer": "",
+              "answer-html": "If your address is eligible for local delivery and your nearby Ohi warehouse has all your items in stock, you'll have the option to select either Rush (2 hour) Delivery, Same Day Delivery or Next Day Delivery by Ohi during checkout. Once you complete your order, you will receive a text message with your Ohi tracking information. <br> <br><i>Note: Gift notes are not available with local delivery, and bottles are delivered in kraft paper tote bags, rather than our shipping boxes, to conserve paper. <\/i>\n<br><br>\nOrder deadlines for eligible zip codes: \n\n<ul>    <li>Same Day Delivery: Same day orders placed before 5pm PT will be delivered between 6pm and 8pm PT. If you order after 5pm PT, your order will be delivered the following day between 6pm and 8pm. Same day orders may also be rescheduled for delivery on a later date via the Ohi tracking link.\n<\/li>    <li> Rush (2 hour) Delivery: Rush delivery is available for orders placed until 6pm, and your order will arrive to your doorstep in the next two hours.\n<\/li>    <li> Next Day Delivery: Orders made before 4pm will be delivered the following day between 10am and 8pm.\n<\/li>\n<\/ul>",
+              "block-section": "Local Delivery"
+            }
+          },
+          "26064eb6-0c77-4ea0-86df-d3561ca4d238": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How much does local delivery cost?",
+              "answer": "",
+              "answer-html": "Local delivery by Ohi to locations in and around San Francisco and Los Angeles is just $7 per order.",
+              "block-section": "Local Delivery"
+            }
+          },
+          "1594772773700": {
+            "type": "block-section",
+            "settings": {
+              "title": "The Product"
+            }
+          },
+          "1594772788010": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How do I drink Haus?",
+              "answer": "We suggest drinking Haus like you'd drink any other spirit -- straight on the rocks, with soda or tonic, or in a simple cocktail, like a spritz.",
+              "answer-html": "",
+              "block-section": "The Product"
+            }
+          },
+          "1594772813111": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How should I store Haus?",
+              "answer": "",
+              "answer-html": "We recommend storing Haus in a cool, dark place like your countertop, bookshelf or bar cart.",
+              "block-section": "The Product"
+            }
+          },
+          "6ee00084-112f-487b-beaa-28afe20b7363": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How many drinks does a bottle make?",
+              "answer": "",
+              "answer-html": "Our 750ml bottles serve about 10-12 drinks, depending on your pour. Our 200ml bottles serve about 2-3 drinks each.",
+              "block-section": "THE PRODUCT"
+            }
+          },
+          "b30dedd2-9939-409c-b27f-729987af0d1c": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How do you make Haus?",
+              "answer": "",
+              "answer-html": "We source each ingredient from farms we trust (including our own) as well as from purveyors who supply Michelin-starred restaurants.\n<br><br>\nTo make Haus we steep whole fruits, herbs, and botanicals in brandy to extract their flavor. Then we blend our extractions into naturally fermented and distilled grapes, along with a small amount of raw organic cane sugar for stability and texture. Because we use fresh fruits, herbs, and botanicals, you may taste very subtle differences from batch to batch.\n<br><br> Our team creates Haus at our warehouse, right down the road from our farm. Then we bottle and ship it directly to your door.",
+              "block-section": "The Product"
+            }
+          },
+          "1595603394873": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Does Haus contain gluten or dairy?",
+              "answer": "Haus is gluten free and vegan. All of our products are free of gluten, dairy, lactose, and casein. If you're interested in learning more about what's inside each bottle, you can find detailed nutrition and ingredient info on each product page, too.",
+              "answer-html": "",
+              "block-section": "The Product"
+            }
+          },
+          "f6b2de62-271e-4397-b7e0-599a58937477": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Is Haus organic?",
+              "answer": "",
+              "answer-html": "Haus isn't certified organic, but we work hard to use organic fruits, herbs, and botanicals as often as possible. For complete information on our ingredients, click the \"Ingredients + Nutrition\" link on our product pages.",
+              "block-section": "THE PRODUCT"
+            }
+          },
+          "97522ff2-61d8-46cd-9c26-eb182d5f81c3": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Are there any allergens in Haus?",
+              "answer": "",
+              "answer-html": "None of our products contain allergens like eggs or shellfish. However, we do use coconut in Peach Passionfruit, which is a tree nut, and pink peppercorn in Grapefruit Jalapeño, which is in the cashew family. <br> <br>If you have a known allergy, we recommend checking the ingredient lists on each product page to make sure you're in the clear, as we use fruits, herbs and botanicals in every aperitif.",
+              "block-section": "The Product"
+            }
+          },
+          "51a10318-af5e-4665-971a-23172c96a524": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Does Haus contain sulfites?",
+              "answer": "",
+              "answer-html": "We don’t add any sulfur (or any other preservatives for that matter) in our production process. Our wine base contains a small amount of sulfites that occur from fermentation.",
+              "block-section": "The Product"
+            }
+          },
+          "9051af89-1cff-43e5-b03e-a714273cc3e5": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Can sediment occur in Haus?",
+              "answer": "",
+              "answer-html": "We only use real fruits, herbs and botanicals to make Haus, so you may see some naturally occurring sediment in your bottle from time to time. If you're a natural wine drinker, this will look familiar. Rest assured, your Haus is still a-okay to enjoy.",
+              "block-section": "The Product"
+            }
+          },
+          "4daa4658-e629-46d1-8c3d-87f8f57ab7d2": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Where does the color in Haus come from?",
+              "answer": "",
+              "answer-html": "The color in our aperitifs comes from the fruits, herbs, and botanicals that we use to make them. We don’t use any artificial colors - what you see is allllll natural.",
+              "block-section": "The Product"
+            }
+          },
+          "1595299698517": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Are you going to release any non-alcoholic products?",
+              "answer": "It's definitely something we're thinking about. Subscribe to our newsletter here to be first to know about them.",
+              "answer-html": "",
+              "block-section": "The Product"
+            }
+          },
+          "1595299733148": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Do I need to be 21 years old to buy Haus?",
+              "answer": "Yep you do. The law's the law, even on the Internet.",
+              "answer-html": "",
+              "block-section": "The Product"
+            }
+          },
+          "1595299758574": {
+            "type": "faq-block",
+            "settings": {
+              "title": "What's your return policy?",
+              "answer": "",
+              "answer-html": "If you place an order directly from our website and are not a fan of our products, you may reach out within 30 days of purchase and we will issue you a refund.<br><br>If you purchase Haus from a retail shop, returns are subject to their individual store policies.",
+              "block-section": "The Product"
+            }
+          },
+          "1594772919850": {
+            "type": "block-section",
+            "settings": {
+              "title": "Membership"
+            }
+          },
+          "1594772929548": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How much does Haus Membership cost?",
+              "answer": "Haus Membership pricing is based on the traditional wine club model. There is no cost to join, and all you pay is a discounted price on your bottle allotment.",
+              "answer-html": "",
+              "block-section": "Membership"
+            }
+          },
+          "1594772941508": {
+            "type": "faq-block",
+            "settings": {
+              "title": "What's included with a Haus Membership?",
+              "answer": "Haus Membership includes a discounted monthly shipment of your favorite Haus apéritifs, as well as access to members-only events and exclusive flavor releases. Membership is available in three tiers, starting at $40 per month: <br><br>One Bottle<br>• 1 bottle per month <br>• Free shipping on all orders<br> • Access to exclusive apéritifs<br> • $40 per month  <br><br>Two Bottles <br>• 2 bottles per month  <br>• 10% off all orders<br> • Free shipping on all orders<br> • Early access to exclusive apéritifs<br> • $72 per month <br><br> Six Bottles<br> • 6 bottles per month <br>• 20% off all orders<br>• Free shipping on all orders<br> • First access to exclusive apéritifs<br> • $192 per month",
+              "answer-html": "",
+              "block-section": "Membership"
+            }
+          },
+          "1596208212939": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Will I receive a different flavor every month?",
+              "answer": "While Membership isn't designed to auto-rotate flavors each month, you're able to swap out your monthly flavor selection as much as you'd like. You can change your flavor(s) allocation in your Membership settings. Don't worry, we send you a monthly email reminding you to do this before we ship!",
+              "answer-html": "",
+              "block-section": "Membership"
+            }
+          },
+          "1594773179180": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How do I access my membership settings?",
+              "answer": "First step: create an online account with us. When you login, you’ll be able to access all membership settings and exclusives.",
+              "answer-html": "",
+              "block-section": "Membership"
+            }
+          },
+          "1595299818210": {
+            "type": "faq-block",
+            "settings": {
+              "title": "When will my membership bottle(s) ship?",
+              "answer": "Your membership begins the day you sign up, so you'll receive your first monthly shipment within 3-5 days and immediately have access to events and flavor exclusives. Your membership cycle is determined by the day you sign up, so if you sign up on the 5th, you'll always be billed and receive your monthly bottles within 3-5 days of that date.",
+              "answer-html": "Your membership begins the day you sign up, so you'll immediately have access to perks and flavor exclusives, and your first monthly order will ship within 1 to 3 business days. Your membership cycle is determined by the day you sign up, so if you sign up on the 5th, you'll always be billed on that date with your bottle(s) shipping out in 1 to 3 business days from then.",
+              "block-section": "Membership"
+            }
+          },
+          "1595299904954": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Can I change my membership payment method?",
+              "answer": "Of course! Simply edit or add a new card when you are logged into your Haus account.",
+              "answer-html": "",
+              "block-section": "Membership"
+            }
+          },
+          "1595299936628": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How do I change my membership tier?",
+              "answer": "Want more (or less) bottles each month? Send us an email at hello@drink.haus and we’ll get it taken care of.",
+              "answer-html": "",
+              "block-section": "Membership"
+            }
+          },
+          "1595299963390": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How do I change my selection?",
+              "answer": "Easy! You can change the specific apéritif(s) you want in your next shipment by emailing us at hello@drink.haus. Just make sure to make any updates 3 business days before your designated charge date.",
+              "answer-html": "",
+              "block-section": "Membership"
+            }
+          },
+          "1595299992315": {
+            "type": "faq-block",
+            "settings": {
+              "title": "What if I only want limited edition apéritifs?",
+              "answer": "We're flexible, so you're welcome to become a member and leave at any point. By becoming a member, you're committing to at least one month of whichever core flavor and bottle allocation you select. If you happen to join when we're launching a members-only flavor, then you're in luck. You'll have the opportunity to purchase that limited edition flavor in addition to your monthly allocation.",
+              "answer-html": "",
+              "block-section": "Membership"
+            }
+          },
+          "1595300025886": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Can I pause or cancel my membership?",
+              "answer": "We get it, life happens. You can cancel your membership at any time, and rejoin when the time is right. There’s no fee to cancel or (re)join. Please be sure to make any updates to your membership 3 business days prior to your designated charge date.",
+              "answer-html": "",
+              "block-section": "Membership"
+            }
+          },
+          "1595539737749": {
+            "type": "block-section",
+            "settings": {
+              "title": "Sustainability"
+            }
+          },
+          "1595300572286": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How sustainable is Haus?",
+              "answer": "",
+              "answer-html": "Sustainability is core to our beliefs as a business.<br><br> Our production is powered by 100% clean, renewable energy from The Geysers, a local geothermal power source. \n<br><br> Our materials are sourced responsibly with care for forest conservation throughout the supply chain. Our boxes are made from up to 90% recycled material and are 100% recyclable. The material used that is not from recycled material is a byproduct of milling operations that would otherwise be considered waste. <br><br> Our ingredients are responsibly sourced from farmers and purveyors we know and trust. The raw fruits, herbs, and botanicals we use to create Haus are composted once we've extracted their flavors, leaving very little waste.",
+              "block-section": "Sustainability"
+            }
+          },
+          "1595300393610": {
+            "type": "block-section",
+            "settings": {
+              "title": "Other"
+            }
+          },
+          "1595300608288": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Where can I try Haus in person?",
+              "answer": "",
+              "answer-html": "We're starting to pop up on the menus and shelves of our favorites bars, restaurants, and retailers in California, and look forward to hosting events around the country again soon as well. If you're looking for Haus in a particular city in California, email us at hello@drink.haus and we'll help you out. And you can sign up for our newsletter to be first to know about upcoming events.",
+              "block-section": "Other"
+            }
+          },
+          "1595300619553": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Can I place a corporate gifting or wholesale order?",
+              "answer": "",
+              "answer-html": "Definitely! To place a gifting order for your team, check out our <a href=\"https:\/\/drink.haus\/pages\/corporate\">Corporate Gifting<\/a> page to get started. We'll help take care of the rest.\n\n<br><br>For wholesale orders, we currently offer wholesale pricing for licensed bars, restaurants and retailers. Just shoot us an email at wholesale@drink.haus and we'll put together a custom order for you.",
+              "block-section": "Other"
+            }
+          },
+          "1595300646839": {
+            "type": "faq-block",
+            "settings": {
+              "title": "How can I get in touch?",
+              "answer": "Depending on what you're looking for, here's the best way to reach out: <br><br> For press inquiries: <a href=\"mailto:press@drink.haus\" target=\"_blank\">press@drink.haus<\/a> <br>For business or wholesale inquiries: <a href=\"mailto:partnerships@drink.haus\" target=\"_blank\">partnerships@drink.haus<\/a> <br>  For any other questions: <a href=\"mailto:hello@drink.haus\" target=\"_blank\">hello@drink.haus<\/a>",
+              "answer-html": "",
+              "block-section": "Other"
+            }
+          },
+          "1597117710585": {
+            "type": "faq-block",
+            "settings": {
+              "title": "Are your bottles recyclable?",
+              "answer": "Yep, our bottles are 100% recyclable. We like to upcycle them too. Try repurposing them for candles, flowers, oil or vinegar, or cocktail syrups.",
+              "answer-html": "",
+              "block-section": "Sustainability"
+            }
+          }
+        },
+        "block_order": [
+          "1594772622284",
+          "1594772649555",
+          "1594772690257",
+          "1594772733774",
+          "1595299395415",
+          "845bb130-2021-4533-8575-90f8e721e6c9",
+          "1595299473524",
+          "1595299557595",
+          "1595299641456",
+          "1594773209599",
+          "1594773427152",
+          "63232f7b-0f39-4718-8c50-dd6c86be7632",
+          "1594773217712",
+          "1595300344840",
+          "18939fd2-d3d9-4f66-9fbf-e6d7f168097b",
+          "1594773502879",
+          "1595300138267",
+          "fa3a776f-06e2-4902-bf08-432221eead8d",
+          "1595300153939",
+          "1595300171394",
+          "26064eb6-0c77-4ea0-86df-d3561ca4d238",
+          "1594772773700",
+          "1594772788010",
+          "1594772813111",
+          "6ee00084-112f-487b-beaa-28afe20b7363",
+          "b30dedd2-9939-409c-b27f-729987af0d1c",
+          "1595603394873",
+          "f6b2de62-271e-4397-b7e0-599a58937477",
+          "97522ff2-61d8-46cd-9c26-eb182d5f81c3",
+          "51a10318-af5e-4665-971a-23172c96a524",
+          "9051af89-1cff-43e5-b03e-a714273cc3e5",
+          "4daa4658-e629-46d1-8c3d-87f8f57ab7d2",
+          "1595299698517",
+          "1595299733148",
+          "1595299758574",
+          "1594772919850",
+          "1594772929548",
+          "1594772941508",
+          "1596208212939",
+          "1594773179180",
+          "1595299818210",
+          "1595299904954",
+          "1595299936628",
+          "1595299963390",
+          "1595299992315",
+          "1595300025886",
+          "1595539737749",
+          "1595300572286",
+          "1595300393610",
+          "1595300608288",
+          "1595300619553",
+          "1595300646839",
+          "1597117710585"
+        ],
+        "settings": {
+          "title": "FAQ",
+          "copy": "<p>If you have any questions or want to learn more about us, check out the FAQ below or write to us directly at <a href=\"mailto:hello@drink.haus\" title=\"mailto:hello@drink.haus\">hello@drink.haus<\/a>.<\/p>"
+        }
+      },
+      "product": {
+        "type": "product",
+        "settings": {
+          "show_share_buttons": true
+        }
+      },
+      "about-hero": {
+        "type": "about-hero",
+        "settings": {
+          "title": "",
+          "copy": ""
+        }
+      },
+      "mission-statement": {
+        "type": "mission-statement",
+        "settings": {
+          "title": "We wanted a better drink",
+          "copy": "<p>It all started with alcohol, an industry that hasn’t evolved since prohibition. It’s still ruled by huge liquor companies that spend big to get their products on store shelves and in bars. And you’re stuck with their choices. Sketchy ingredients, too much alcohol, outdated aesthetics, and too many hangovers. <\/p><p>Something needed to change, and we knew alcohol could be different. Like food, it can come from organic farms, not factories. It can be created naturally with real fruits and botanicals, not artificial flavors. And it can be accessible.<\/p>",
+          "left_image": "shopify:\/\/shop_images\/Our_Story_4.png",
+          "right_image": "shopify:\/\/shop_images\/Our_Story_3.png"
+        }
+      },
+      "modern-take": {
+        "type": "modern-take",
+        "settings": {
+          "title": "A new type of alcohol brand",
+          "copy": "<p>We’re doing everything differently than corporate liquor - starting with ingredients. We source the highest quality fruits, herbs, and botanicals from trusted farmers and purveyors who supply Michelin-star restaurants. <\/p><p>Our team blends every bottle at our warehouse in Sonoma County, and ships straight to you in packaging made from recycled materials.<\/p><p>We include nutrition facts and complete ingredient lists for every product, because we believe you deserve to know what’s in your glass. <\/p>",
+          "image": "shopify:\/\/shop_images\/image1.jpg"
+        }
+      },
+      "about-recipe-list": {
+        "type": "about-recipe-list",
+        "blocks": {
+          "1595258284891": {
+            "type": "ingredient",
+            "settings": {
+              "article": "ingredients\/chardonnay-grapes"
+            }
+          },
+          "1595258299202": {
+            "type": "ingredient",
+            "settings": {
+              "article": "ingredients\/elderflower"
+            }
+          },
+          "1595258310283": {
+            "type": "ingredient",
+            "settings": {
+              "article": "ingredients\/star-anise"
+            }
+          },
+          "1595258320240": {
+            "type": "ingredient",
+            "settings": {
+              "article": "ingredients\/lemon"
+            }
+          },
+          "1595258331905": {
+            "type": "ingredient",
+            "settings": {
+              "article": "ingredients\/clove"
+            }
+          },
+          "1595258341029": {
+            "type": "ingredient",
+            "settings": {
+              "article": "ingredients\/raw-cane-sugar"
+            }
+          }
+        },
+        "block_order": [
+          "1595258284891",
+          "1595258299202",
+          "1595258310283",
+          "1595258320240",
+          "1595258331905",
+          "1595258341029"
+        ],
+        "settings": {
+          "title": "A drink you can feel good about",
+          "copy": "We all care more about what we put in our bodies now. The alcohol we drink should follow the same rules. Our product is farm-to-bottle with only real ingredients - no sketchy additives.  Here are a few of the ingredients we use to make our apéritifs."
+        }
+      },
+      "about-sticky-content": {
+        "type": "about-sticky-content",
+        "blocks": {
+          "1595258373069": {
+            "type": "image-block",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Haus-d-05-OurStory-FixedScroll_01-2x-1.png"
+            }
+          },
+          "1595258391564": {
+            "type": "image-block",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Haus-d-05-OurStory-FixedScroll_01-2x-2.png"
+            }
+          },
+          "1595258404571": {
+            "type": "image-block",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Haus-d-05-OurStory-FixedScroll_01-2x-03.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "1595258373069",
+          "1595258391564",
+          "1595258404571"
+        ],
+        "settings": {
+          "title": "For how we gather today",
+          "copy": ""
+        }
+      },
+      "home-haus-to-home": {
+        "type": "home-haus-to-home",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/04-Haus-HP-WoodyHelena.png",
+          "title": "From our Haus to yours",
+          "copy": "<p>We&rsquo;re a third generation winemaking family who realized the alcohol industry wasn&rsquo;t doing right by our generation. We knew spirits could be better &mdash; made with whole ingredients and nothing fake.<\/p>\n<p><\/p>\n<p>So we made our own ap&eacute;ritifs, designed for the modern drinker. We make our products with real fruits, herbs, and botanicals, and blend, bottle, and ship them to you straight from Sonoma County.<\/p>",
+          "cta_text": "LEARN MORE",
+          "cta_url": "shopify:\/\/pages\/our-story"
+        }
+      },
+      "corporate-landing": {
+        "type": "corporate-landing",
+        "blocks": {
+          "cb671b8a-6643-4ad7-afdf-3f2998d1fb12": {
+            "type": "50-50-hero",
+            "settings": {
+              "bg_color": "#16493d",
+              "image": "shopify:\/\/shop_images\/Corp_Gifting_Hero.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Haus_-_PR_Lifestyle_-_2021.10.02_-_0253_ff05d0eb-010f-4440-9544-ca3cf0329041.jpg",
+              "title": "A gift your team will love",
+              "text": "All natural alcohol made with refreshing flavors for every palate. A home bar staple they’ll want to display, pour, and share.",
+              "cta_text": "Get Started",
+              "cta_url": "mailto:gifting@drink.haus?Subject=I%27m%20interested%20in%20gifting%20Haus%21&Body=Hey%20Haus%20team%2C%0A%0AI%27m%20interested%20in%20sending%20Haus%20as%20a%20corporate%20gift%20-%20details%20below%21%0A%0ACompany%20Name%3A%20%0ANumber%20of%20Gifts%3A%20%0ADesired%20Delivery%20Date%3A%20%0AWork%20email%3A%0A%0AI%27m%20looking%20forward%20to%20hearing%20from%20you%21"
+            }
+          },
+          "fcdb4a36-7b0d-440f-9339-b8bc30a47a68": {
+            "type": "testimonial",
+            "settings": {
+              "bg_color": "#486b7b",
+              "title": "“Everyone absolutely raved over this gift. Beautiful presentation and great product.”",
+              "source": "Deborah J."
+            }
+          },
+          "353d1942-eb4a-49f1-af45-18e87bfaa598": {
+            "type": "collection-set",
+            "settings": {
+              "bg_color": "rgba(0,0,0,0)",
+              "button_type": "nolink",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "citrus-flower-spiced-cherry-bitter-clove",
+              "eyebrow": "",
+              "title": "Browse bestselling gifts",
+              "copy": "We include personalized gift notes, offer free shipping on products over $50, and will process your order for you when you send 20+ gifts.",
+              "cta_text": "",
+              "cta_url": "",
+              "cta_type": false,
+              "mobile_carousel": true
+            }
+          },
+          "1c5b6efd-2682-410c-8457-ce6126aa84e6": {
+            "type": "content-block",
+            "settings": {
+              "alignment": "right",
+              "bg_color": "#733d1b",
+              "full_bleed": true,
+              "image": "shopify:\/\/shop_images\/Sampler_Kit.jpg",
+              "title": "Get Started",
+              "copy": "<p>Send us an email and our team will help you select and ship the perfect gifts.<\/p>",
+              "cta_text": "email us: gifting@drink.haus",
+              "cta_url": "mailto:gifting@drink.haus?Subject=I%27m%20interested%20in%20gifting%20Haus%21&Body=Hey%20Haus%20team%2C%0A%0AI%27m%20interested%20in%20sending%20Haus%20as%20a%20corporate%20gift%20-%20details%20below%21%0A%0ACompany%20Name%3A%20%0ANumber%20of%20Gifts%3A%20%0ADesired%20Delivery%20Date%3A%20%0AWork%20email%3A%0A%0AI%27m%20looking%20forward%20to%20hearing%20from%20you%21"
+            }
+          }
+        },
+        "block_order": [
+          "cb671b8a-6643-4ad7-afdf-3f2998d1fb12",
+          "fcdb4a36-7b0d-440f-9339-b8bc30a47a68",
+          "353d1942-eb4a-49f1-af45-18e87bfaa598",
+          "1c5b6efd-2682-410c-8457-ce6126aa84e6"
+        ],
+        "settings": {
+          "white_nav": true,
+          "title": "",
+          "copy": ""
+        }
+      },
+      "duo-promo": {
+        "type": "duo-promo",
+        "blocks": {
+          "8c37a744-4e64-49bf-a515-605f1bbf1912": {
+            "type": "50-50-hero",
+            "settings": {
+              "bg_color": "#182e36",
+              "image": "shopify:\/\/shop_images\/LandingPages-Duos-Hero.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/LandingPages-Duos-Hero.jpg",
+              "title": "Introducing Haus Duos",
+              "text": "Try a curated flavor pairing or customize your own two bottle set. Take 20% off on all Duos today only using code HOLIDAYDUO. Terms apply.",
+              "cta_text": ""
+            }
+          },
+          "36365884-236d-4dda-b2fd-954fba4c7660": {
+            "type": "testimonial",
+            "settings": {
+              "bg_color": "#a78454",
+              "title": "\"This will be the only alcohol in my house from now on, it’s that good.\"",
+              "source": "Tovin H."
+            }
+          },
+          "fc4cac8c-2abd-4d9b-aee1-f5670d93831a": {
+            "type": "collection-set",
+            "settings": {
+              "bg_color": "#182e36",
+              "button_type": "shopnow",
+              "enable_quickadd": false,
+              "enable_notes": true,
+              "collection": "duos",
+              "eyebrow": "",
+              "title": "",
+              "copy": "",
+              "cta_text": "",
+              "cta_type": false,
+              "mobile_carousel": false
+            }
+          },
+          "f68615a5-9e05-4373-b4f1-388c446c7a63": {
+            "type": "content-block",
+            "settings": {
+              "alignment": "right",
+              "bg_color": "#381108",
+              "full_bleed": false,
+              "image": "shopify:\/\/shop_images\/LandingPages-LinkedIn-GetStarted.jpg",
+              "title": "A modern take on the apéritif",
+              "copy": "<p>Our all natural, low-ABV apéritifs are a better way to drink. Made in delicious flavors, they’re easy to drink on the rocks or with simple mixers.<\/p>",
+              "cta_text": ""
+            }
+          },
+          "25f2d9bf-7cc9-426d-b268-519b39e71b30": {
+            "type": "text-block",
+            "settings": {
+              "title": "",
+              "copy": "Terms & Conditions<br><br><i>20% off discount applies to The Citrus Duo, The Spiced Duo, Your Haus Duo ordered on 11\/27 until 11:59p PST.  Cannot be combined with any promotion or discount (including member discount).<i><\/i><\/i>",
+              "cta_text": "",
+              "button_type": "text-link"
+            }
+          }
+        },
+        "block_order": [
+          "8c37a744-4e64-49bf-a515-605f1bbf1912",
+          "36365884-236d-4dda-b2fd-954fba4c7660",
+          "fc4cac8c-2abd-4d9b-aee1-f5670d93831a",
+          "f68615a5-9e05-4373-b4f1-388c446c7a63",
+          "25f2d9bf-7cc9-426d-b268-519b39e71b30"
+        ],
+        "settings": {
+          "white_nav": true,
+          "image": "shopify:\/\/shop_images\/LandingPages-LinkedIn-GiveUnexpected.jpg",
+          "title": "",
+          "copy": ""
+        }
+      },
+      "1606292330ee5ab48c": {
+        "type": "home-fifty-fifty-hero",
+        "disabled": true,
+        "settings": {
+          "desktop_image": "shopify:\/\/shop_images\/01-Haus-HP-Hero-50-04.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/01-Haus-HP-Hero-50-04.jpg",
+          "hero-text": "Raise a glass to something better",
+          "copy": "Unique flavors and lighter alcohol, our apéritifs are the new bar cart staple. Just pour, sip, and enjoy.",
+          "btn-url": "shopify:\/\/collections\/shop",
+          "btn-text": "Shop now",
+          "bg_color": "#152b32",
+          "text_color": true
+        }
+      },
+      "gift-guide": {
+        "type": "gift-guide",
+        "blocks": {
+          "369dd0e9-4cbe-4326-b6aa-5edde7c68607": {
+            "type": "50-50-hero",
+            "settings": {
+              "bg_color": "#3b1105",
+              "image": "shopify:\/\/shop_images\/Gift_Guide_Hero.jpg",
+              "mobile_image": "shopify:\/\/shop_images\/Gift_Guide_Hero.jpg",
+              "title": "The Haus Gift Guide",
+              "text": "Apéritifs made with natural ingredients in flavors that will satisfy everyone on your list. A joy to open, mix, and sip.",
+              "cta_text": ""
+            }
+          },
+          "50254c67-2957-4954-a6a2-fbc8806d67b8": {
+            "type": "testimonial",
+            "settings": {
+              "bg_color": "#c0781f",
+              "title": "“Picked Haus up for a friend who is impossible to shop for. Made for an awesome drink and conversation piece.”",
+              "source": "Matt S."
+            }
+          },
+          "8d5d731c-c29b-45ff-907c-afb823136005": {
+            "type": "featured-product",
+            "settings": {
+              "button_type": "quickadd",
+              "product": "haus-sampler-kit-old",
+              "title": "For the apéritif beginner",
+              "section_eyebrow": "",
+              "eyebrow": "",
+              "description": "This kit comes with four 200mL bottles of our bestselling flavors, making it the ideal gift for your friend who always wants to try everything on the menu. Includes Citrus Flower, Rose Rose, Spiced Cherry, and Lemon Lavender.",
+              "show_reviews": false,
+              "bg_color": "rgba(0,0,0,0)",
+              "alignment": "left"
+            }
+          },
+          "8668b1ec-bcfa-4d7d-9814-bca6158870be": {
+            "type": "featured-product",
+            "settings": {
+              "button_type": "shopnow",
+              "product": "citrus-duo",
+              "title": "For the spritz lover",
+              "section_eyebrow": "",
+              "eyebrow": "",
+              "description": "The Citrus Duo is a refreshing bar cart staple for the friend looking to sip something light and breezy all year long. Includes 750mL bottles of Citrus Flower and Lemon Lavender.",
+              "show_reviews": false,
+              "bg_color": "rgba(0,0,0,0)",
+              "alignment": "right"
+            }
+          },
+          "fc644839-0936-468c-a733-3fa002a30b48": {
+            "type": "featured-product",
+            "settings": {
+              "button_type": "shopnow",
+              "product": "spiced-duo",
+              "title": "For the brown liquor lover",
+              "section_eyebrow": "",
+              "eyebrow": "",
+              "description": "The Spiced Duo is made for the friend who loves the warmth and spice of an Old Fashioned or Manhattan. Includes 750mL bottles of Bitter Clove and Spiced Cherry.",
+              "show_reviews": false,
+              "bg_color": "rgba(0,0,0,0)",
+              "alignment": "left"
+            }
+          },
+          "c8a9b087-5ccc-4177-84a7-8c4ba8097e31": {
+            "type": "collection-set",
+            "settings": {
+              "bg_color": "#981f0f",
+              "button_type": "shopnow",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "customizable",
+              "eyebrow": "",
+              "title": "Know what they love? Create a custom flavor pairing.",
+              "copy": "",
+              "cta_text": "",
+              "cta_type": false,
+              "mobile_carousel": true
+            }
+          },
+          "66b1d922-0815-448b-b333-935203338cf3": {
+            "type": "collection-set",
+            "settings": {
+              "bg_color": "rgba(0,0,0,0)",
+              "button_type": "shopnow",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "featured-flavors",
+              "eyebrow": "",
+              "title": "One for them, one for you",
+              "copy": "",
+              "cta_text": "",
+              "cta_type": false,
+              "mobile_carousel": false
+            }
+          },
+          "9f4b73f5-bd83-4ddd-a923-2d791b0822a9": {
+            "type": "content-block",
+            "settings": {
+              "alignment": "left",
+              "bg_color": "rgba(0,0,0,0)",
+              "full_bleed": false,
+              "image": "shopify:\/\/shop_images\/Haus-PDP-Hero-GiftCard-RedemptionPage.png",
+              "title": "The last minute gift",
+              "copy": "<p>Our digital gift cards are the perfect way to say happy holidays, missing you, or congrats in a pinch.<\/p>",
+              "cta_text": "Shop Now",
+              "cta_url": "shopify:\/\/products\/gift-card"
+            }
+          }
+        },
+        "block_order": [
+          "369dd0e9-4cbe-4326-b6aa-5edde7c68607",
+          "50254c67-2957-4954-a6a2-fbc8806d67b8",
+          "8d5d731c-c29b-45ff-907c-afb823136005",
+          "8668b1ec-bcfa-4d7d-9814-bca6158870be",
+          "fc644839-0936-468c-a733-3fa002a30b48",
+          "c8a9b087-5ccc-4177-84a7-8c4ba8097e31",
+          "66b1d922-0815-448b-b333-935203338cf3",
+          "9f4b73f5-bd83-4ddd-a923-2d791b0822a9"
+        ],
+        "settings": {
+          "white_nav": true,
+          "image": "shopify:\/\/shop_images\/Gifting_Module.jpg",
+          "title": "",
+          "copy": ""
+        }
+      },
+      "1606329821aa86864c": {
+        "type": "home-content-block",
+        "settings": {
+          "bg_color": "#45501b",
+          "alignment": "left",
+          "full_bleed": true,
+          "image": "shopify:\/\/shop_images\/trRULjg.png",
+          "title": "An Intro to Haus",
+          "copy": "<p>Each Haus apéritif is unique and complex, lower in alcohol, and ideal to sip for any occasion. We make our apéritifs with only real ingredients, so there's no wrong choice. <br\/><br\/>Their lighter alcohol (half of what you find in traditional liquor) makes them perfect to sip all evening without the blur in the morning. <\/p>",
+          "cta_text": "Shop Apéritifs",
+          "cta_url": "shopify:\/\/collections\/shop"
+        }
+      },
+      "tasting-video": {
+        "type": "tasting-video",
+        "settings": {
+          "title": "Tasting Tips",
+          "video": "https:\/\/player.vimeo.com\/external\/509744065.sd.mp4?s=f6663f822f1f322474c0e9ee99777ef80ef4acc0&profile_id=165",
+          "image": "shopify:\/\/shop_images\/Woody.png"
+        }
+      },
+      "tasting-blocks": {
+        "type": "tasting-blocks",
+        "blocks": {
+          "db31a891-793a-43e4-9cb3-a5497453daa8": {
+            "type": "tasting-card",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Tip_1.png",
+              "title": "If you like a dry cocktail",
+              "copy": "“Try Haus with a splash of prosecco, soda water or some tonic.”"
+            }
+          },
+          "768dbbf5-162b-4302-9c49-d2bacf71ac75": {
+            "type": "tasting-card",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Tip_2.png",
+              "title": "For something sweeter",
+              "copy": "“Haus pairs great with fresh fruit juices, and mixers like ginger beer.”"
+            }
+          },
+          "6019e640-3daf-4ad6-9437-ee79714c75b2": {
+            "type": "tasting-card",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/Tip_3.png",
+              "title": "For a stronger drink",
+              "copy": "“I recommend drinking Haus on the rocks with a splash of your favorite hard liquor.\""
+            }
+          }
+        },
+        "block_order": [
+          "db31a891-793a-43e4-9cb3-a5497453daa8",
+          "768dbbf5-162b-4302-9c49-d2bacf71ac75",
+          "6019e640-3daf-4ad6-9437-ee79714c75b2"
+        ],
+        "settings": {
+          "mobile_carousel": false
+        }
+      },
+      "tasting-page-blocks": {
+        "type": "tasting-page-blocks",
+        "blocks": {
+          "ab01ef8c-1ffd-4fa8-89c5-7e886dce3e84": {
+            "type": "collection-grid",
+            "settings": {
+              "button_type": "shopnow",
+              "eyebrow": "",
+              "title": "Find your Haus",
+              "copy": "",
+              "collection": "citrus-flower-spiced-cherry-bitter-clove",
+              "cta_text": "",
+              "cta_type": false
+            }
+          },
+          "2722112c-f080-4e48-899c-99c578ed4d99": {
+            "type": "text-block",
+            "settings": {
+              "title": "Know someone who might love Haus? Give them $10 off.",
+              "copy": "",
+              "cta_text": "Refer a friend",
+              "cta_url": "shopify:\/\/pages\/referral",
+              "button_type": "text-link"
+            }
+          }
+        },
+        "block_order": [
+          "ab01ef8c-1ffd-4fa8-89c5-7e886dce3e84",
+          "2722112c-f080-4e48-899c-99c578ed4d99"
+        ],
+        "settings": {}
+      },
+      "recipe-grid": {
+        "type": "recipe-grid",
+        "blocks": {
+          "df9ddf87-04b4-45fa-a690-d29b8d2adec1": {
+            "type": "recipe",
+            "settings": {
+              "article": "recipe\/haus-spritz"
+            }
+          },
+          "fbe22c33-b62a-4ba1-8480-7c5db265a6e9": {
+            "type": "recipe",
+            "settings": {
+              "article": "recipe\/haus-tonic"
+            }
+          },
+          "7adef21c-00a8-40aa-ad3f-0c932bab8cef": {
+            "type": "recipe",
+            "settings": {
+              "article": "recipe\/haus-cocktail"
+            }
+          },
+          "b3b41cc4-d862-4ede-82a4-74a8170ae508": {
+            "type": "recipe",
+            "settings": {
+              "article": "news\/haus-soda"
+            }
+          },
+          "2a766a1e-5dac-404e-b171-b55e94ec243d": {
+            "type": "recipe",
+            "settings": {
+              "article": "recipe\/haus-punch"
+            }
+          }
+        },
+        "block_order": [
+          "df9ddf87-04b4-45fa-a690-d29b8d2adec1",
+          "fbe22c33-b62a-4ba1-8480-7c5db265a6e9",
+          "7adef21c-00a8-40aa-ad3f-0c932bab8cef",
+          "b3b41cc4-d862-4ede-82a4-74a8170ae508",
+          "2a766a1e-5dac-404e-b171-b55e94ec243d"
+        ],
+        "settings": {
+          "section_title": "A few recipes we love",
+          "mobile_carousel": false
+        }
+      },
+      "recipe-page-blocks": {
+        "type": "recipe-page-blocks",
+        "blocks": {
+          "1411ecdb-3486-4784-9f5f-d69c9dff1a1c": {
+            "type": "content-block",
+            "settings": {
+              "alignment": "left",
+              "bg_color": "#291b08",
+              "image": "shopify:\/\/shop_images\/Half_and_Half_V4.jpg",
+              "title": "Liquor pairing guide",
+              "copy": "<p>Citrus Flower: blanco tequila or vodka<\/p><p>Rose Rosé: vodka<\/p><p>Grapefruit Jalapeño: tequila or mezcal<\/p><p>Bitter Clove: whiskey or bourbon<\/p><p>Lemon Lavender: gin or vodka<\/p><p>Spiced Cherry: whiskey or bourbon<\/p><p>Ginger Yuzu: bourbon or rum<\/p><p>Peach Passionfruit: rum<\/p>",
+              "cta_text": ""
+            }
+          },
+          "0e93f4f8-45ea-4d07-b474-4147afea2f37": {
+            "type": "collection-grid",
+            "settings": {
+              "button_type": "shopnow",
+              "eyebrow": "",
+              "title": "Find your Haus",
+              "copy": "",
+              "collection": "citrus-flower-spiced-cherry-bitter-clove",
+              "cta_text": "",
+              "cta_type": false
+            }
+          }
+        },
+        "block_order": [
+          "1411ecdb-3486-4784-9f5f-d69c9dff1a1c",
+          "0e93f4f8-45ea-4d07-b474-4147afea2f37"
+        ],
+        "settings": {}
+      },
+      "1616505789735b09b4": {
+        "type": "home-fifty-fifty-hero",
+        "settings": {
+          "desktop_image": "shopify:\/\/shop_images\/haus_hero_1.jpg",
+          "mobile_image": "shopify:\/\/shop_images\/haus_hero_1.jpg",
+          "hero-text": "Set your bar higher this year.",
+          "copy": "Farm-to-bottle aperitifs, delivered to your door.",
+          "btn-url": "shopify:\/\/collections\/shop",
+          "btn-text": "Shop Starter Kits",
+          "bg_color": "#16282f",
+          "text_color": true
+        }
+      },
+      "modern-spin": {
+        "type": "modern-spin",
+        "settings": {
+          "title": "A modern spin on the apéritif",
+          "copy": "<p>While newer to the States, apéritifs have been popular in Europe for centuries. They have the flavor complexity of a cocktail, but are low enough in alcohol content (stronger than wine, lighter than whiskey) that you can enjoy them in a cocktail, without the consequences. <\/p><p>Our apéritifs take a modern approach, for something fresh, clean, and easy to drink.<\/p>",
+          "image": "shopify:\/\/shop_images\/052721_CG_Haus_Location1318.jpg"
+        }
+      },
+      "stock-up": {
+        "type": "stock-up",
+        "blocks": {
+          "f384cd9c-995a-4024-bf97-37c68957643c": {
+            "type": "page-hero",
+            "settings": {
+              "d_image": "shopify:\/\/shop_images\/Haus_-_PR_Lifestyle_-_2021.10.02_-_0294.jpg",
+              "m_image": "shopify:\/\/shop_images\/Haus_-_PR_Lifestyle_-_2021.10.02_-_0294.jpg"
+            }
+          },
+          "a87620fe-18a4-4a2f-ac51-9b2ed152c2d2": {
+            "type": "text-block-with-badge",
+            "settings": {
+              "badge_on_mobile": false,
+              "title": "Stock up with our best deal (ever).",
+              "copy": "Get 20% off any number of bottles*. Plus, shipping is on us. <br> <br>Whether you’re the host or the guest, a stocked bar means you’ll always have the perfect drink or gift on hand. Sophisticated and easy to drink, mix and match apéritifs loved by Vogue, GQ, and NYT. <br> <br> <i>*Discount automatically applied after entering your shipping address. Not eligible for additional membership discounts.<i><\/i><\/i>"
+            }
+          },
+          "e1305aef-836a-46b5-8b2c-4d18252a68a8": {
+            "type": "collection-set",
+            "settings": {
+              "bg_color": "",
+              "button_type": "quickadd",
+              "enable_quickadd": true,
+              "enable_notes": false,
+              "collection": "holiday-stock-up",
+              "eyebrow": "",
+              "title": "",
+              "copy": "",
+              "cta_text": "",
+              "cta_url": "",
+              "cta_type": false,
+              "mobile_carousel": false,
+              "hide_cta": false
+            }
+          },
+          "09dfce5c-ce64-4bc8-a13c-fac2e58b1ca7": {
+            "type": "value-props",
+            "settings": {
+              "bg_color": "#124136",
+              "eyebrow": "stock up and save",
+              "title": "Holiday ready, whatever the occasion",
+              "copy": "",
+              "value-prop-1-title": "Hosting",
+              "value-prop-1-copy": "Throwing a holiday house party or a casual weeknight dinner? Consider drinks covered.",
+              "value-prop-1-image": "shopify:\/\/shop_images\/Hosting.png",
+              "value-prop-2-title": "Gifting",
+              "value-prop-2-copy": "Always have the perfect gift ready - without a last minute trip to the store. Your coworker, neighbor, cousin, or dog walker will thank you.",
+              "value-prop-2-image": "shopify:\/\/shop_images\/Gifting_v4.png",
+              "value-prop-3-title": "Drinks duty",
+              "value-prop-3-copy": "Good guest tip: full bottles make for easy batched cocktails your crew will love. Just bring Haus and a mixer.",
+              "value-prop-3-image": "shopify:\/\/shop_images\/Drinks_duty_7304cfab-0334-48d8-a6fe-b1d0ebec15f9.png"
+            }
+          }
+        },
+        "block_order": [
+          "f384cd9c-995a-4024-bf97-37c68957643c",
+          "a87620fe-18a4-4a2f-ac51-9b2ed152c2d2",
+          "e1305aef-836a-46b5-8b2c-4d18252a68a8",
+          "09dfce5c-ce64-4bc8-a13c-fac2e58b1ca7"
+        ],
+        "settings": {
+          "white_nav": true
+        }
+      },
+      "gift-guide-2021": {
+        "type": "gift-guide-2021",
+        "blocks": {
+          "fe325e6a-586e-4f47-bfca-561a8d714590": {
+            "type": "collection-set",
+            "settings": {
+              "square_cards": true,
+              "bg_color": "",
+              "button_type": "shopnow",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "21-holiday-gift-guide-collection-1",
+              "eyebrow": "",
+              "title": "",
+              "copy": "",
+              "cta_text": "",
+              "cta_url": "",
+              "cta_type": false,
+              "mobile_carousel": false
+            }
+          },
+          "3e741c5c-e4e9-4d1e-b833-f77c873eaceb": {
+            "type": "collection-set",
+            "settings": {
+              "square_cards": false,
+              "bg_color": "#16493d",
+              "button_type": "default",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "21-holiday-gift-guide-mix-n-match",
+              "eyebrow": "",
+              "title": "The perfect $50 gift",
+              "copy": "A full sized bottle and our new cocktail book are home bar must-haves.",
+              "cta_text": "",
+              "cta_url": "",
+              "cta_type": false,
+              "mobile_carousel": false
+            }
+          },
+          "83f0ac23-558a-4def-8998-01bd2c4f417f": {
+            "type": "collection-set",
+            "settings": {
+              "square_cards": false,
+              "bg_color": "",
+              "button_type": "quickadd",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "canal-holiday-collection",
+              "eyebrow": "",
+              "title": "Haus Approved",
+              "copy": "We curated a few of our home bar essentials - for aperitivo hour and beyond.",
+              "cta_text": "",
+              "cta_url": "",
+              "cta_type": false,
+              "mobile_carousel": false
+            }
+          },
+          "9f7e7a55-b24b-4ec8-aa85-621fb6b2dfd7": {
+            "type": "collection-set",
+            "settings": {
+              "square_cards": true,
+              "bg_color": "#0c0c0c",
+              "button_type": "shopnow",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "21-holiday-gift-guide-collection-2",
+              "eyebrow": "",
+              "title": "Choose flavors they’ll love",
+              "copy": "Make it personal by curating their perfect Sampler Kit or Duo.",
+              "cta_text": "",
+              "cta_url": "",
+              "cta_type": false,
+              "mobile_carousel": false
+            }
+          },
+          "8ea2c403-be79-4291-8763-eadc65785bc8": {
+            "type": "featured-product",
+            "settings": {
+              "button_type": "shopnow",
+              "product": "haus-gift-card",
+              "title": "",
+              "section_eyebrow": "",
+              "eyebrow": "",
+              "description": "",
+              "show_reviews": false,
+              "bg_color": "",
+              "alignment": "left"
+            }
+          },
+          "4af43f38-0830-445b-af42-7ca73f30f878": {
+            "type": "content-block",
+            "disabled": true,
+            "settings": {
+              "alignment": "right",
+              "bg_color": "#16493d",
+              "full_bleed": true,
+              "image": "shopify:\/\/shop_images\/StockUp.jpg",
+              "title": "Stock up and save",
+              "copy": "<p>Our best deal (ever) will keep you prepped for hosting, gifting, and that casual Thursday night hang. Get <strong>20% off everything, sitewide.<\/strong><\/p>",
+              "cta_text": "Pick Your Flavors",
+              "cta_url": "shopify:\/\/pages\/stock-up"
+            }
+          }
+        },
+        "block_order": [
+          "fe325e6a-586e-4f47-bfca-561a8d714590",
+          "3e741c5c-e4e9-4d1e-b833-f77c873eaceb",
+          "83f0ac23-558a-4def-8998-01bd2c4f417f",
+          "9f7e7a55-b24b-4ec8-aa85-621fb6b2dfd7",
+          "8ea2c403-be79-4291-8763-eadc65785bc8",
+          "4af43f38-0830-445b-af42-7ca73f30f878"
+        ],
+        "settings": {
+          "white_nav": true,
+          "d_image": "shopify:\/\/shop_images\/Hero_IMG_V3.jpg",
+          "m_image": "shopify:\/\/shop_images\/Mobile_Hero_V1.jpg",
+          "title": "Holiday Gift Shop",
+          "copy": "Shop gifts that will delight the design lover, foodie, cocktail connoisseur, host, and everyone in between. Ready to gift with custom notes included in every package."
+        }
+      },
+      "seo-landing": {
+        "type": "seo-landing",
+        "blocks": {
+          "cf50f193-b85f-4673-a46f-880d505157e9": {
+            "type": "collection-set",
+            "settings": {
+              "square_cards": true,
+              "bg_color": "",
+              "button_type": "shopnow",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "21-holiday-gift-guide-collection-1",
+              "eyebrow": "",
+              "title": "",
+              "copy": "",
+              "cta_text": "",
+              "cta_url": "",
+              "cta_type": false,
+              "mobile_carousel": false
+            }
+          },
+          "a616d935-9757-42f3-a291-fb9de7d71856": {
+            "type": "content-block",
+            "settings": {
+              "alignment": "right",
+              "bg_color": "#16493d",
+              "full_bleed": true,
+              "image": "shopify:\/\/shop_images\/StockUp_218816e5-4064-4942-9102-20e9c9a364fb.jpg",
+              "title": "Try Our Latest Flavor: Pomegranate Rosemary",
+              "copy": "<p>Bright and herbaceous, this punchy apéritif blends pomegranate and berries with earthy juniper and rosemary. A drink for all seasons, try it with sparkling water, champagne, or as the base to a warm cocktail.<\/p>",
+              "cta_text": "Shop Now",
+              "cta_url": "shopify:\/\/products\/pomegranate-rosemary"
+            }
+          },
+          "b84e5202-595c-43ad-8260-388bceba9f4f": {
+            "type": "featured-product",
+            "settings": {
+              "button_type": "shopnow",
+              "product": "haus-sampler-kit-old",
+              "title": "Build your own cocktail kit",
+              "section_eyebrow": "Gifts for her",
+              "eyebrow": "With Over 1,000 5-star reviews",
+              "description": "",
+              "show_reviews": true,
+              "bg_color": "",
+              "alignment": "left"
+            }
+          },
+          "dbdee7f0-a273-4b99-b792-8b645ae7d1b8": {
+            "type": "content-block",
+            "settings": {
+              "alignment": "left",
+              "bg_color": "#191919",
+              "full_bleed": false,
+              "image": "shopify:\/\/shop_images\/110521_CG_Haus_Extended0945.jpg",
+              "title": "What is an Apéritif?",
+              "copy": "<p>Apéritifs are a category of spirits with complex flavors derived from fruits, herbs, and botanicals. Their lighter alcohol content (less than whiskey, more than wine) makes them perfect to sip all evening. A refreshing new choice for wine lovers.<\/p>",
+              "cta_text": "Shop all apéritifs",
+              "cta_url": "shopify:\/\/collections\/shop"
+            }
+          },
+          "f101207c-1dd3-4c75-b713-5bd6faf57e96": {
+            "type": "featured-product",
+            "settings": {
+              "button_type": "shopnow",
+              "product": "haus-gift-card",
+              "title": "Let Her Choose Her Gift",
+              "section_eyebrow": "Gifts for her",
+              "eyebrow": "",
+              "description": "",
+              "show_reviews": false,
+              "bg_color": "",
+              "alignment": "right"
+            }
+          }
+        },
+        "block_order": [
+          "cf50f193-b85f-4673-a46f-880d505157e9",
+          "a616d935-9757-42f3-a291-fb9de7d71856",
+          "b84e5202-595c-43ad-8260-388bceba9f4f",
+          "dbdee7f0-a273-4b99-b792-8b645ae7d1b8",
+          "f101207c-1dd3-4c75-b713-5bd6faf57e96"
+        ],
+        "settings": {
+          "white_nav": true,
+          "d_image": "shopify:\/\/shop_images\/Hero-V1.jpg",
+          "m_image": "shopify:\/\/shop_images\/Home_Holiday_Feature_V1.jpg",
+          "title": "Gifts for Wine Lovers",
+          "copy": "Looking for unique gift for a wine lover in your life? Our apéritif wines contain less sugar, no fake ingredients, are delicious on their own or in a cocktail, and loved by the New York Times, Bon Appétit and Food & Wine Magazine."
+        }
+      },
+      "seo-landing-2": {
+        "type": "seo-landing-2",
+        "blocks": {
+          "9ee5b5c3-3dbc-4e74-9eea-90fce888d7fe": {
+            "type": "collection-set",
+            "settings": {
+              "square_cards": true,
+              "bg_color": "",
+              "button_type": "shopnow",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "21-holiday-gift-guide-collection-1",
+              "eyebrow": "",
+              "title": "",
+              "copy": "",
+              "cta_text": "",
+              "cta_url": "",
+              "cta_type": false,
+              "mobile_carousel": false
+            }
+          },
+          "e4bc6aed-f350-4475-8d6d-3a12636a7910": {
+            "type": "content-block",
+            "settings": {
+              "alignment": "right",
+              "bg_color": "#16493d",
+              "full_bleed": true,
+              "image": "shopify:\/\/shop_images\/StockUp_218816e5-4064-4942-9102-20e9c9a364fb.jpg",
+              "title": "Try Our Latest Flavor: Pomegranate Rosemary",
+              "copy": "<p>Bright and herbaceous, this punchy apéritif blends pomegranate and berries with earthy juniper and rosemary. A drink for all seasons, try it with sparkling water, champagne, or as the base to a warm cocktail.<\/p>",
+              "cta_text": "Shop Now",
+              "cta_url": "shopify:\/\/products\/pomegranate-rosemary"
+            }
+          },
+          "88527fc3-349a-4bb8-ad1f-b3211225c6cd": {
+            "type": "featured-product",
+            "settings": {
+              "button_type": "shopnow",
+              "product": "haus-sampler-kit-old",
+              "title": "Build your own cocktail kit",
+              "section_eyebrow": "Gifts for her",
+              "eyebrow": "With Over 1,000 5-star reviews",
+              "description": "",
+              "show_reviews": true,
+              "bg_color": "",
+              "alignment": "left"
+            }
+          },
+          "a041f934-b7bd-4c63-a99e-30be01d380d8": {
+            "type": "content-block",
+            "settings": {
+              "alignment": "left",
+              "bg_color": "#191919",
+              "full_bleed": true,
+              "image": "shopify:\/\/shop_images\/Option3_6388ff13-3144-4207-9638-aecc1776e656.jpg",
+              "title": "What is an Apéritif?",
+              "copy": "<p>Apéritifs are a category of spirits with complex flavors derived from fruits, herbs, and botanicals. Their lighter alcohol content (less than whiskey, more than wine) makes them perfect to sip all evening. A refreshing new choice for wine lovers.<\/p>",
+              "cta_text": "Shop all apéritifs",
+              "cta_url": "shopify:\/\/collections\/shop"
+            }
+          },
+          "6539557f-80aa-40f2-b785-6b3c4410b97f": {
+            "type": "featured-product",
+            "settings": {
+              "button_type": "shopnow",
+              "product": "haus-gift-card",
+              "title": "Let Her Choose",
+              "section_eyebrow": "Gifts for her",
+              "eyebrow": "",
+              "description": "Our digital gift cards are the perfect way to say happy holidays, sent straight to her inbox.",
+              "show_reviews": false,
+              "bg_color": "",
+              "alignment": "left"
+            }
+          }
+        },
+        "block_order": [
+          "9ee5b5c3-3dbc-4e74-9eea-90fce888d7fe",
+          "e4bc6aed-f350-4475-8d6d-3a12636a7910",
+          "88527fc3-349a-4bb8-ad1f-b3211225c6cd",
+          "a041f934-b7bd-4c63-a99e-30be01d380d8",
+          "6539557f-80aa-40f2-b785-6b3c4410b97f"
+        ],
+        "settings": {
+          "white_nav": true,
+          "d_image": "shopify:\/\/shop_images\/Hero-V1.jpg",
+          "m_image": "shopify:\/\/shop_images\/Home_Holiday_Feature_V1.jpg",
+          "title": "Gifts for Her",
+          "copy": "Looking for unique gift for her? We're Haus, alcohol with less sugar, real ingredients, and delicious flavors on their own or in a cocktail. Shop our cocktail kits or individual bottles and taste what the New York Times, Bon Appétit, and GQ are raving about."
+        }
+      },
+      "seo-landing-3": {
+        "type": "seo-landing-3",
+        "blocks": {
+          "2cc2835c-3d06-452e-b8c8-a522041387e8": {
+            "type": "collection-set",
+            "settings": {
+              "square_cards": true,
+              "bg_color": "",
+              "button_type": "default",
+              "enable_quickadd": false,
+              "enable_notes": false,
+              "collection": "21-holiday-gift-guide-collection-1",
+              "eyebrow": "",
+              "title": "",
+              "copy": "",
+              "cta_text": "",
+              "cta_url": "",
+              "cta_type": false,
+              "mobile_carousel": false
+            }
+          },
+          "9e0a4249-2c1a-43f3-847d-0245a0f57849": {
+            "type": "featured-product",
+            "settings": {
+              "button_type": "shopnow",
+              "product": "haus-sampler-kit-old",
+              "title": "Build your own",
+              "section_eyebrow": "Cocktail Kit Gifts",
+              "eyebrow": "Over 1,000 5 star reviews",
+              "description": "",
+              "show_reviews": false,
+              "bg_color": "",
+              "alignment": "left"
+            }
+          },
+          "55844014-fc03-41f6-9fb2-9712e9418df8": {
+            "type": "content-block",
+            "settings": {
+              "alignment": "left",
+              "bg_color": "#191919",
+              "full_bleed": false,
+              "image": "shopify:\/\/shop_images\/110521_CG_Haus_Extended0945.jpg",
+              "title": "What are Apéritifs?",
+              "copy": "<p>Apéritifs are a category of spirits with complex flavors derived from fruits, herbs, and botanicals. Their lighter alcohol content (less than whiskey, more than wine) makes them perfect to sip all evening. <\/p>",
+              "cta_text": "Shop all apéritifs",
+              "cta_url": "shopify:\/\/collections\/shop"
+            }
+          },
+          "4358b50d-ce8c-4fc7-8d7e-52919d7caf2d": {
+            "type": "featured-product",
+            "settings": {
+              "button_type": "shopnow",
+              "product": "haus-gift-card",
+              "title": "Let them choose",
+              "section_eyebrow": "Cocktail Kit Gifts",
+              "eyebrow": "",
+              "description": "Our digital gift cards are the perfect way to say happy holidays, sent straight to their inbox.",
+              "show_reviews": false,
+              "bg_color": "",
+              "alignment": "left"
+            }
+          }
+        },
+        "block_order": [
+          "2cc2835c-3d06-452e-b8c8-a522041387e8",
+          "9e0a4249-2c1a-43f3-847d-0245a0f57849",
+          "55844014-fc03-41f6-9fb2-9712e9418df8",
+          "4358b50d-ce8c-4fc7-8d7e-52919d7caf2d"
+        ],
+        "settings": {
+          "white_nav": true,
+          "d_image": "shopify:\/\/shop_images\/Holiday-Hero-IMG-Test_4174339c-d076-4edf-810b-f3080db6fc90.jpg",
+          "m_image": "shopify:\/\/shop_images\/OptionSK2.jpg",
+          "title": "Cocktail Kit Gifts",
+          "copy": "Shop our cocktail kits with over 1,000 5-star reviews and loved by the New York Times, Bon Appétit, and GQ. We're Haus, alcohol with less sugar, real ingredients, and delicious flavors on their own or perfect in a cocktail."
+        }
+      }
+    },
+    "content_for_index": [
+      "1590328185797",
+      "1606292330ee5ab48c",
+      "1616505789735b09b4",
+      "1592847676754",
+      "1590332219889",
+      "1606329821aa86864c",
+      "1592847828524",
+      "1590432529937",
+      "1590433343835",
+      "1590434557560",
+      "1590531921765"
+    ],
+    "blocks": {
+      "16357224352d160010": {
+        "type": "shopify:\/\/apps\/govalo\/blocks\/app-embed\/0261c814-5eb7-41a0-a529-3dcb870c5415",
+        "disabled": false,
+        "settings": {}
+      }
+    }
+  },
+  "presets": {
+    "Default": {
+      "sections": {
+        "collection-list": {
+          "type": "collection-list",
+          "settings": {}
+        },
+        "featured-collection": {
+          "type": "featured-collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "featured-product": {
+          "type": "featured-product",
+          "settings": {}
+        }
+      },
+      "content_for_index": [
+        "collection-list",
+        "featured-collection",
+        "featured-product"
+      ]
+    }
+  }
+}

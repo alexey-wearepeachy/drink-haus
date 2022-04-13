@@ -1,0 +1,67 @@
+<div class="cart-view oys" data-cart-view="data-cart-view" data-cart-body>
+    <div rv-show="cart.item_count | gt 0 ">
+        <div class="cart-body gutter-px-xs-1 gutter-px-lg-2" >
+            
+            <div class="col col-xs-full">
+                <div class="cart-view__block -pb-15">
+                  <div class="cart-view__summary">
+                      <p class="text-faded-black">Taxes, shipping and discounts calculated at checkout</p>
+                      <p class="cart-view__line-item-text text-soul cart-view__subtotal"><span class="-pr-5">Subtotal</span> <span class="dots -d-block w-100"></span>  <span class="-pl-5" rv-text="cart.total_price | money"></span></p>
+                  </div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="cart-view__footer container-fluid -pt-xs -pb-20 bpl-pb-25 bg-nurse" rv-show="cart.item_count | gt 0 " data-footer>
+            <div class="row cart-view__footer-layout b-top-french gutter-px-xs-1 gutter-px-lg-2">
+                <div class="col col-xs-full">
+                    <div class="cart-view__block" data-gift-message data-js-behavior="giftNote">
+                        <p class="cart-view__line-item-text align-center -no-my -py-20">
+                            <span class="flex row align-center">{% render 'icon-gift'%} Gifting Haus? </span>
+                            <span class="button-text pointer x-small" data-mess#toggle>Add a Note</span>
+                        </p>
+
+                        <div class="cart-view__messaging oh" data-message-content>
+                            <p class="small -no-mt -mb-15">We'll include a handwritten note with your order! (Gift notes are currently unavailable for same-day delivery in SF and LA.)️</p>
+                            <div class="-pb-20" data-js-behavior="messageCount">
+                                <textarea class="custom-textarea -py-5 -px-10" name="note" id="CartSpecialInstructions" maxlength="100" placeholder="Type your message here..." data-text-area>{{ cart.note }}</textarea>
+                                <span class="gta-expanded small lts-01 text-faded-black tac ttu -d-block -mt-10" data-character-count>100 characters remaining</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>               
+            </div>
+            
+             <div class="b-top-french -pt-15 bpl-pt-30 gutter-px-xs-1 gutter-px-lg-2">
+                {% comment %} <a href="/checkout" class="-mt-sm btn btn--full" rv-show="cart.item_count | gt 0" data-checkout-btn data-js-behavior="modal" data-modal-id="age">Check out <span rv-text="cart.total_price | checkout_text"></span></a>                     {% endcomment %}
+                <p class="-mt-15 bpl-mt-25 -no-mb tac gta-standard-italic -xs-body bpm-caption">Please ship to an address where an adult (21+) will be available to sign for the package. Discounts will automatically apply after entering your shipping address.</p>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div  rv-show="cart.item_count | eq 0 ">
+        <div class="cart-body gutter-px-xs-1 gutter-px-lg-2 tac">
+            <p class="tac -mt-30 -mb-20 bpm-mb-30">Do you ever feel.. like an empty bag? (There's no Haus in here yet).</p>
+                {% comment %}
+                Cart empty state
+                {% endcomment %}
+                
+            <div class="supports-cookies -mt-xs">
+              <a href="/collections/shop" class="btn btn--hollow">Continue Shopping</a>
+            </div>
+
+                {% comment %}
+                Cart no cookies state
+                ---------------------
+                Browser cookies are required to use the cart. If cookies aren't enabled in the
+                browser a message is displayed prompting the user to enable them.
+                {% endcomment %}
+                <div class="supports-no-cookies">
+                  <p>{{ 'cart.general.cookies_required' | t }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

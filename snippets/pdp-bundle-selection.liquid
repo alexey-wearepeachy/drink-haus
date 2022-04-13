@@ -1,0 +1,142 @@
+{% assign bundle = product.metafields.bundle.bundle_products | split: "|" %}
+
+{% if product.metafields.bundle.max_count != blank %}
+  {% assign max_count =  product.metafields.bundle.max_count %}
+{% else %}
+  {% assign max_count = bundle.size %}
+{% endif %}
+
+{% if product.metafields.product_override.shipping_link_text != blank %}
+  {% assign shipping_text = product.metafields.product_override.shipping_link_text %}
+{% else product.metafields.product_override.shipping_text != blank %}
+  {% assign shipping_text = product.metafields.product_override.shipping_text %}
+{% else %}
+  {% assign shipping_text = 'Free shipping on orders over $50' %}
+{% endif %}
+
+{% if product.metafields.bundle.preselected_copy != blank %}
+  {% assign pre_selected_radio = product.metafields.bundle.preselected_copy %}
+{% else %}
+  {% assign pre_selected_radio = "I want Haus' bestsellers" %}
+{% endif %}
+
+{% if product.metafields.bundle.customer_select_copy != blank %}
+  {% assign customer_selected = product.metafields.bundle.customer_select_copy %}
+{% else %}
+  {% assign customer_selected = "I'll select my flavors" %}
+{% endif %}
+
+<div class="b-top-divider -pt-30" data-js-behavior="productBundle">
+  <div class="bundle-selection -mb-30 bpm-no-mb" data-bundle>
+    <div class="-pb-25 -d-flex -f-col">
+      <label class="custom-input custom-radio -mb-15 bpm-mb-15" for="auto">
+        <input type="radio" name="bundle-choice" id="auto" value="auto" checked data-bundle-type>
+        <span class="custom-radio__visual custom-radio__visual--black"></span>
+        <span class="button-text">{{ pre_selected_radio }}</span>
+      </label>
+      
+      <label class="custom-input custom-radio" for="manual">
+        <input type="radio" name="bundle-choice" id="manual" value="manual" data-bundle-type>
+        <span class="custom-radio__visual custom-radio__visual--black"></span>
+        <span class="button-text">{{ customer_selected }}</span>
+      </label>
+    </div>
+    <div class="b-bottom-divider -pb-10 bpm-pb-20" data-bundle-selections>    
+    {% for i in (1..max_count) %}
+      <div class="-d-flex -f-col bpm-f-row -align-start bpm-align-center -mb-20 bpm-mb-10">
+        <span class="button-text bottle-select-label -shrink-0 -mb-5 bpm-no-mb bpm-mr-15">
+          Bottle {{ forloop.index }}:
+        </span>
+        
+        <div class="custom-select custom-select--small custom-select--black w-100" data-select-field>
+          <select class="bottle-select" name="bottle-select-{{forloop.index0}}" id="bottle-select-{{forloop.index0}}" data-select-index="{{ forloop.index0 }}">
+            {% for handle in bundle %}
+              {% assign current_option = all_products[handle] %}
+              {% assign title_override = current_option.metafields.product_override.title %}
+              {% if current_option.available %}
+
+              <option value="{{ current_option.id | json }}">{% if title_override != blank %}{{ title_override }}{% else %}{{ current_option.title }}{% endif %}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          <svg class="custom-select__caret" fill="none" viewBox="0 0 10 7">
+            <defs/>
+            <path fill="#191919" d="M0 1.41L1.41 0l3.54 3.54L8.5 0l1.41 1.41-4.96 4.96L0 1.41z"/>
+          </svg>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+    
+    <div class="-d-block bps-d-none tac -mt-25">
+      <div class="-no-my">{{ shipping_text }}</div>
+      {% if shipdate %}
+        <p class="-mt-5 text-soft-gray gta-standard-italic"> 
+          Ships by {{ shipdate }}
+        </p>
+      {% endif %}
+    </div>
+    
+    <div class="{% if memberships != blank %}button-group bps-d-flex bps-justify-between {% else %} w-100{% endif %}">
+      <button class="btn w-100 -mt-25 bpm-mt-30 loading-ellipses" data-add-to-cart><span class="is-loading">Add to cart - {{ product.price | money_without_trailing_zeros }}</span></button>
+      {% if memberships != blank %}
+      <button class="w-100 btn btn--hollow -mt-25 bpm-mt-30" data-js-behavior="memberships">Add to Membership</button>
+      {% comment %} <div class="tooltip -py-15 -px-20" data-hide data-tooltip>
+        <ul class="-pl-20 -no-py -no-pr -no-m tal">
+          <li>Monthly bottle(s) of your choice</li>
+          <li>Discounts and free shipping</li>  
+          <li>Free to join, flexible to adjust </li>
+          <li>Members-only flavors + events</li>
+        </ul>
+      </div> {% endcomment %}
+      {% endif %}
+    </div>
+    
+    <div class="-d-none bps-d-block tac -my-25">
+      <div class="-no-my">{{ shipping_text }}</div>
+      {% if shipdate %}
+        <p class="-mt-5 text-soft-gray gta-standard-italic"> 
+          Ships by {{ shipdate }}
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<script>
+  window.selectedMembership = [];
+  window.hausBundle = {
+    handle: {{ product.handle | json }},
+    title: {{ product.title | json }},
+    price: {{ product.price | json }},
+    max_count: Number({{ max_count | json }}),
+    image: {{ product.featured_image | json }},
+    products: [
+      {% for handle in bundle %}
+        {% assign current_product = all_products[handle] %}
+        {% assign title_override = current_product.metafields.product_override.title %}
+        
+        {
+          "title": {% if title_override != blank %}{{ title_override | json }}{% else %}{{ current_product.title | json }}{% endif %},
+          "id": {{ current_product.id | json }},
+          "handle": {{ handle | json }},
+          "description": {{ current_product.description | json }},
+          cartImage: {{ product.featured_image | json }},
+          "image": {{ current_product.featured_image | json }},
+          "price": {{ current_product.price | json }},
+          "variants": [
+            {%- for variant in current_product.variants -%}
+              {
+                "id": {{variant.id|json}},
+                "handle": {{ variant.title|handleize|json}},
+                "title": {{variant.title|json}},
+                "available": {{variant.available|json}},
+                "quantity": {{variant.inventory_quantity|json}},
+                "price": {{variant.price|json}}
+              }{%- if forloop.last == false -%},{%- endif -%}
+            {%- endfor -%}
+          ]
+        }{%- if forloop.last == false -%},{%- endif -%}
+      {% endfor %}
+    ]
+  }
+</script>

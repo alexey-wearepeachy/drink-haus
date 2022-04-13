@@ -1,0 +1,16 @@
+{{ "swell-post-purchase.css" | asset_url | stylesheet_tag}}
+
+<div class="main-purchase hidden-purchase">
+	<div class="purchase-grid">
+		<div class="purchase-header">
+			<div class="purchase-close"></div>
+		</div>
+		<div class="purchase-body">
+			{% include "swell-referral" %}
+		</div>
+		
+	</div>
+	
+</div>
+
+{{ "swell-defenitions.js" | asset_url | script_tag }}

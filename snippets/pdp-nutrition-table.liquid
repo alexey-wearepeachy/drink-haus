@@ -1,0 +1,361 @@
+{% assign table_size = 0 %}
+{% assign table_size = product.metafields.nutrition.title.size %}
+
+{% if table_size > 0 %}
+<section class="nutrition">
+  <div class="container">
+    <div class="row bps-justify-between -pt-35 bpm-pt-55 -pb-40 bpm-pb-60 {% unless no_border_top %}b-top-french{% endunless %}">
+      <div class="col col-xs-full col-lg-8 gutter-sm-1 -mb-55 bps-no-mb">
+        <div class="flex -f-col h-100 -justify-between -align-start">
+            <h2 class="-s-heading bpm-m-heading bpl-l-heading -no-mt -mb-20">{{ title }}</h2>
+            <div class="bps-d-none bpl-d-block">
+              {% render 'text-link' with
+                to: '#nutrtion-table',
+                text: 'Learn More',
+                attrs: 'data-js-behavior="modal" data-modal-id="nutrition-table"'
+              %}
+            </div>
+          </div>
+      </div>
+      <div class="col col-xs-full col-lg-14">
+        <div class="-d-flex -f-col bps-f-row bps-align-stretch bpm-mt-50 bpl-no-mt">
+            {% if table_size >= 2 %}
+              <div class="-d-none bps-d-block w-100" data-js-behavior="tabs">
+                <nav class="ingredients-tabs -mb-40">
+                  {% for table in product.metafields.nutrition.title %}
+                    <span class="-d-inline-block pointer ingredients-tabs__tab eyebrow -pb-10 {% unless forloop.last %}-mr-30 bpl-mr-50{% endunless %}" data-trigger="{{ table | handleize }}-panel">{{ table }}</span>
+                  {% endfor %}
+                </nav>
+                
+                {% for table in product.metafields.nutrition.title %}
+                  {% assign table_index = forloop.index0 %}
+                  {% assign ingredients = product.metafields.Ingredients.ingredients[table_index] | split: "|" %}
+
+                  <div class="ingredients-tabs__panel" data-panel="{{ table | handleize }}-panel">
+                    <div class="-d-flex -align-stretch -justify-between">
+                      <div class="col col-xs-full col-sm-15 -mb-20 bps-no-mb bps-mr-15">
+                        <table class="haus-table haus-table--2-col h-100">
+                          <thead>
+                            <tr>
+                              <th class="-tal -px-20 -pb-10 w-100 label" colspan="2">Amount Per Ounce</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% if product.metafields.nutrition.calories[forloop.index0] != blank %}
+                              <tr>
+                                <td class="-px-20">Calories</td>
+                                <td class="-px-20">
+                                  {{ product.metafields.nutrition.calories[forloop.index0] }}
+                                </td>
+                              </tr>
+                            {% endif %}
+                              
+                            {% if product.metafields.nutrition.fat[forloop.index0] != blank %}
+                              <tr>
+                                <td class="-px-20">Fat</td>
+                                <td class="-px-20">
+                                {{ product.metafields.nutrition.fat[forloop.index0] }}
+                                </td>
+                              </tr>
+                            {% endif %}
+                             
+                            {% if product.metafields.nutrition.protein[forloop.index0] != blank %}
+                              <tr>
+                                <td class="-px-20">Protein</td>
+                                <td class="-px-20">
+                                {{ product.metafields.nutrition.protein[forloop.index0] }}
+                                </td>
+                              </tr>
+                            {% endif %}
+                            
+                            {% if product.metafields.nutrition.sugars[forloop.index0] != blank %}
+                              <tr>
+                                <td class="-px-20">Sugars</td>
+                                <td class="-px-20">
+                                {{ product.metafields.nutrition.sugars[forloop.index0] }}
+                                </td>
+                              </tr>
+                            {% endif %}
+                            
+                            {% if product.metafields.nutrition.carbohydrates[forloop.index0] != blank %}
+                              <tr>
+                                <td class="-px-20">Carbohydrates</td>
+                                <td class="-px-20">
+                                {{ product.metafields.nutrition.carbohydrates[forloop.index0] }}
+                                </td>
+                              </tr>
+                            {% endif %}
+                          
+                            {% if product.metafields.nutrition.sodium[forloop.index0] != blank %}
+                              <tr>
+                                <td class="-px-20">Sodium</td>
+                                <td class="-px-20">
+                                {{ product.metafields.nutrition.sodium[forloop.index0] }}
+                                </td>
+                              </tr>
+                            {% endif %}
+                          </tbody>
+                        </table>
+                      </div>
+                      
+                      <div class="col col-xs-full col-sm-8 ">
+                        <table class="haus-table haus-table--sm -pb-10 h-100">
+                          <thead>
+                            <tr>
+                              <th class="-tal -px-20 -pb-10 w-100 label" colspan="2">Ingredients List</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          
+                            {% for ingredient in ingredients limit: 5 %} 
+                              {% assign clean_ingredient = ingredient | replace: '["', '' | replace: '"]', ''%}
+                              <tr>
+                                <td class="-px-20">{{ articles[clean_ingredient].title }}</td>
+                              </tr>
+                            {% endfor %}
+                            
+                            {% if ingredients.size > 5 %}
+                              <tr>
+                                <td class="-px-20">
+                                  <span class="-d-inline-block">
+                                    {% render 'text-link' with
+                                      to: '#nutrtion-table',
+                                      text: 'See All Ingredients',
+                                      attrs: 'data-js-behavior="modal" data-modal-id="nutrition-table"'
+                                    %}
+                                  </span>
+                                </td>
+                              </tr>
+                            {% endif %}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+              
+
+              <div class="-d-block bps-d-none">
+                <div class="full-slider css-slider overlap-slider">
+                  {% for table in product.metafields.nutrition.title %}
+                  <div class="css-slider__slide {% unless forloop.last %}-mr-25{% endunless %}">
+                      {% assign table_index = forloop.index0 %}
+                      {% assign ingredients = product.metafields.Ingredients.ingredients[table_index] | split: "|" %}
+
+                      <div class="-d-flex -f-col">
+                        <div class="col col-xs-full -mb-20">
+                          <h6 class="eyebrow -mb-15 -no-mt">{{ table }}</h6>
+                          <table class="haus-table h-100">
+                            <thead>
+                              <tr>
+                                <th class="-tal -px-20 w-100 label" colspan="2">Amount Per Ounce</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% if product.metafields.nutrition.calories[forloop.index0] != blank %}
+                                <tr>
+                                  <td class="-px-20">Calories</td>
+                                  <td class="-px-20">
+                                    {{ product.metafields.nutrition.calories[forloop.index0] }}
+                                  </td>
+                                </tr>
+                              {% endif %}
+                                
+                              {% if product.metafields.nutrition.fat[forloop.index0] != blank %}
+                                <tr>
+                                  <td class="-px-20">Fat</td>
+                                  <td class="-px-20">
+                                  {{ product.metafields.nutrition.fat[forloop.index0] }}
+                                  </td>
+                                </tr>
+                              {% endif %}
+                               
+                              {% if product.metafields.nutrition.protein[forloop.index0] != blank %}
+                                <tr>
+                                  <td class="-px-20">Protein</td>
+                                  <td class="-px-20">
+                                  {{ product.metafields.nutrition.protein[forloop.index0] }}
+                                  </td>
+                                </tr>
+                              {% endif %}
+                              
+                              {% if product.metafields.nutrition.sugars[forloop.index0] != blank %}
+                                <tr>
+                                  <td class="-px-20">Sugars</td>
+                                  <td class="-px-20">
+                                  {{ product.metafields.nutrition.sugars[forloop.index0] }}
+                                  </td>
+                                </tr>
+                              {% endif %}
+                              
+                              {% if product.metafields.nutrition.carbohydrates[forloop.index0] != blank %}
+                                <tr>
+                                  <td class="-px-20">Carbohydrates</td>
+                                  <td class="-px-20">
+                                  {{ product.metafields.nutrition.carbohydrates[forloop.index0] }}
+                                  </td>
+                                </tr>
+                              {% endif %}
+                            
+                              {% if product.metafields.nutrition.sodium[forloop.index0] != blank %}
+                                <tr>
+                                  <td class="-px-20">Sodium</td>
+                                  <td class="-px-20">
+                                  {{ product.metafields.nutrition.sodium[forloop.index0] }}
+                                  </td>
+                                </tr>
+                              {% endif %}
+                            </tbody>
+                          </table>
+                        </div>
+                        
+                        <div class="col col-xs-full">
+                          <table class="haus-table haus-table--sm">
+                            <thead>
+                              <tr>
+                                <th class="-tal -px-20 -pb-10 w-100 label" colspan="2">Ingredients List</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            
+                              {% for ingredient in ingredients limit: 5 %} 
+                                {% assign clean_ingredient = ingredient | replace: '["', '' | replace: '"]', ''%}
+                                <tr>
+                                  <td class="-px-20">{{ articles[clean_ingredient].title }}</td>
+                                </tr>
+                              {% endfor %}
+                              
+                              {% if ingredients.size > 5 %}
+                                <tr>
+                                  <td class="-px-20">
+                                    <span class="-d-inline-block -mb-10">
+                                      {% render 'text-link' with
+                                        to: '#nutrtion-table',
+                                        text: 'See All Ingredients',
+                                        attrs: 'data-js-behavior="modal" data-modal-id="nutrition-table"'
+                                      %}
+                                    </span>
+                                  </td>
+                                </tr>
+                              {% endif %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% else %}
+              {% for table in product.metafields.nutrition.title %}
+                {% assign table_index = forloop.index0 %}
+                {% assign ingredients = product.metafields.Ingredients.ingredients[table_index] | split: "|" %}
+
+                <div class="col col-xs-full col-sm-15 -mb-20 bps-no-mb bps-mr-15">
+                  <table class="haus-table h-100">
+                    <thead>
+                      <tr>
+                        <th class="-tal -px-20 w-100 label" colspan="2">Amount Per Ounce</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if product.metafields.nutrition.calories[forloop.index0] != blank %}
+                        <tr>
+                          <td class="-px-20">Calories</td>
+                          <td class="-px-20">
+                            {{ product.metafields.nutrition.calories[forloop.index0] }}
+                          </td>
+                        </tr>
+                      {% endif %}
+                        
+                      {% if product.metafields.nutrition.fat[forloop.index0] != blank %}
+                        <tr>
+                          <td class="-px-20">Fat</td>
+                          <td class="-px-20">
+                          {{ product.metafields.nutrition.fat[forloop.index0] }}
+                          </td>
+                        </tr>
+                      {% endif %}
+                       
+                      {% if product.metafields.nutrition.protein[forloop.index0] != blank %}
+                        <tr>
+                          <td class="-px-20">Protein</td>
+                          <td class="-px-20">
+                          {{ product.metafields.nutrition.protein[forloop.index0] }}
+                          </td>
+                        </tr>
+                      {% endif %}
+                      
+                      {% if product.metafields.nutrition.sugars[forloop.index0] != blank %}
+                        <tr>
+                          <td class="-px-20">Sugars</td>
+                          <td class="-px-20">
+                          {{ product.metafields.nutrition.sugars[forloop.index0] }}
+                          </td>
+                        </tr>
+                      {% endif %}
+                      
+                      {% if product.metafields.nutrition.carbohydrates[forloop.index0] != blank %}
+                        <tr>
+                          <td class="-px-20">Carbohydrates</td>
+                          <td class="-px-20">
+                          {{ product.metafields.nutrition.carbohydrates[forloop.index0] }}
+                          </td>
+                        </tr>
+                      {% endif %}
+                    
+                      {% if product.metafields.nutrition.sodium[forloop.index0] != blank %}
+                        <tr>
+                          <td class="-px-20">Sodium</td>
+                          <td class="-px-20">
+                          {{ product.metafields.nutrition.sodium[forloop.index0] }}
+                          </td>
+                        </tr>
+                      {% endif %}
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="col col-xs-full col-sm-8">
+                  <table class="haus-table haus-table--sm -pb-10 h-100">
+                    <thead>
+                      <tr>
+                        <th class="-tal -px-20 -pb-10 w-100 label" colspan="2">Ingredients List</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    
+                      {% for ingredient in ingredients limit: 5 %} 
+                        {% assign clean_ingredient = ingredient | replace: '["', '' | replace: '"]', ''%}
+                        <tr>
+                          <td class="-px-20">{{ articles[clean_ingredient].title }}</td>
+                        </tr>
+                      {% endfor %}
+                      
+                      {% if ingredients.size > 5 %}
+                        <tr>
+                          <td class="-px-20">
+                            <span class="-d-inline-block -mb-10">
+                              {% render 'text-link' with
+                                to: '#nutrtion-table',
+                                text: 'See All Ingredients',
+                                attrs: 'data-js-behavior="modal" data-modal-id="nutrition-table"'
+                              %}
+                            </span>
+                            
+                          </td>
+                        </tr>
+                      {% endif %}
+                    </tbody>
+                  </table>
+                </div>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}

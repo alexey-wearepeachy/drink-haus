@@ -1,0 +1,85 @@
+{% assign recipes =  product.metafields.recipes.recipe_articles | split: "|" %}
+{% assign product_type = product.type | downcase | handleize %}
+
+{% assign template_name = template.suffix %}
+
+{% assign hasBundle = false %}
+{% assign hasRedirect = false %}
+
+{% for tag in product.tags %}
+  {% if tag contains 'haus::redirect' %}
+    {% assign hasRedirect = true %}
+    {% assign redirectPath = tag | split: " => " | last %}
+  {% endif %}
+
+  {% if tag contains 'haus::bundle' %}
+    {% assign hasBundle = true %}  
+  {% endif %}
+{% endfor %}
+
+{% if hasRedirect %}
+  {% render 'product-redirect' with path: redirectPath %}
+{% endif %}
+
+<section class="-pt-100 bpm-pt-160 {% if product.metafields.ingredients_v2.header != blank %}has-ingredients-module{% endif %}" data-section-id="{{ section.id }}" data-section-type="product" data-js-product data-js-behavior="product">
+  {% render 'product-hero' with product as product, no_quantity: true %}
+  {% render 'model.bottle-tote.builder' %}
+</section>
+
+ 
+{% unless product == empty %}
+  <script type="application/json" data-product-json>
+    {{ product | json }}
+  </script>
+  
+  {% unless bundle %}
+  <script data-membership-json>
+    window.memberships = [];
+    
+    {% assign memberships = product.metafields.haus_subscriptions.products | split: "|" %}
+    {% if memberships.size > 0 %}
+      {% for prod in memberships %}
+        {% assign clean_handle = prod | replace: '["', '' | replace: '"]', ''%}
+          {% assign membership_json =  all_products[clean_handle] | json %}
+          window.memberships.push({{ membership_json }})
+      {% endfor %}
+    {% endif %}
+  </script>
+  {% endunless %}
+   
+  <script data-variant-inventory>
+    window.variantInventory = [];
+    {% for variant in product.variants %}
+      window.variantInventory.push({
+        id: {{ variant.id }},
+        inventory_quantity: {{ variant.inventory_quantity }}
+      })
+    {% endfor %}
+  </script>
+  
+  <script data-variant-text-json>
+    window.variantText = [];
+    {% for variant in product.variants %}
+    {% assign variant_text = variant.metafields.variant_selector.selection_text %}
+      window.variantText.push({
+        id: {{ variant.id }},
+        text: {% if variant_text != blank %}"{{ variant_text }}"{% else %}null{% endif %}
+      })
+    {% endfor %}
+  </script>
+{% endunless %}
+
+
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

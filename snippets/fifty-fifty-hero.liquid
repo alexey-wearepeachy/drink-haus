@@ -1,0 +1,41 @@
+{%- assign has_background = false%}
+{% if bg_color != blank and bg_color != 'rgba(0,0,0,0)' %}
+  {%- assign has_background = true -%}
+{% endif %}
+
+{% assign has_both_images = false %}
+
+{% if mobile_image and desktop_image %}
+  {% assign has_both_images = true %}
+  <style>
+    .fifty-fifty__image {
+      background-image: url({{ mobile_image }});
+    }
+    
+    @media (min-width: 1024px) {
+      .fifty-fifty__image {
+        background-image: url({{ desktop_image }});
+      }
+    }
+  </style>
+{% endif %}
+
+
+<div class="rel fifty-fifty bpm-d-flex bpm-f-row" {% if has_background %}style="background-color: {{ bg_color }};" data-hero data-bg-color{% endif %} data-js-behavior="homeHero">
+  <div class="col col-xs-full col-md-12 fifty-fifty__image" {% unless has_both_images %}style="background-image: url({{ desktop_image }});"{% endunless %}></div>
+  <div class="fifty-fifty__content col col-xs-full col-md-12 -pb-40 -px-40 bps-no-px -tac bpm-tal bpm-pb-100 -d-flex -align-end">
+    <div class="gutter-x-sm-2 w-100">
+      <h2 class="-mt-35 -s-heading bpm-l-heading bpl-xl-heading ros-cond {% if has_background %}text-white{% endif %}">{{ title }}</h2>
+      {% if subtitle %}
+      <p class="-caption bpm-body -mt-15 bpm-mt-30 {% if has_background %}text-white{% endif %}">{{ subtitle }}</p>
+      {% endif %}
+      
+      {% if cta_text and cta_url %}
+        <div class="-mt-30 bpm-mt-50">
+          {% render 'button', to: cta_url, text: cta_text, white: has_background %}
+        </div>
+      {% endif %}
+    </div>
+    
+  </div>
+</div>

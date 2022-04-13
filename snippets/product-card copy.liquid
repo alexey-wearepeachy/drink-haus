@@ -1,0 +1,62 @@
+
+{% assign first_option = product.options | first | downcase %}
+{% if first_option == 'size' %}
+  {% assign label = 'quantity' %}
+{% else %}
+  {% assign label = 'flavor' %}
+{% endif %}
+
+{% for tag in product.tags %} 
+  {%- assign tag_pair = tag | split: " => " -%}
+  {%- case tag_pair.first -%}
+    {%- when 'haus::badge' -%}
+      {% assign member_badge = true %}
+      {%- assign badge_text = tag_pair.last -%}
+    {%- else -%}
+  {%- endcase -%}
+{% endfor %}
+
+<div class="product-card" data-product-card data-js-behavior="productCard">
+  <a href="{{ product.url }}" class="-d-block product-card__media">
+    {% if member_badge %} 
+      {% render 'product-badge', text: badge_text, type: 'member' %}
+    {% endif %}
+    
+    {% 
+      render 'responsive-image', 
+      with image: product.featured_image, 
+      image_class: "haus-image", 
+      wrapper_class: "image-wrap", 
+      max_width: 700, 
+      max_height: 800
+    %}
+  </a>
+  
+  <div class="product-card__body tac">
+    <h3 class="product-card__title">{{ product.title }}</h3>
+    
+    <p class="product-card__copy">{{ product.metafields.product_card.short_description }}</p>
+
+    <div class="product-card__variant-panel -d-flex fd-col -justify-center oh" data-variant-panel>
+      <div class="product-card__variant-inner ">
+        {% for variant in product.variants %}
+          {% assign quantity_count = variant.title | plus: 0 %}
+          
+          {% if variant.available %}
+            <span class="product-card__variant-select small label ttu text-faded-black pointer" data-variant-id="{{ variant.id }}" >{{ variant.title }} {% if first_option == 'size' %}{{ quantity_count | pluralize: 'bottle', 'bottles' }}{% endif %}</span>
+          {% endif %}
+          
+        {% endfor %}          
+      </div>
+    </div>
+
+    <button class="btn -mt-15" data-card-btn>Add To Cart</button>
+  </div>
+
+  
+  {% unless product == empty %}
+  <script type="application/json" data-card-json>
+    {{ product | json }}
+  </script>
+  {% endunless %}
+</div>

@@ -1,0 +1,16 @@
+<div class="content-card">
+  {% if image %}
+    <div class="-mb-30">
+      {% 
+        render 'responsive-image', 
+        with image: image, 
+        image_class: "haus-image", 
+        wrapper_class: "image-wrap", 
+        max_width: 360, 
+        max_height: 450
+      %}
+    </div>
+  {% endif %}
+  
+  <p class="-caption bpm-body -no-my">{{ copy }}</p>
+</div>

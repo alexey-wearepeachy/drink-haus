@@ -1,0 +1,58 @@
+<section class="container">
+  <h3 class="tac -m-heading bpl-l-heading -no-my">{{ section.settings.section_title }}</h3>
+  <div class="-pt-40 -pb-25 bpm-pt-10 bpm-pt-65 bpm-pb-45">
+    <div class="gutter-x-sm-1">
+      <div class="grid-3-up row row--jc row--ais mobile-slider recipe-slider -f-wrap" {% if section.settings.mobile_carousel %}data-js-behavior="mobileSlider" data-auto-play{% endif%}>
+        {% for block in section.blocks %}
+          <div class="col col-sm-full col-md-6 tac gutter-px-half-md-1 {% unless section.settings.mobile_carousel %}{% unless forloop.last %}-mb-45{% endunless %} bpm-mb-0{% endunless %}">
+            {% render 'responsive-image' with
+              image: block.settings.image,
+              max_width: 360,
+              max_height: 360
+            %}
+            <p class="-s-heading ros-expanded">{{ block.settings.title }}</p>
+            <p class="-body">{{ block.settings.copy }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+{% schema %}
+  {
+    "name": "Three Up",
+    "settings": [
+      {
+        "id": "mobile_carousel",
+        "type": "checkbox",
+        "label": "Enable Mobile Carousel"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "tasting-card",
+        "name": "Tasting Block",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "copy",
+            "type": "text",
+            "label": "Copy"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

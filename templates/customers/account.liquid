@@ -1,0 +1,48 @@
+
+<div class="account-layout bpm-pt-150">
+  <aside class="aside">
+    <h4>Hi {{ customer.first_name }}</h4>
+    <p>Welcome back! Here is where you can edit your account details and view your order history.</p>
+    
+    <div class="account-actions-section -mt-60">
+      {% if customer.metafields.subscriptions.customer_string %}
+        <div>
+          <a class="btn btn--full" href="/tools/recurring/customer/{{customer.metafields.subscriptions.customer_string}}/subscriptions/">Manage Membership</a>
+        </div>
+      {% endif %}
+
+      <div class="-mt-10">
+        <a class="btn btn--hollow btn--full" href="/account/logout">Logout</a>
+      </div>
+    </div>
+    
+  </aside>
+  <div class="account-main">
+    <div class="account-header">
+      <p class="{% if template == 'customers/account' %}is-active{% endif %} account-tab text-link text-link--no-hover">Order History</p>
+    </div>
+
+    <div class="orders-list">
+      {% paginate customer.orders by 20 %}
+        {% if customer.orders.size != 0 %}
+          {% for order in customer.orders %}
+            {% render 'account-order-block' with order as block %}
+          {% endfor %}
+        {% else %}
+          <p>{{ 'customer.orders.none' | t }}</p>
+        {% endif %}
+
+        {% if paginate.pages > 1 %}
+          {% include 'pagination' %}
+        {% endif %}
+
+      {% endpaginate %}
+    </div>
+  </div>
+</div>
+
+
+{% include "swell-referral"%}
+
+{{ "swell-defenitions.js" | asset_url | script_tag }}
+{{ "swell-page-refer.js" | asset_url | script_tag }}

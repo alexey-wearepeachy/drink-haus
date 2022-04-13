@@ -1,0 +1,174 @@
+{% assign recipes =  product.metafields.recipes.recipe_articles | split: "|" %}
+{% assign product_type = product.type | downcase | handleize %}
+
+{% assign template_name = template.suffix %}
+
+{% assign hasBundle = false %}
+{% assign hasRedirect = false %}
+
+{% for tag in product.tags %}
+  {% if tag contains 'haus::redirect' %}
+    {% assign hasRedirect = true %}
+    {% assign redirectPath = tag | split: " => " | last %}
+  {% endif %}
+
+  {% if tag contains 'haus::bundle' %}
+    {% assign hasBundle = true %}  
+  {% endif %}
+{% endfor %}
+
+{% if hasRedirect %}
+  {% render 'product-redirect' with path: redirectPath %}
+{% endif %}
+
+<section class="-pt-100 bpm-pt-160 {% if product.metafields.ingredients_v2.header != blank %}has-ingredients-module{% endif %}" data-section-id="{{ section.id }}" data-section-type="product" data-js-product data-js-behavior="product">
+  {% render 'product-hero' with product as product %}
+  
+  {% render 'model.gj-ingredients.builder' %}
+  
+  {% if product.metafields.ingredients_v2.header != blank %}
+    {% 
+      render 'pdp-v2-ingredients-module' with
+      header: product.metafields.ingredients_v2.header,
+      image: product.metafields.ingredients_v2.image,
+      eyebrow: product.metafields.ingredients_v2.eyebrow,
+      ingredient_title: product.metafields.ingredients_v2.ingredient_title,
+      ingredient_description: product.metafields.ingredients_v2.ingredient_description,
+      cta_label: product.metafields.ingredients_v2.cta_label
+    %}
+  {% endif %}
+  
+  {% if product.metafields.testimonial.quote != blank %}
+    {% render 'testimonial-block', 
+      text: product.metafields.testimonial.quote,
+      source: product.metafields.testimonial.attribution,
+      bg_color: product.metafields.testimonial.bg_color
+    %}
+  {% endif %}
+  
+  {% unless product_type == 'gift-card' %}
+    {% if recipes.size > 0 %}
+      {% 
+        render 'recipe-grid' with 
+        title: product.metafields.recipes.title,
+        data: recipes,
+        no_border: true
+      %}
+    {% endif %}
+    
+    {% include 'model.sb-pdp-batch-cocktail.builder' %}
+    
+    {% if product.metafields.content_block.block_title != blank %}
+      {% assign alignment_dir = product.metafields.content_block.alignment | downcase %}
+      {% assign right_align = false %}
+      {% if alignment_dir == 'right' %} 
+        {% assign right_align = true %}
+      {% endif %}
+      <div class="-mb-40">
+        {% 
+          render 'content-block--full-bleed',
+          no_border: true,
+          remove_top_border: true,
+          title: product.metafields.content_block.block_title, 
+          image_url: product.metafields.content_block.block_image,
+          copy: product.metafields.content_block.block_copy,
+          bg_color: product.metafields.content_block.block_background_color,
+          image_last: right_align,
+          cta_text: product.metafields.content_block.block_cta_text,
+          cta_url: product.metafields.content_block.block_cta_link
+        %}
+      </div>
+    {% endif %}
+ 
+    {% 
+      render 'pdp-nutrition-table' with 
+      title: 'Real ingredients. Full transparency.',
+      ingredients: product.metafields.Ingredients.ingredients,
+      no_border_top: true
+    %}
+    
+    {% if product.metafields.related_products.products %}
+      {% render 'pdp-recommended-products' with 
+        title: product.metafields.related_products.title,
+        data: product.metafields.related_products.products 
+      %}
+    {% endif %}
+  
+    {% 
+      render 'membership-content-block' with 
+      title: 'Haus Membership',
+      copy: 'Haus Membership is free to join, and we keep things flexible in case you need to take a break. Membership brings you bottles every month, and comes with other things we love.'
+    %}
+    
+    {% render 'okendo-product-review', product: product %}
+
+    {% 
+      render 'pdp-bookend' with 
+      title: product.metafields.bookend.header,
+      copy: product.metafields.bookend.copy,
+      product: all_products[product.metafields.bookend.product],
+      image: product.metafields.bookend.media[0],
+      include_reviews: product.metafields.bookend.display_reviews,
+      to: all_products[product.metafields.bookend.product].url,
+      label: product.metafields.bookend.cta_label
+    %}
+  {% endunless %}
+</section>
+
+ 
+{% unless product == empty %}
+  <script type="application/json" data-product-json>
+    {{ product | json }}
+  </script>
+  
+  {% unless bundle %}
+  <script data-membership-json>
+    window.memberships = [];
+    
+    {% assign memberships = product.metafields.haus_subscriptions.products | split: "|" %}
+    {% if memberships.size > 0 %}
+      {% for prod in memberships %}
+        {% assign clean_handle = prod | replace: '["', '' | replace: '"]', ''%}
+          {% assign membership_json =  all_products[clean_handle] | json %}
+          window.memberships.push({{ membership_json }})
+      {% endfor %}
+    {% endif %}
+  </script>
+  {% endunless %}
+   
+  <script data-variant-inventory>
+    window.variantInventory = [];
+    {% for variant in product.variants %}
+      window.variantInventory.push({
+        id: {{ variant.id }},
+        inventory_quantity: {{ variant.inventory_quantity }}
+      })
+    {% endfor %}
+  </script>
+  
+  <script data-variant-text-json>
+    window.variantText = [];
+    {% for variant in product.variants %}
+    {% assign variant_text = variant.metafields.variant_selector.selection_text %}
+      window.variantText.push({
+        id: {{ variant.id }},
+        text: {% if variant_text != blank %}"{{ variant_text }}"{% else %}null{% endif %}
+      })
+    {% endfor %}
+  </script>
+{% endunless %}
+
+
+{% schema %}
+  {
+    "name": "Product pages",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

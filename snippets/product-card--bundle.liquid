@@ -1,0 +1,51 @@
+{% for tag in product.tags %} 
+  {%- assign tag_pair = tag | split: " => " -%}
+  
+  {%- case tag_pair.first -%}
+    {%- when 'haus::badge' -%}
+      {% assign member_badge = true %}
+      {%- assign badge_text = tag_pair.last -%}
+    {%- else -%}
+    
+    {%- when 'haus::notes' -%}
+      {%- assign notes = tag_pair.last -%}
+    {%- else -%}
+  {%- endcase -%}
+{% endfor %}
+
+{% if product.metafields.product_override.title != blank %}
+  {% assign product_title = product.metafields.product_override.title %}
+{% else  %}
+  {% assign product_title = product.title %}
+{% endif %}
+
+{% if product.metafields.product_card.short_description != blank %}
+  {% assign product_description = product.metafields.product_card.short_description %}
+{% else %}
+  {% assign product_description = product.description %}
+{% endif %}
+
+<div class="product-card">
+  <div class="-d-block product-card__media">
+    {% 
+      render 'responsive-image', 
+      with image: product.featured_image, 
+      image_class: "haus-image", 
+      wrapper_class: "image-wrap", 
+      max_width: 300, 
+      max_height: 400
+    %}
+  </div>
+  
+  <div class="product-card__body tac">
+    <h3 class="product-card__title">{{ product_title }}</h3>
+    {% if notes %}
+      <span class="pill button-text">{{ notes }}</span>
+    {% endif %}
+    <p class="product-card__copy">{{ product_description | strip_html }}</p>
+    {% if nutrition_modal %}
+      <a href="#data-nutrition-{{ product.handle }}" class="-d-table -mx-auto -mt-25 text-link" data-js-behavior="modal" data-modal-id="nutrition-{{ product.handle }}">Nutritional Facts + Ingredients</a>
+    {% endif %}
+  </div>
+    
+</div>
